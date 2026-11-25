@@ -63,3 +63,8 @@
 - Do not stop after one screenshot pass
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
+
+## Deploy (GitHub Pages)
+- Repo: https://github.com/KayesAbdul1234/breakin-assessment-playbooks (branch `main`). Live site: https://kayesabdul1234.github.io/breakin-assessment-playbooks/
+- Pages serves the `docs/` folder. Edit `site/index.html` (Artifact format), then run `python3 build.py` to regenerate `docs/index.html`. Never edit `docs/` by hand.
+- Publish: `python3 build.py && git add -A && git commit -m "..." && git push`. This folder's git uses a repo-scoped deploy key (`~/.ssh/breakin_deploy_ed25519`, set via `core.sshCommand`). Pages rebuilds in about a minute.
