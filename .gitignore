@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+temporary screenshots/
+# Superseded drafts, kept locally only
+Arctic Shores Playbook2.html
+site/arctic-shores.html
