@@ -229,6 +229,11 @@
   .res-grid a:active{transform:translateY(0)}
   .res-grid b{font-family:var(--f-display);font-size:16px}
   .res-grid span{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .res-grid a.feat{grid-column:1/-1;border:1.5px solid color-mix(in srgb,var(--magenta) 45%,var(--line));background:linear-gradient(120deg,color-mix(in srgb,var(--magenta) 7%,var(--surface)),var(--surface) 60%)}
+  .res-grid a.feat b::after{content:"  ↗";color:var(--pink-ink)}
+  .panel li a{font-weight:600;text-underline-offset:3px}
+  .panel li a:hover{text-decoration-thickness:2px}
+  .panel li a:active{opacity:.7}
   .closing .box.next{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s-4);align-items:center}
   .next ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
   .next li{display:flex;justify-content:space-between;gap:var(--s-2);padding:11px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);font-weight:600;font-size:15px}
@@ -275,6 +280,8 @@
   .g-hud{display:flex;gap:var(--s-4);justify-content:center;flex-wrap:wrap;font-size:14.5px;color:var(--muted);font-variant-numeric:tabular-nums}
   .g-hud b{color:var(--ink)}
   .g-hint{font-size:14px;color:var(--muted);max-width:56ch}
+  .g-why{font-size:14.5px;line-height:1.6;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--c3);border-radius:var(--r-sm);padding:10px 14px;max-width:60ch;text-align:left}
+  .g-why[hidden]{display:none}
   .tbar{width:100%;max-width:520px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
   .tbar i{display:block;height:100%;width:100%;background:var(--magenta);transform-origin:left;transition:transform .2s linear}
 
@@ -287,13 +294,38 @@
   .r-stats dd.sm{font:600 16px/1.4 var(--f-body)}
   dialog.player:focus{outline:none}
   .r-note{font-size:15px;color:var(--muted);line-height:1.65}
-  .r-tips{display:flex;flex-direction:column;gap:8px;background:var(--surface-2);border-radius:var(--r-md);padding:var(--s-3)}
-  .tip{padding-left:22px;position:relative;font-size:14.5px;line-height:1.6}
-  .tip::before{position:absolute;left:0;top:0;font-weight:800}
-  .tip.good::before{content:"\2713";color:var(--good)}
-  .tip.bad::before{content:"\2717";color:var(--bad)}
-  .tip b{font-size:12px;margin-right:4px}
-  .tip.good b{color:var(--good)} .tip.bad b{color:var(--bad)}
+  .r-rev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-2)}
+  .rv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s-3);min-width:0}
+  .rv h4{margin:0 0 10px;font:700 16px var(--f-display);display:flex;align-items:center;gap:8px}
+  .rv h4::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--good);flex:none}
+  .rv.work h4::before{background:var(--c3)}
+  .rv ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .rv li{font-size:14.5px;line-height:1.6;padding-left:22px;position:relative}
+  .rv li::before{position:absolute;left:0;top:0;font-weight:800;content:"\2713";color:var(--good)}
+  .rv.work li::before{content:"\2192";color:var(--c3)}
+  .rv.neutral li::before{content:"\2022";color:var(--accent-ink)}
+  .r-break{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .r-break span{font-size:13px;font-weight:600;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
+  .r-break span b{font-variant-numeric:tabular-nums;color:var(--pink-ink);margin-right:4px}
+  .r-mis{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md)}
+  .r-mis summary{cursor:pointer;padding:14px var(--s-3);font:700 16px var(--f-display);border-radius:var(--r-md);transition:background-color .2s}
+  .r-mis summary:hover{background:var(--surface-2)}
+  .r-mis summary span{font:500 13.5px var(--f-body);color:var(--muted);margin-left:6px}
+  .r-mis ol{list-style:none;margin:0;padding:0 var(--s-3) var(--s-3);display:flex;flex-direction:column;gap:var(--s-2)}
+  .mis{display:flex;gap:var(--s-2);align-items:flex-start;border-top:1px solid var(--line);padding-top:var(--s-2)}
+  .mis .mv{display:flex;gap:4px;align-items:center;flex:none;flex-wrap:wrap;max-width:46%}
+  .mis .mv .frame{width:46px;border-radius:8px}
+  .mis .mv .face{width:72px}
+  .mis .mv .scale{width:132px}
+  .mis .mv .mk{font-size:12px;color:var(--muted)}
+  .mis .mt{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .mis p{font-size:14.5px;line-height:1.55;margin:0}
+  .mis .q{font-weight:600}
+  .mis .ya b{font-size:12.5px;font-weight:700;margin-right:4px}
+  .mis .ya .frame.mini{display:inline-block;width:34px;vertical-align:middle;border-radius:6px;margin-right:4px}
+  .mis .ya .y{color:var(--bad)} .mis .ya .c{color:var(--good)}
+  .mis .why{color:var(--muted)}
+  @media (max-width:640px){.r-rev{grid-template-columns:1fr}.mis{flex-direction:column}.mis .mv{max-width:100%}}
   .r-act{display:flex;gap:var(--s-2);flex-wrap:wrap}
   .r-act .btn{padding:13px 20px;font-size:15px}
   .vlink{font-weight:600;font-size:14.5px}
@@ -362,8 +394,9 @@
   .dial text{font:700 20px var(--f-display);fill:var(--ink)}
   .code{display:flex;gap:6px;justify-content:center}
   .code span{width:36px;height:46px;border:1.5px solid var(--line);border-radius:8px;display:grid;place-items:center;font:700 22px var(--f-display);background:var(--surface);font-variant-numeric:tabular-nums}
-  .lights{display:flex;gap:10px;justify-content:center}
-  .lights i{width:16px;height:16px;border-radius:50%;background:var(--line)}
+  .lights{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:260px}
+  .lights i{width:14px;height:14px;border-radius:50%;background:var(--line)}
+  .lights i.cur:not(.on){box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--magenta)}
   .lights i.on{background:var(--good);box-shadow:0 0 0 4px color-mix(in srgb,var(--good) 25%,transparent)}
   .sec-side{display:flex;flex-direction:column;gap:var(--s-3);align-items:center}
   .lockstate{font:700 13px var(--f-body);letter-spacing:.06em;color:var(--muted)}
@@ -589,10 +622,12 @@
         <div class="panel">
           <h3>Before the real thing</h3>
           <ul class="clean">
+            <li>Try Arctic Shores' own <a href="https://demo.una-arcticshores.com/" target="_blank" rel="noopener">free demo</a> first. It takes about 5 minutes, with no sign-up.</li>
             <li>Learn what every game is testing. Each card above tells you.</li>
             <li>Play each game in practice mode until the controls feel natural, then do one full-length run.</li>
             <li>Practise numerical, logical and abstract reasoning with free online tests for the cognitive games.</li>
             <li>Do the official practice task in your invite. It doesn't count towards your score.</li>
+            <li>Need adjustments, such as extra time? Ask the employer before you start. They can't be added once you begin.</li>
           </ul>
         </div>
         <div class="panel">
@@ -648,7 +683,7 @@
         </li>
         <li>
           <h3>Fix your weakest</h3>
-          <p>Read "Your next step" after each run, then replay the games that aren't at target yet.</p>
+          <p>Read your report after each run: what went well, what to work on, and why any answers were wrong. Then replay the games that aren't at target yet.</p>
         </li>
       </ol>
     </div>
@@ -672,6 +707,7 @@
         <p>Videos and guides we checked when building these games.</p>
       </div>
       <div class="res-grid">
+        <a class="feat" href="https://demo.una-arcticshores.com/" target="_blank" rel="noopener"><b>Official free demo</b><span>Arctic Shores' own 5-minute taster of the real assessment, no sign-up</span></a>
         <a href="https://www.arcticshores.com/candidate-guidance" target="_blank" rel="noopener"><b>Official candidate guidance</b><span>Straight from Arctic Shores, with their own setup advice</span></a>
         <a href="https://www.youtube.com/watch?v=7advCJbg2Iw" target="_blank" rel="noopener"><b>The games, explained (video)</b><span>YOUinConsulting's overview of the full assessment</span></a>
         <a href="https://cogniprep.app/games/arctic-shores" target="_blank" rel="noopener"><b>CogniPrep</b><span>Free practice versions with detailed rules for each task</span></a>
@@ -702,7 +738,11 @@
         </details>
         <details>
           <summary>How many games will I get?</summary>
-          <div class="a">Up to nine, chosen by the employer for the role. Each takes about 5 to 15 minutes. Analysis and Patterns don't always appear.</div>
+          <div class="a">Up to nine, chosen by the employer for the role. Each takes about 5 to 15 minutes. Analysis and Patterns don't always appear. Arctic Shores also adds newer tasks, such as one on learning agility, so you may meet one that isn't covered here. If you do, the same approach works: read the instructions, use the practice round, and stay steady.</div>
+        </details>
+        <details>
+          <summary>How do I read my Arctic Shores feedback?</summary>
+          <div class="a">If the employer turns feedback on, you get a report after the assessment. It places you on a 1 to 10 scale for each behaviour, compared with a large group of other candidates. Neither end of a scale is better or worse: a 2 and a 9 just describe different working styles. Bring your report to a BreakIn session and we'll go through it with you.</div>
         </details>
         <details>
           <summary>Can I prepare for the behavioural games?</summary>
@@ -906,10 +946,10 @@
         if (phase !== 'go') return;
         phase = 'gap'; api.cancel(timer);
         const rt = api.now() - t0;
-        if (k === null) { slow++; res.push({ ok: false, cond }); say('Too slow', 'no'); }
+        if (k === null) { slow++; res.push({ ok: false, cond, slow: true, late: i >= N / 2 }); say(full ? 'Too slow' : `Too slow. The middle arrow pointed ${dir === 'L' ? 'left (Q)' : 'right (P)'}.`, 'no'); }
         else {
-          const ok = (k === 'q' ? 'L' : 'R') === dir; res.push({ ok, rt, cond });
-          if (full) say(''); else say(ok ? `Correct · ${Math.round(rt)} ms` : 'Wrong. Only the middle arrow counts.', ok ? 'ok' : 'no');
+          const ok = (k === 'q' ? 'L' : 'R') === dir; res.push({ ok, rt, cond, late: i >= N / 2 });
+          if (full) say(''); else say(ok ? `Correct · ${Math.round(rt)} ms` : `Wrong. The middle arrow pointed ${dir === 'L' ? 'left, so Q' : 'right, so P'}.${cond === 'incon' ? ' The outer arrows pointed the other way to pull you off.' : ''}`, ok ? 'ok' : 'no');
         }
         i++; clear(); api.later(next, full ? 300 : 550);
       }
@@ -917,8 +957,11 @@
       function done() {
         const ok = res.filter(r => r.ok);
         const rc = mean(ok.filter(r => r.cond === 'con').map(r => r.rt)), ri = mean(ok.filter(r => r.cond === 'incon').map(r => r.rt));
+        const wrong = c => res.filter(r => !r.ok && !r.slow && r.cond === c).length;
         api.finish({
-          score: pct(ok.length, N), scoreText: pct(ok.length, N) + '%', ready: full && pct(ok.length, N) >= 90, raw: { acc: pct(ok.length, N), early, slow, gap: rc && ri ? Math.round(ri - rc) : 0 },
+          score: pct(ok.length, N), scoreText: pct(ok.length, N) + '%', ready: full && pct(ok.length, N) >= 90,
+          raw: { acc: pct(ok.length, N), early, slow, gap: rc && ri ? Math.round(ri - rc) : 0, incon: wrong('incon'), other: wrong('con') + wrong('neutral'), slowLate: res.filter(r => r.slow && r.late).length, rt: Math.round(mean(ok.map(r => r.rt))), full },
+          breakdown: [['wrong when the outer arrows disagreed', wrong('incon')], ['wrong when they agreed or were blank', wrong('con') + wrong('neutral')], ['too slow', slow], ['too early', early]],
           headline: `${pct(ok.length, N)}% correct`,
           stats: [['Correct', `${ok.length} of ${N}`], ['Average reaction', ms(mean(ok.map(r => r.rt)))], ['Slower when arrows disagree', rc && ri ? Math.round(ri - rc) + ' ms' : '–'], ['Too early / too slow', `${early} / ${slow}`]],
           note: 'Everyone is a little slower when the outer arrows point the other way. A small gap means the distractors are not pulling you off. In the real task the window to answer keeps shrinking, so steady accuracy beats raw speed.'
@@ -932,7 +975,7 @@
   G.balloon = {
     name: 'Balloon', aka: 'Balloon Burst', type: 'Behavioural', measures: 'Risk-taking and learning from results',
     what: 'Pump a balloon to add 5p each time, then collect the money before it bursts. If it bursts, that balloon\'s money is gone.',
-    real: ['About 45 balloons', '5p per pump, collect at any time', 'Different colours burst at different points, and it isn\'t random', 'No right number of pumps: your pattern is what\'s measured'],
+    real: ['About 45 balloons', 'Each pump adds a small amount of money (5p here), collect at any time', 'Different colours burst at different points, and it isn\'t random', 'No right number of pumps: your pattern is what\'s measured'],
     controls: '<kbd>Q</kbd> pump, <kbd>P</kbd> collect.',
     practice: 'Practice · 12 balloons', full: 'Full length · 45 balloons',
     good: 'Notice how each colour behaves in the first few balloons, then stay consistent with what you learn.',
@@ -977,7 +1020,7 @@
         const kept = log.filter(l => !l.burst);
         const by = TYPES.map((ty, k) => { const a = kept.filter(l => l.t === k).map(l => l.pumps); return a.length ? `${ty.n} ${mean(a).toFixed(1)}` : `${ty.n} –`; });
         api.finish({
-          ...(() => { const kept = log.filter(l => !l.burst), av = [0, 1, 2].map(k => { const a = kept.filter(l => l.t === k).map(l => l.pumps); return a.length ? mean(a) : null; }); return { score: banked, scoreText: money(banked), ready: full && av[0] != null && av[2] != null && av[2] - av[0] >= 3, raw: { av, bursts: log.filter(l => l.burst).length, n: N } }; })(),
+          ...(() => { const kept = log.filter(l => !l.burst), av = [0, 1, 2].map(k => { const a = kept.filter(l => l.t === k).map(l => l.pumps); return a.length ? mean(a) : null; }); return { score: banked, scoreText: money(banked), ready: full && av[0] != null && av[2] != null && av[2] - av[0] >= 3, raw: { av, bursts: log.filter(l => l.burst).length, n: N, all: mean(kept.map(l => l.pumps)), banked } }; })(),
           headline: `${money(banked)} collected`,
           stats: [['Balloons burst', `${log.filter(l => l.burst).length} of ${N}`], ['Average pumps when collected', mean(kept.map(l => l.pumps)).toFixed(1)], ['Average pumps by colour', by.join(' · ')]],
           note: 'There is no right amount of risk. What employers see is your pattern: whether you learnt that purple bursts early and teal late, and whether you stayed consistent once you knew.'
@@ -999,15 +1042,16 @@
     mount(st, api) {
       const full = !api.practice, ICONS = ['★', '●', '▲', '■', '◆', '♥', '✚', '☾', '⬢', '✦', '▼', '◐'];
       st.innerHTML = `<div class="g-hud"><span>Sequence length <b id="ln">3</b></span><span>Correct <b id="ok">0</b></span></div>
-        <p class="g-msg" id="m">Watch</p>
+        <p class="g-msg" id="m">Watch</p><p class="g-why" id="w" hidden></p>
         <div class="tgrid4" id="tg">${ICONS.map((c, k) => `<button class="tile" type="button" data-t="${k}" aria-label="Tile ${k + 1}" disabled>${c}</button>`).join('')}</div>`;
       const tiles = [...st.querySelectorAll('.tile')], msg = st.querySelector('#m');
-      let len = 3, seq = [], input = [], misses = 0, correct = 0, longest = 0, sparks = 0, turn = false, warned = false;
+      let len = 3, seq = [], input = [], misses = 0, correct = 0, longest = 0, sparks = 0, turn = false, warned = false, sparkTile = -1;
+      const mistakes = [], kinds = { spark: 0, order: 0, other: 0 };
       const lock = on => tiles.forEach(t => t.disabled = on);
       function round() {
         api.count(`Length ${len}`); st.querySelector('#ln').textContent = len;
         seq = []; for (let k = 0; k < len; k++) { let t; do t = rand(0, 11); while (t === seq[k - 1]); seq.push(t); }
-        input = []; turn = false; lock(true); msg.textContent = 'Watch'; msg.className = 'g-msg';
+        input = []; turn = false; lock(true); msg.textContent = 'Watch'; msg.className = 'g-msg'; sparkTile = -1; st.querySelector('#w').hidden = true;
         const sparkAfter = len >= (full ? 5 : 4) ? rand(0, len - 2) : -1;
         if (sparkAfter >= 0 && !warned && !full) { warned = true; msg.textContent = 'Watch. An orange ⚡ spark will flash: ignore it.'; }
         let k = 0;
@@ -1017,7 +1061,7 @@
           api.later(() => {
             el.classList.remove('lit');
             if (k === sparkAfter) {
-              const s = tiles[pick([...Array(12).keys()].filter(x => !seq.includes(x)))];
+              sparkTile = pick([...Array(12).keys()].filter(x => !seq.includes(x))); const s = tiles[sparkTile];
               api.later(() => { s.dataset.icon = s.textContent; s.textContent = '⚡'; s.classList.add('spark'); sparks++;
                 api.later(() => { s.classList.remove('spark'); s.textContent = s.dataset.icon; k++; api.later(step, 300); }, 420); }, 220);
             } else { k++; api.later(step, 280); }
@@ -1035,13 +1079,23 @@
       function end(ok) {
         turn = false; lock(true);
         if (ok) { correct++; longest = Math.max(longest, len); misses = 0; len++; msg.textContent = full ? '' : 'Correct. One longer next time.'; msg.className = 'g-msg ok'; st.querySelector('#ok').textContent = correct; }
-        else { misses++; msg.textContent = full ? '' : (misses >= 2 ? 'Two misses in a row.' : 'Not quite. Same length again.'); msg.className = 'g-msg no'; }
+        else {
+          misses++;
+          const k = input.length - 1, tapped = input[k], want = seq[k], kind = tapped === sparkTile ? 'spark' : seq.includes(tapped) ? 'order' : 'other';
+          kinds[kind]++;
+          const why = kind === 'spark' ? `You tapped ${ICONS[tapped]}, which was the ⚡ spark tile. Sparks are never part of the sequence.`
+            : kind === 'order' ? `Tile ${k + 1} should have been ${ICONS[want]}. You had ${ICONS[tapped]} in the sequence, but in the wrong place.`
+            : `Tile ${k + 1} should have been ${ICONS[want]}, but you tapped ${ICONS[tapped]}, which wasn't in the sequence.`;
+          mistakes.push({ q: `Sequence of ${len}`, yours: input.map(n => ICONS[n]).join(' '), correct: seq.map(n => ICONS[n]).join(' '), why });
+          msg.textContent = full ? '' : `Not quite. It was ${seq.map(n => ICONS[n]).join(' ')}.`; msg.className = 'g-msg no';
+          if (!full) { const w = st.querySelector('#w'); w.hidden = false; w.textContent = `${why} ${misses >= 2 ? 'Two misses in a row ends the game.' : 'Same length again.'}`; }
+        }
         const stop = misses >= 2 || (!full && len > 6) || len > 14;
-        api.later(stop ? done : round, 900);
+        api.later(stop ? done : round, ok || full ? 900 : 3200);
       }
       function done() {
         api.finish({
-          score: longest, scoreText: (longest || 0) + ' tiles', ready: full && longest >= 7, raw: { longest, correct },
+          score: longest, scoreText: (longest || 0) + ' tiles', ready: full && longest >= 7, raw: { longest, correct, sparks, ...kinds, full }, mistakes,
           headline: `Longest sequence: ${longest || '–'}`,
           stats: [['Sequences correct', correct], ['Longest sequence', longest || '–'], ['Distractions ignored', sparks]],
           note: 'Most people hold 5 to 7 items. Chunking helps: group the sequence into twos or threes and say the icons to yourself.'
@@ -1055,7 +1109,7 @@
   G.tickets = {
     name: 'Tickets', aka: 'Ticket game', type: 'Cognitive', measures: 'Switching between rules at speed',
     what: 'A ticket with a number on a shape lands in the top or bottom box. Where it lands decides the question you answer.',
-    real: ['Top box: is the number even? Bottom box: does the shape have round edges?', 'About 80 tickets with roughly a second to answer each', 'The rule labels disappear after the opening rounds, so you have to remember them', 'Answering too early or too late counts as an error'],
+    real: ['Top box: is the number even? Bottom box: does the shape have round edges?', 'About 80 tickets with about 1.5 seconds to answer each', 'The rule labels disappear after the opening rounds, so you have to remember them', 'Answering too early or too late counts as an error'],
     controls: '<kbd>Q</kbd> yes, <kbd>P</kbd> no.',
     practice: 'Practice · 24 tickets', full: 'Full length · 80 tickets',
     good: 'Check which box the ticket landed in before you look at what\'s on it. Find a steady rhythm.',
@@ -1084,7 +1138,7 @@
         cur = { box, ans: box === 0 ? num % 2 === 0 : round, num, round, sw: prevBox !== -1 && box !== prevBox };
         slots[box].innerHTML = `<svg viewBox="0 0 100 100" role="img" aria-label="${num} on a ${shape}">${shapeSvg(shape, col, 40)}<text x="50" y="52" text-anchor="middle" dominant-baseline="central" style="font:800 34px var(--f-display);fill:var(--on-c)">${num}</text></svg>`;
         phase = 'go'; t0 = api.now();
-        timer = api.later(() => respond(null), full ? 1300 : 3000);
+        timer = api.later(() => respond(null), full ? 1500 : 3000);
       }
       function respond(k) {
         if (phase === 'gap') { early++; say('Too early', 'no'); return; }
@@ -1092,14 +1146,14 @@
         phase = 'fb'; api.cancel(timer);
         const rt = api.now() - t0;
         let ok = false;
-        if (k === null) { slow++; say('Too slow', 'no'); }
+        if (k === null) { slow++; say(full ? 'Too slow' : `Too slow. ${cur.box === 0 ? `Top box: ${cur.num} is ${cur.num % 2 ? 'odd' : 'even'}` : `Bottom box: the shape ${cur.round ? 'is round' : 'has corners'}`}, so ${cur.ans ? 'yes (Q)' : 'no (P)'}.`, 'no'); }
         else {
           ok = (k === 'q') === cur.ans;
           if (full) say('');
           else say(ok ? 'Correct' : (cur.box === 0 ? `${cur.num} is ${cur.num % 2 ? 'odd' : 'even'}, so ${cur.ans ? 'yes' : 'no'}.` : `That shape ${cur.round ? 'is round' : 'has corners'}, so ${cur.ans ? 'yes' : 'no'}.`), ok ? 'ok' : 'no');
         }
         streak = ok ? 0 : streak + 1; if (streak === 2) doubles++;
-        res.push({ ok, rt: k === null ? null : rt, sw: cur.sw });
+        res.push({ ok, rt: k === null ? null : rt, sw: cur.sw, box: cur.box, slow: k === null });
         prevBox = cur.box; i++;
         api.later(next, full ? 250 : 700);
       }
@@ -1107,8 +1161,11 @@
       function done() {
         const ok = res.filter(r => r.ok);
         const rs = mean(ok.filter(r => r.sw).map(r => r.rt)), rr = mean(ok.filter(r => !r.sw).map(r => r.rt));
+        const wr = res.filter(r => !r.ok && !r.slow), topE = wr.filter(r => r.box === 0).length, botE = wr.filter(r => r.box === 1).length, swE = wr.filter(r => r.sw).length;
         api.finish({
-          score: pct(ok.length, N), scoreText: pct(ok.length, N) + '%', ready: full && pct(ok.length, N) >= 85, raw: { acc: pct(ok.length, N), doubles, early, slow, sw: rs && rr ? Math.round(rs - rr) : 0 },
+          score: pct(ok.length, N), scoreText: pct(ok.length, N) + '%', ready: full && pct(ok.length, N) >= 85,
+          raw: { acc: pct(ok.length, N), doubles, early, slow, sw: rs && rr ? Math.round(rs - rr) : 0, topE, botE, swE, wrong: wr.length, full },
+          breakdown: [['wrong in the top box (number)', topE], ['wrong in the bottom box (shape)', botE], ['of those, just after the box switched', swE], ['too slow', slow], ['too early', early]],
           headline: `${pct(ok.length, N)}% correct`,
           stats: [['Correct', `${ok.length} of ${N}`], ['Average reaction', ms(mean(ok.map(r => r.rt)))], ['Extra time when the box switched', rs && rr ? Math.round(rs - rr) + ' ms' : '–'], ['Two wrong in a row', doubles], ['Too early / too slow', `${early} / ${slow}`]],
           note: 'Switching boxes costs everyone a little time. Candidates who did well say the aim is not to get every ticket right, it\'s never to get two wrong in a row.'
@@ -1166,7 +1223,7 @@
         return { e, w, look };
       });
       const order = [...items.slice(0, Math.ceil(N / 3)).sort(() => Math.random() - .5), ...shuffle(items.slice(Math.ceil(N / 3)))];
-      st.innerHTML = `<div id="fc"></div><p class="g-msg" id="m">${full ? '' : 'Which emotion is this?'}</p>
+      st.innerHTML = `<div id="fc"></div><p class="g-msg" id="m">${full ? '' : 'Which emotion is this?'}</p><p class="g-why" id="w" hidden></p>
         <div class="emo">${EMO.map((e, k) => `<button class="opt" type="button" data-e="${e}">${k + 1}. ${e}</button>`).join('')}</div>`;
       const msg = st.querySelector('#m'), fc = st.querySelector('#fc');
       let i = 0, t0 = 0, busy = false; const res = [];
@@ -1176,9 +1233,13 @@
       }
       function answer(e) {
         if (busy) return; busy = true;
-        const it = order[i], ok = e === it.e; res.push({ ok, e: it.e, said: e, rt: api.now() - t0 });
+        const it = order[i], ok = e === it.e; res.push({ ok, e: it.e, said: e, rt: api.now() - t0, w: it.w, look: it.look, blend: Object.keys(it.w).length > 1 });
         if (full) { msg.textContent = ''; i++; api.later(show, 250); }
-        else { msg.textContent = ok ? `Yes, ${it.e.toLowerCase()}. ${TIPS[it.e]}` : `This one is ${it.e.toLowerCase()}. ${TIPS[it.e]}`; msg.className = 'g-msg ' + (ok ? 'ok' : 'no'); i++; api.later(show, ok ? 1100 : 2400); }
+        else {
+          msg.textContent = ok ? `Yes, ${it.e.toLowerCase()}.` : `Not quite: this one is ${it.e.toLowerCase()}, not ${e.toLowerCase()}.`; msg.className = 'g-msg ' + (ok ? 'ok' : 'no');
+          const w = st.querySelector('#w'); w.hidden = false; w.textContent = ok ? TIPS[it.e] : `${it.e}: ${TIPS[it.e].toLowerCase()} ${e}: ${TIPS[e].toLowerCase()}`;
+          i++; api.later(() => { w.hidden = true; show(); }, ok ? 1100 : 3400);
+        }
       }
       st.querySelectorAll('[data-e]').forEach(b => b.addEventListener('click', () => answer(b.dataset.e)));
       const km = {}; EMO.forEach((e, k) => km[String(k + 1)] = () => answer(e)); api.keys(km);
@@ -1188,7 +1249,9 @@
         const top = Object.entries(miss).sort((a, b) => b[1] - a[1])[0];
         const third = Math.ceil(N / 3), late = res.slice(N - third);
         api.finish({
-          score: pct(ok, N), scoreText: pct(ok, N) + '%', ready: full && pct(ok, N) >= 70, raw: { acc: pct(ok, N), top: top ? top[0] : '' },
+          score: pct(ok, N), scoreText: pct(ok, N) + '%', ready: full && pct(ok, N) >= 70,
+          raw: { acc: pct(ok, N), top: top ? top[0] : '', topN: top ? top[1] : 0, early: pct(res.slice(0, third).filter(r => r.ok).length, third), late: pct(late.filter(r => r.ok).length, late.length), full },
+          mistakes: res.filter(r => !r.ok).map(r => ({ v: faceSvg(r.w, r.look), yours: r.said, correct: r.e, why: `${TIPS[r.e]}${r.blend ? ` This face also had a little ${Object.keys(r.w).filter(x => x !== r.e)[0].toLowerCase()} mixed in, so it was a hard one.` : ''}` })),
           headline: `${pct(ok, N)}% matched`,
           stats: [['Matched', `${ok} of ${N}`], ['On the subtle faces', `${pct(late.filter(r => r.ok).length, late.length)}%`], ['Most common mix-up', top ? top[0] : 'None']],
           note: 'The last third of faces are blends, so nobody gets them all. In the real task they are photographs. For practice with real faces, try the Berkeley emotional intelligence quiz.'
@@ -1229,6 +1292,13 @@
     }
     return genSeq(1);
   }
+  const FEAT = { shape: 'shape', col: 'colour', size: 'size', rot: 'direction', cell: 'position' };
+  function frameDiff(A, B) {   // which features of frame A differ from frame B
+    const out = new Set();
+    A.forEach((a, k) => { const b = B[k]; if (!b) return; if (a.shape !== b.shape) out.add('shape'); if (a.col !== b.col) out.add('col'); if (a.size !== b.size) out.add('size'); if (a.cell !== b.cell) out.add('cell'); if (TURNERS.includes(a.shape) && a.shape === b.shape && a.rot !== b.rot) out.add('rot'); });
+    return [...out];
+  }
+  const featList = f => { const w = f.map(x => FEAT[x]); return w.length > 1 ? w.slice(0, -1).join(', ') + ' and ' + w[w.length - 1] : w[0] || ''; };
   const ruleText = it => it.slots.map((sl, k) => {
     const who = it.slots.length > 1 ? `The ${sl.shape}` : 'The shape';
     const r = sl.rules.map(x => x === 'col' ? (sl.cyc === 2 ? 'swaps between two colours' : 'cycles through three colours') : x === 'size' ? (sl.ds > 0 ? 'grows one size' : 'shrinks one size') : x === 'rot' ? `turns 90° ${sl.dr > 0 ? 'clockwise' : 'anticlockwise'}` : `moves ${Math.abs(sl.dp)} place${Math.abs(sl.dp) > 1 ? 's' : ''} ${sl.dp > 0 ? 'clockwise' : 'anticlockwise'} round the edge`);
@@ -1246,7 +1316,7 @@
     bad: 'Confirming after spotting one rule and missing a second.',
     mount(st, api) {
       const full = !api.practice, tiers = full ? [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4] : [1, 2, 3, 4], N = tiers.length;
-      let i = 0, it, build, active = 0, t0 = 0, tick = null, outOfTime = 0; const res = [];
+      let i = 0, it, build, active = 0, t0 = 0, tick = null, outOfTime = 0; const res = [], mistakes = [];
       function load() {
         if (i >= N) return done();
         it = genSeq(tiers[i]); build = frameAt(it, 2).map(s => ({ ...s })); active = 0; t0 = api.now();
@@ -1277,15 +1347,18 @@
       }
       function submit() {
         if (tick) { tick(); tick = null; }
-        const ans = frameAt(it, 3), ok = sameFrame(build, ans); res.push({ ok, t: api.now() - t0 });
+        const ans = frameAt(it, 3), ok = sameFrame(build, ans), diff = ok ? [] : frameDiff(build, ans), timedOut = full && api.now() - t0 >= 60000;
+        res.push({ ok, t: api.now() - t0, diff });
+        if (!ok) mistakes.push({ v: `${[0, 1, 2].map(t => frameSvg(frameAt(it, t))).join('')}<span class="mk">→</span>${frameSvg(ans)}`, q: `Item ${i + 1}${timedOut ? ' (ran out of time)' : ''}`, yours: `${frameSvg(build, 'frame mini')} ${diff.length ? `${featList(diff)} ${diff.length > 1 ? 'were' : 'was'} off` : 'not changed'}`, correct: 'the last frame in the row', why: ruleText(it) });
         if (full) { i++; load(); return; }
-        st.querySelector('.builder').outerHTML = `<div class="builder"><p class="g-msg ${ok ? 'ok' : 'no'}">${ok ? 'Correct.' : 'Not quite. The answer is on the right.'}</p><div class="frames">${frameSvg(build)}<span aria-hidden="true">→</span>${frameSvg(ans)}</div><p class="g-hint">${ruleText(it)}</p></div>`;
+        st.querySelector('.builder').outerHTML = `<div class="builder"><p class="g-msg ${ok ? 'ok' : 'no'}">${ok ? 'Correct.' : `Not quite: your ${featList(diff)} ${diff.length > 1 ? 'were' : 'was'} off. Yours is on the left, the answer on the right.`}</p><div class="frames">${frameSvg(build)}<span aria-hidden="true">→</span>${frameSvg(ans)}</div><p class="g-hint">${ruleText(it)}</p></div>`;
         const b = st.querySelector('#ok'); b.textContent = i + 1 < N ? 'Next item' : 'See results'; b.onclick = () => { i++; load(); };
       }
       function done() {
         const ok = res.filter(r => r.ok).length;
         api.finish({
-          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 10, raw: { acc: pct(ok, N), timeouts: outOfTime },
+          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 10, mistakes,
+          raw: { acc: pct(ok, N), timeouts: outOfTime, ok, n: N, feats: res.flatMap(r => r.diff), two: (() => { const t = res.filter((r, k) => tiers[k] >= 3); return t.length ? pct(t.filter(r => r.ok).length, t.length) : null; })(), avgT: Math.round(mean(res.map(r => r.t)) / 1000), full },
           headline: `${ok} of ${N} correct`,
           stats: [['Correct', `${ok} of ${N}`], ['Average time per item', Math.round(mean(res.map(r => r.t)) / 1000) + ' s'], ['Ran out of time', outOfTime]],
           note: 'The real task adds rules as you go. If you are short on time, lock in the features you are sure of rather than leaving the frame unchanged.'
@@ -1307,7 +1380,7 @@
     flag: 'Not always included',
     mount(st, api) {
       const full = !api.practice, N = full ? 20 : 5, LIMIT = 17 * 60000;
-      let i = 0, it, opts, ans, start = api.now(), t0 = 0, busy = false; const res = [];
+      let i = 0, it, opts, ans, start = api.now(), t0 = 0, busy = false; const res = [], mistakes = [];
       function mutate(F) {
         const G2 = F.map(s => ({ ...s })), s = pick(G2), what = pick(TURNERS.includes(s.shape) ? ['col', 'size', 'cell', 'rot', 'shape'] : ['col', 'size', 'cell', 'shape']);
         if (what === 'col') s.col = COLS[(COLS.indexOf(s.col) + rand(1, 3)) % 4];
@@ -1315,6 +1388,7 @@
         if (what === 'cell') s.cell = pick([...Array(9).keys()].filter(c => c !== s.cell && !G2.some(o => o !== s && o.cell === c)));
         if (what === 'rot') s.rot = (s.rot + pick([90, 180, 270])) % 360;
         if (what === 'shape') s.shape = pick(SHAPES4.filter(x => x !== s.shape));
+        G2.what = what === 'cell' ? 'cell' : what;
         return G2;
       }
       function load() {
@@ -1330,10 +1404,11 @@
       }
       function choose(k) {
         if (busy) return; busy = true;
-        const ok = sameFrame(opts[k], ans); res.push({ ok, t: api.now() - t0 });
+        const ok = sameFrame(opts[k], ans), bad = ok ? '' : FEAT[opts[k].what] || featList(frameDiff(opts[k], ans)); res.push({ ok, t: api.now() - t0, bad });
+        if (!ok) mistakes.push({ v: `${[0, 1, 2].map(t => frameSvg(frameAt(it, t))).join('')}<span class="mk">→</span>${frameSvg(ans)}`, q: `Item ${i + 1}`, yours: `${frameSvg(opts[k], 'frame mini')} option ${k + 1}, which had the wrong ${bad}`, correct: `option ${opts.indexOf(ans) + 1}, the last frame in the row`, why: ruleText(it) });
         if (full) { i++; load(); return; }
         const btns = st.querySelectorAll('.choice'); btns[k].classList.add(ok ? 'right' : 'wrong'); btns[opts.indexOf(ans)].classList.add('right');
-        st.querySelector('#m').textContent = ok ? 'Correct.' : 'Not this one.'; st.querySelector('#m').className = 'g-msg ' + (ok ? 'ok' : 'no');
+        st.querySelector('#m').textContent = ok ? 'Correct.' : `Not this one: option ${k + 1} has the wrong ${bad}. Option ${opts.indexOf(ans) + 1} follows every rule.`; st.querySelector('#m').className = 'g-msg ' + (ok ? 'ok' : 'no');
         st.querySelector('#h').innerHTML = `${ruleText(it)} <button class="btn btn-ghost" type="button" id="nx" style="padding:8px 16px;font-size:14px;margin-left:8px">${i + 1 < N ? 'Next' : 'See results'}</button>`;
         st.querySelector('#nx').onclick = () => { i++; load(); };
       }
@@ -1345,7 +1420,8 @@
         if (finished) return; finished = true;
         const ok = res.filter(r => r.ok).length;
         api.finish({
-          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 14, raw: { acc: pct(ok, N), unreached: N - res.length },
+          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 14, mistakes,
+          raw: { acc: pct(ok, N), unreached: N - res.length, ok, n: N, feats: res.filter(r => !r.ok).map(r => Object.keys(FEAT).find(f => FEAT[f] === r.bad) || ''), avgT: Math.round(mean(res.map(r => r.t)) / 1000), full },
           headline: `${ok} of ${N} correct`,
           stats: [['Correct', `${ok} of ${res.length} answered`], ['Average time per item', Math.round(mean(res.map(r => r.t)) / 1000) + ' s'], ['Not reached', N - res.length]],
           note: 'You have about 51 seconds per item in the real task. If one is taking too long, make your best elimination and move on.'
@@ -1358,64 +1434,85 @@
   /* ----- Security (Code Breaker: stop the dial on the code) ----- */
   G.security = {
     name: 'Security', aka: 'Code Breaker, Security Door, Lock', type: 'Mixed', measures: 'Timing, focus and perseverance',
-    what: 'A shaded segment sweeps round a dial of digits 0 to 9. Stop it on the highlighted digit to enter each number of the code.',
-    real: ['Four locks, each with a five-digit code', 'One wrong stop sends you back to the start of that code', 'The speed and direction change from lock to lock', 'You can leave at any point. How you handle resets is what\'s measured'],
+    what: 'A shaded band sweeps round a dial of digits 0 to 9. Stop it on the circled digit to enter each number of the code. Each lock is harder than the last.',
+    real: ['Reported as about 10 to 20 locks, each harder than the last', 'One wrong stop sends you back to the start of that code', 'The band narrows and speeds up, then starts pausing and changing direction', 'You can leave at any point. How you handle resets is what\'s measured'],
     controls: '<kbd>Space</kbd> or the Stop button.',
-    practice: 'Practice · 1 lock, slower', full: 'Full length · 4 locks',
+    practice: 'Practice · 2 slower locks', full: 'Full length · 10 locks',
     good: 'Watch a full turn before your first stop, and press slightly early to allow for your reaction time.',
     bad: 'Sinking 40 minutes into it. Once you\'re genuinely stuck, leave and move on.',
     mount(st, api) {
-      const full = !api.practice, LOCKS = full ? [[140, 1, 0], [190, -1, 0], [230, 1, .3], [280, -1, .3]] : [[105, 1, 0]];
-      const C = 140, RO = 134, RI = 84, H = 18, rad = d => d * Math.PI / 180;
+      const full = !api.practice;
+      // Each lock: [code length, speed in degrees per second, half-width of the band in degrees, stop-and-go?, can reverse?]
+      const LOCKS = full
+        ? [[3, 120, 20, 0, 0], [3, 140, 19, 0, 0], [4, 160, 18, 0, 0], [4, 170, 17, 1, 0], [4, 185, 16, 1, 0], [5, 200, 15, 1, 1], [5, 215, 14, 1, 1], [5, 230, 13, 1, 1], [5, 250, 12, 1, 1], [5, 270, 11, 1, 1]]
+        : [[3, 95, 21, 0, 0], [4, 115, 19, 1, 0]];
+      const C = 140, RO = 134, RI = 84, rad = d => d * Math.PI / 180;
       const pt = (r, a) => `${(C + r * Math.sin(rad(a))).toFixed(1)} ${(C - r * Math.cos(rad(a))).toFixed(1)}`;
+      const band = H => `M${pt(RO, -H)}A${RO} ${RO} 0 0 1 ${pt(RO, H)}L${pt(RI, H)}A${RI} ${RI} 0 0 0 ${pt(RI, -H)}Z`;
       st.innerHTML = `<div class="sec">
           <svg class="dial" viewBox="0 0 280 280" role="img" aria-label="Code dial"><circle cx="140" cy="140" r="136" style="fill:var(--surface);stroke:var(--line);stroke-width:2"/>
-            <g id="sh"><path d="M${pt(RO, -H)}A${RO} ${RO} 0 0 1 ${pt(RO, H)}L${pt(RI, H)}A${RI} ${RI} 0 0 0 ${pt(RI, -H)}Z" style="fill:var(--c1);opacity:.3"/></g>
+            <g id="sh"><path id="bandp" style="fill:var(--c1);opacity:.3"/></g>
             <circle id="tg" r="20" style="fill:none;stroke:var(--magenta);stroke-width:4"/>
             ${[...Array(10).keys()].map(k => `<text x="${(C + 109 * Math.sin(rad(k * 36))).toFixed(1)}" y="${(C - 109 * Math.cos(rad(k * 36))).toFixed(1)}" text-anchor="middle" dominant-baseline="central">${k}</text>`).join('')}
             <circle cx="140" cy="140" r="60" style="fill:var(--surface-2)"/><text id="ls" x="140" y="140" text-anchor="middle" dominant-baseline="central" style="font:700 15px var(--f-body);fill:var(--muted)">Locked</text></svg>
-          <div class="sec-side"><div class="lights">${LOCKS.map(() => '<i></i>').join('')}</div><div class="code">${'<span></span>'.repeat(5)}</div>
-            <p class="g-msg" id="m">${full ? '' : 'Press Stop when the shaded area covers the circled digit.'}</p>
+          <div class="sec-side"><div class="lights">${LOCKS.map(() => '<i></i>').join('')}</div><div class="code" id="cd"></div>
+            <p class="g-msg" id="m">${full ? '' : 'Press Stop when the shaded band covers the circled digit.'}</p>
             <div class="g-keys">${keyBtn('space', 'Stop', 'big')}</div>
             <button class="btn btn-ghost" type="button" id="leave">Leave this task</button></div>
         </div>`;
-      const $ = s => st.querySelector(s), msg = $('#m'), slots = [...st.querySelectorAll('.code span')], lights = [...st.querySelectorAll('.lights i')];
-      let lock = 0, code = [], target = rand(0, 9), theta = rand(0, 359), speed = LOCKS[0][0], misses = 0, stops = 0, busy = false;
-      const errs = [], start = api.now();
+      const $ = s => st.querySelector(s), msg = $('#m'), lights = [...st.querySelectorAll('.lights i')];
+      let lock = 0, code = [], target = rand(0, 9), theta = rand(0, 359), dir = 1, misses = 0, stops = 0, busy = false, streak = 0, best = 0;
+      let seg = 0, paused = false;            // time left in the current sweep segment, and whether the dial is pausing
+      const errs = [], start = api.now(), perLock = LOCKS.map(() => 0), missedBy = [];
+      const L = () => LOCKS[Math.min(lock, LOCKS.length - 1)];
       const placeTarget = () => { const [x, y] = pt(109, target * 36).split(' '); $('#tg').setAttribute('cx', x); $('#tg').setAttribute('cy', y); };
-      const drawCode = () => slots.forEach((s, k) => s.textContent = code[k] ?? '');
+      const drawCode = () => { $('#cd').innerHTML = Array.from({ length: L()[0] }, (_, k) => `<span>${code[k] ?? ''}</span>`).join(''); };
       const say = (t, c = '') => { msg.textContent = t; msg.className = 'g-msg ' + c; };
-      placeTarget(); api.count(`Lock 1 of ${LOCKS.length}`);
+      function setLock() {
+        $('#bandp').setAttribute('d', band(L()[2])); drawCode(); dir = lock % 2 ? -1 : 1; seg = 0; paused = false;
+        lights.forEach((l, k) => l.classList.toggle('cur', k === lock));
+        api.count(`Lock ${lock + 1} of ${LOCKS.length}`);
+      }
+      placeTarget(); setLock();
       let last = api.now();
       api.loop(t => {
         const dt = Math.min(50, t - last) / 1000; last = t;
-        const [, dir, wob] = LOCKS[lock] || LOCKS[LOCKS.length - 1], v = speed * (1 + wob * Math.sin(t / 650));
-        theta = (theta + dir * v * dt + 360) % 360; $('#sh').setAttribute('transform', `rotate(${theta.toFixed(2)} 140 140)`);
+        const [, v, , stopGo, rev] = L();
+        seg -= dt;
+        if (seg <= 0) {   // start a new segment: keep sweeping, pause briefly, or (on later locks) turn round
+          if (stopGo && !paused && Math.random() < .45) { paused = true; seg = .25 + Math.random() * .45; }
+          else { paused = false; if (rev && Math.random() < .35) dir = -dir; seg = stopGo ? .7 + Math.random() * 1.4 : 9; }
+        }
+        if (!paused) theta = (theta + dir * v * dt + 360) % 360;
+        $('#sh').setAttribute('transform', `rotate(${theta.toFixed(2)} 140 140)`);
       });
       function stop() {
         if (busy) return; stops++;
-        let d = ((theta - target * 36) % 360 + 540) % 360 - 180; errs.push(Math.abs(d) / speed * 1000);
-        if (Math.abs(d) <= 13) {
-          code.push(target); drawCode(); speed *= 1.03;
+        const [len, v, H] = L(), d = ((theta - target * 36) % 360 + 540) % 360 - 180;
+        errs.push(Math.abs(d) / v * 1000);
+        if (Math.abs(d) <= H - 5) {
+          code.push(target); drawCode(); streak++; best = Math.max(best, streak);
           let nt; do nt = rand(0, 9); while (nt === target); target = nt; placeTarget();
           if (full) say(''); else say('Got it.', 'ok');
-          if (code.length === 5) {
+          if (code.length === len) {
             busy = true; lights[lock].classList.add('on'); $('#ls').textContent = 'Open'; say('Lock open', 'ok'); lock++;
-            api.later(() => { if (lock >= LOCKS.length) return done(false); code = []; drawCode(); speed = LOCKS[lock][0]; $('#ls').textContent = 'Locked'; api.count(`Lock ${lock + 1} of ${LOCKS.length}`); say(''); busy = false; }, 900);
+            api.later(() => { if (lock >= LOCKS.length) return done(false); code = []; setLock(); $('#ls').textContent = 'Locked'; say(''); busy = false; }, 900);
           }
         } else {
-          misses++; code = []; drawCode(); speed *= .97;
-          say(full ? 'Not the right code. Back to the start.' : `Missed by ${Math.round(Math.abs(d) / 36 * 10) / 10} digits. The code resets.`, 'no');
+          misses++; perLock[lock]++; streak = 0; code = []; drawCode(); missedBy.push(Math.abs(d) / 36);
+          const where = (dir > 0) === (d < 0) ? 'early' : 'late';
+          say(full ? 'Not the right code. Back to the start.' : `Missed by ${Math.round(Math.abs(d) / 36 * 10) / 10} digits (a little ${where}). The code resets.`, 'no');
         }
       }
       api.keys({ space: stop });
       $('#leave').onclick = () => done(true);
       function done(left) {
         api.finish({
-          score: lock, scoreText: `${lock} of ${LOCKS.length} locks`, ready: full && lock >= 2, raw: { lock, misses, err: Math.round(mean(errs)), left, total: LOCKS.length },
+          score: lock, scoreText: `${lock} of ${LOCKS.length} locks`, ready: full && lock >= 5,
+          raw: { lock, misses, err: Math.round(mean(errs)), left, total: LOCKS.length, stops, best, perLock, mins: (api.now() - start) / 60000, full },
           headline: left ? `You left after opening ${lock} of ${LOCKS.length} locks` : `All ${LOCKS.length} lock${LOCKS.length > 1 ? 's' : ''} open`,
           stats: [['Locks opened', `${lock} of ${LOCKS.length}`], ['Resets', misses], ['Average timing error', ms(mean(errs))], ['Time on task', mmss((api.now() - start) / 1000)]],
-          note: 'There is no penalty for leaving. The real task looks at how you respond to resets: steady effort and recovering after a miss matter more than opening every lock.'
+          note: 'There is no penalty for leaving. The real task looks at how you respond to resets: steady effort and recovering after a miss matter more than opening every lock. Later locks pause and change direction, so watch the band\'s rhythm before you commit.'
         });
       }
     }
@@ -1441,9 +1538,28 @@
       if (!okAll) continue;
       const left = Array(n).fill(0); const picks = tier === 1 ? 1 : 2; shuffle([...Array(n).keys()].slice(1)).slice(0, picks).forEach(k => left[k] = rand(1, 2));
       if (wsum(left, w) > 16) continue;
-      return { n, w, refs, left };
+      // The answer must use shapes that aren't on the left, so copying the left side never works
+      const allowed = [...Array(n).keys()].filter(k => !left[k]), W = wsum(left, w);
+      let sol = null;
+      const rec = (idx, cnt, tot) => { if (tot > W) return; if (idx === allowed.length) { if (tot === W && (!sol || cnt.reduce((a, b) => a + b, 0) < sol.reduce((a, b) => a + b, 0))) sol = cnt.slice(); return; } for (let c = 0; c <= 12; c++) { cnt[allowed[idx]] = c; rec(idx + 1, cnt, tot + c * w[allowed[idx]]); } cnt[allowed[idx]] = 0; };
+      rec(0, Array(n).fill(0), 0);
+      if (!sol || sol.reduce((a, b) => a + b, 0) > 10) continue;
+      return { n, w, refs, left, allowed, sol };
     }
     return genBalance(1);
+  }
+  const bDesc = cnt => cnt.map((c, k) => c ? `${c} ${BSH[k].n}${c > 1 ? 's' : ''}` : '').filter(Boolean).join(' + ') || 'nothing';
+  const bNum = v => Number.isInteger(v) ? String(v) : v.toFixed(1).replace(/\.0$/, '');
+  const bU = v => `${bNum(v)} ${BSH[0].n}${v === 1 ? '' : 's'}`;
+  function balanceWorking(it) {
+    const w0 = it.w[0], u = BSH[0].n;
+    const inU = k => `${bNum(it.w[k] / w0)} ${u}${it.w[k] / w0 === 1 ? '' : 's'}`;
+    const clues = it.refs.map(([L, R], j) => {
+      const k = L.reduce((m, c, x) => c ? x : m, 0), simple = L.reduce((a, b) => a + b, 0) === 1 && R.every((c, x) => !x || !c);
+      return `Clue ${j + 1}: ${bDesc(L)} = ${bDesc(R)}${simple ? '' : `, so 1 ${BSH[k].n} = ${inU(k)}`}.`;
+    });
+    const parts = it.left.map((c, k) => c ? `${c} × ${bNum(it.w[k] / w0)}` : '').filter(Boolean).join(' + ');
+    return `${clues.join(' ')} The left side is ${bDesc(it.left)} = ${parts} = ${bU(wsum(it.left, it.w) / w0)}, so one answer is ${bDesc(it.sol)}.`;
   }
   function scaleSvg(L, R, cls, tilt = 0, q = false) {
     const pan = (cnt, x) => { const items = []; cnt.forEach((c, k) => { for (let j = 0; j < c; j++) items.push(k); });
@@ -1464,7 +1580,7 @@
     bad: 'Jumping to the last scale before working out each shape\'s weight.',
     mount(st, api) {
       const full = !api.practice, N = full ? 10 : 4;
-      let i = 0, tier = 1, top = 1, it, ans, t0 = 0, tick = null, timeouts = 0; const res = [];
+      let i = 0, tier = 1, top = 1, it, ans, t0 = 0, tick = null, timeouts = 0; const res = [], mistakes = [];
       function load() {
         if (i >= N) return done();
         tier = full ? tier : i + 1; it = genBalance(Math.min(4, tier)); ans = Array(it.n).fill(0); t0 = api.now(); top = Math.max(top, tier);
@@ -1474,8 +1590,9 @@
       function render(fb) {
         st.innerHTML = `${full ? '<div class="tbar"><i></i></div>' : ''}<div class="refs">${it.refs.map(([L, R]) => scaleSvg(L, R, '')).join('')}</div>
           ${scaleSvg(it.left, ans, 'target', fb ? Math.max(-12, Math.min(12, (wsum(ans, it.w) - wsum(it.left, it.w)) * -3)) : 0, true)}
-          <div class="palette">${BSH.slice(0, it.n).map((b, k) => `<span class="b-row"><button class="opt" type="button" data-d="${k}" data-v="-1" aria-label="Remove ${b.n}">−</button><svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">${shapeSvg(b.s, 'shp-' + b.c, 34)}</svg><b style="min-width:1.2em">${ans[k]}</b><button class="opt" type="button" data-d="${k}" data-v="1" aria-label="Add ${b.n}">+</button></span>`).join('')}</div>
-          <p class="g-msg ${fb ? fb.c : ''}" id="m">${fb ? fb.t : ''}</p>
+          <div class="palette">${it.allowed.map(k => { const b = BSH[k]; return `<span class="b-row"><button class="opt" type="button" data-d="${k}" data-v="-1" aria-label="Remove ${b.n}">−</button><svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">${shapeSvg(b.s, 'shp-' + b.c, 34)}</svg><b style="min-width:1.2em">${ans[k]}</b><button class="opt" type="button" data-d="${k}" data-v="1" aria-label="Add ${b.n}">+</button></span>`; }).join('')}</div>
+          ${fb ? '' : `<p class="g-hint">Balance it using ${it.allowed.map(k => BSH[k].n + 's').join(' and ')}.</p>`}
+          <p class="g-msg ${fb ? fb.c : ''}" id="m">${fb ? fb.t : ''}</p>${fb && fb.why ? `<p class="g-why">${fb.why}</p>` : ''}
           <div class="g-keys"><button class="btn btn-primary" type="button" id="ok">${fb ? (i + 1 < N ? 'Next item' : 'See results') : 'Check'}</button></div>`;
         if (fb) { st.querySelector('#ok').onclick = () => { i++; load(); }; st.querySelectorAll('[data-d]').forEach(b => b.disabled = true); return; }
         st.querySelectorAll('[data-d]').forEach(b => b.onclick = () => { const k = +b.dataset.d; ans[k] = Math.max(0, Math.min(12, ans[k] + +b.dataset.v)); render(); });
@@ -1483,16 +1600,18 @@
       }
       function check() {
         if (tick) { tick(); tick = null; }
-        const L = wsum(it.left, it.w), R = wsum(ans, it.w), ok = L === R; res.push({ ok, t: api.now() - t0, tier });
+        const L = wsum(it.left, it.w), R = wsum(ans, it.w), ok = L === R, w0 = it.w[0], u = BSH[0].n, none = !ans.some(c => c);
+        const yours = none ? 'nothing added' : `${bDesc(ans)}, which weighs ${bU(R / w0)} (${R > L ? 'too heavy' : 'too light'})`;
+        res.push({ ok, t: api.now() - t0, tier, none, heavy: R > L });
+        if (!ok) mistakes.push({ v: scaleSvg(it.left, it.sol, ''), q: `Item ${i + 1}, level ${tier}`, yours, correct: bDesc(it.sol), why: balanceWorking(it) });
         if (full) { tier = ok ? Math.min(4, tier + 1) : Math.max(1, tier - 1); i++; load(); return; }
-        const unit = BSH[0].n, w0 = it.w[0];
-        const names = BSH.slice(0, it.n).map((b, k) => `${b.n} = ${it.w[k] / w0} ${unit}${it.w[k] / w0 === 1 ? '' : 's'}`).slice(1).join(', ');
-        render({ c: ok ? 'ok' : 'no', t: `${ok ? 'Balanced.' : 'Not balanced.'} In ${unit}s: ${names}. The left side weighs ${L / w0}, yours weighs ${R / w0}.` });
+        render({ c: ok ? 'ok' : 'no', t: ok ? `Balanced: your ${bDesc(ans)} matches.` : `Not balanced: you added ${yours}.`, why: balanceWorking(it) });
       }
       function done() {
         const ok = res.filter(r => r.ok).length;
         api.finish({
-          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 7, raw: { acc: pct(ok, N), timeouts },
+          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 7, mistakes,
+          raw: { acc: pct(ok, N), timeouts, ok, n: N, top, heavy: res.filter(r => !r.ok && !r.none && r.heavy).length, light: res.filter(r => !r.ok && !r.none && !r.heavy).length, none: res.filter(r => !r.ok && r.none).length, avgT: Math.round(mean(res.map(r => r.t)) / 1000), full },
           headline: `${ok} of ${N} balanced`,
           stats: [['Balanced', `${ok} of ${N}`], ['Hardest level reached', `${top} of 4`], ['Average time per item', Math.round(mean(res.map(r => r.t)) / 1000) + ' s'], ['Ran out of time', timeouts]],
           note: 'The real task is adaptive: getting items right brings harder scales, so a lower score on later items is normal.'
@@ -1541,7 +1660,7 @@
         const hi = hist.filter(h => h.c === 'H').length, after = hist.slice(1).filter((h, k) => hist[k].o === 'L');
         const ret = after.filter(h => h.c === 'L').length;
         api.finish({
-          score: you + them, scoreText: `£${you + them}k company`, ready: full, raw: { hi, n: N, after: after.length, ret },
+          score: you + them, scoreText: `£${you + them}k company`, ready: full, raw: { hi, n: N, after: after.length, ret, you, them, firstLow: hist.findIndex(h => h.c === 'L') + 1, lastHalfHi: hist.slice(N / 2).filter(h => h.c === 'H').length },
           headline: `Company total £${you + them}k`,
           stats: [['Your team', `£${you}k`], ['Other team', `£${them}k`], ['Rounds you priced high', `${hi} of ${N}`], ['After being undercut', after.length ? `${ret} of ${after.length} times you went low` : 'Never undercut']],
           note: 'There is no single right answer. Employers look at how cooperative you are and how you react when the other team undercuts you. Steady, fair play usually earns the company the most.'
@@ -1564,9 +1683,9 @@
     good: 'Keep a rough tally for each pair and go with the way it usually lands.',
     bad: 'Switching your answer for a pair after one surprise result.',
     mount(st, api) {
-      const full = !api.practice, N = full ? 88 : 24, WIN = full ? 3000 : 5000, SHOW = full ? 3000 : 1300;
+      const full = !api.practice, N = full ? 88 : 24, WIN = full ? 3000 : 5000, SHOW = full ? 3000 : 2200;
       const probs = shuffle([.85, .8, .75, .7, .3, .25, .2, .15]), pairs = [];
-      for (let a = 0; a < 4; a++) for (let b = 4; b < 6; b++) pairs.push({ a, b, p: probs[pairs.length] });
+      for (let a = 0; a < 4; a++) for (let b = 4; b < 6; b++) pairs.push({ a, b, p: probs[pairs.length], d: 0, n: 0 });
       st.innerHTML = `<div class="pair" id="pr"></div><div class="outcome" id="oc"></div><p class="g-msg" id="m"></p>
         <div class="g-keys">${keyBtn('q', 'Day')}${keyBtn('p', 'Night')}</div>`;
       const $ = s => st.querySelector(s); let i = 0, cur, phase = 'wait', timer, t0 = 0; const res = [];
@@ -1579,9 +1698,12 @@
       function answer(g) {
         if (phase !== 'go') return; phase = 'show'; api.cancel(timer);
         const day = Math.random() < cur.p, best = cur.p > .5 ? 'D' : 'N';
-        res.push({ g, best, hit: g === (day ? 'D' : 'N'), rt: api.now() - t0 });
+        const hit = g === (day ? 'D' : 'N'); cur.n++; if (day) cur.d++;
+        res.push({ g, best, hit, rt: api.now() - t0, flip: g !== null && g !== best && res.some(r => r.pair === cur && r.g === best), pair: cur });
         $('#oc').innerHTML = (day ? SUN : MOON) + (day ? 'Day' : 'Night');
-        $('#m').textContent = g === null ? 'Too slow' : full ? '' : (g === (day ? 'D' : 'N') ? 'Correct' : 'Not this time'); $('#m').className = 'g-msg ' + (g === null ? 'no' : '');
+        const lean = cur.d * 2 > cur.n ? 'Day' : cur.d * 2 < cur.n ? 'Night' : '';
+        const tally = cur.n === 1 ? 'First time you\'ve seen this pair. Remember it came up ' + (day ? 'Day' : 'Night') + '.' : `This pair: Day ${cur.d} of ${cur.n} times so far${lean ? `, so ${lean} is the better bet` : ', no clear lean yet'}.`;
+        $('#m').textContent = full ? (g === null ? 'Too slow' : '') : `${g === null ? 'Too slow.' : hit ? 'Correct.' : 'Not this time.'} ${tally}`; $('#m').className = 'g-msg ' + (g === null ? 'no' : '');
         i++; api.later(next, SHOW);
       }
       api.keys({ q: () => answer('D'), p: () => answer('N') });
@@ -1594,7 +1716,7 @@
         const q = Math.max(1, Math.floor(N / 4)), better = r => pct(r.filter(x => x.g === x.best).length, r.length);
         const all = better(res);
         api.finish({
-          score: all, scoreText: all + '% better bets', ready: full && better(res.slice(-q)) >= 70, raw: { all, first: better(res.slice(0, q)), last: better(res.slice(-q)), conf },
+          score: all, scoreText: all + '% better bets', ready: full && better(res.slice(-q)) >= 70, raw: { all, first: better(res.slice(0, q)), last: better(res.slice(-q)), conf, slow: res.filter(r => r.g === null).length, flips: res.filter(r => r.flip).length, full },
           headline: `${all}% better bets`,
           stats: [['Better bets, first quarter', better(res.slice(0, q)) + '%'], ['Better bets, last quarter', better(res.slice(-q)) + '%'], ['Correct outcomes', `${res.filter(r => r.hit).length} of ${N}`], ['Your confidence', conf + '%']],
           note: `A "better bet" means choosing the answer each pair usually gives. Even perfect play only matches the outcome about 75% of the time, so judge yourself on better bets. ${conf - all > 15 ? 'Your confidence was well above how you did, which is worth noticing.' : conf - all < -15 ? 'You did better than you felt you did.' : 'Your confidence matched how you did.'}`
@@ -1608,7 +1730,7 @@
   G.energy = {
     name: 'Energy', aka: 'Power Generator', type: 'Behavioural', measures: 'Learning, risk and impulse control',
     what: 'Four generators feed a power bar. Each press adds power, but sometimes drains some too. Work out which generators are worth pressing.',
-    real: ['Four generators and a power bar up to 6,000', 'Nothing on screen tells you the rules: learning them is the task', 'Some generators pay more per press but drain more over time', 'Ends after a set number of presses, untimed'],
+    real: ['Four generators feeding one power bar','Nothing on screen tells you the rules: learning them is the task', 'Some generators pay more per press but drain more over time', 'Ends after a set number of presses, untimed'],
     controls: 'Click a generator, or press <kbd>1</kbd> to <kbd>4</kbd>.',
     practice: 'Practice · 30 presses', full: 'Full length · 80 presses',
     good: 'Try each generator a few times, judge it by its running total, then commit to the ones that pay off.',
@@ -1618,7 +1740,7 @@
       const DEF = [{ gain: 250, loss: 600, n: 5 }, { gain: 250, loss: 1500, n: 2 }, { gain: 125, loss: 150, n: 5 }, { gain: 125, loss: 375, n: 2 }];
       const order = shuffle([0, 1, 2, 3]);
       const sched = DEF.map(d => []), next = k => { if (!sched[k].length) sched[k] = shuffle(Array.from({ length: 10 }, (_, j) => j < DEF[k].n)); return sched[k].shift(); };
-      let power = 2000, presses = 0; const log = [];
+      let power = 2000, presses = 0; const log = [], net = [0, 0, 0, 0], cnt = [0, 0, 0, 0];
       st.innerHTML = `<div class="pbar"><div class="track"><div class="fill" id="pf"></div></div><div class="ticks"><span>0</span><span>2,000</span><span>4,000</span><span>6,000</span></div></div>
         <p class="g-hud"><span>Power <b id="pw">2,000</b></span><span>Presses left <b id="pl">${N}</b></span></p>
         <div class="gens">${order.map((k, j) => `<button class="gen" type="button" data-g="${j}"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="30" rx="6" style="fill:var(--surface-2);stroke:var(--muted);stroke-width:2"/><path d="M26 15l-8 12h7l-3 9 9-13h-7z" style="fill:var(--c3)"/></svg>${'ABCD'[j]}<span class="last" id="g${j}"></span></button>`).join('')}</div>
@@ -1627,8 +1749,9 @@
       const draw = () => { $('#pf').style.width = Math.max(0, Math.min(100, power / MAX * 100)) + '%'; $('#pw').textContent = power.toLocaleString('en-GB'); $('#pl').textContent = N - presses; api.count(`Press ${Math.min(presses + 1, N)} of ${N}`); };
       function press(j) {
         if (presses >= N || power >= MAX) return;
-        const k = order[j], d = DEF[k], lose = next(k); power = Math.max(0, power + d.gain - (lose ? d.loss : 0)); presses++; log.push({ k, good: k >= 2 });
-        $('#g' + j).innerHTML = `<span class="up">+${d.gain}</span>${lose ? `<br><span class="dn">−${d.loss}</span>` : ''}`;
+        const k = order[j], d = DEF[k], lose = next(k); power = Math.max(0, power + d.gain - (lose ? d.loss : 0)); presses++; log.push({ k, j, good: k >= 2 });
+        net[j] += d.gain - (lose ? d.loss : 0); cnt[j]++;
+        $('#g' + j).innerHTML = `<span class="up">+${d.gain}</span>${lose ? `<br><span class="dn">−${d.loss}</span>` : ''}${full ? '' : `<br><small>Net ${net[j] >= 0 ? '+' : '−'}${Math.abs(net[j]).toLocaleString('en-GB')} over ${cnt[j]}</small>`}`;
         draw();
         if (presses >= N || power >= MAX) api.later(done, 700);
       }
@@ -1638,7 +1761,7 @@
       function done() {
         const t = Math.max(1, Math.floor(log.length / 3)), share = a => pct(a.filter(x => x.good).length, a.length);
         api.finish({
-          score: share(log.slice(-t)), scoreText: share(log.slice(-t)) + '% steady', ready: full && share(log.slice(-t)) >= 70, raw: { first: share(log.slice(0, t)), last: share(log.slice(-t)), power },
+          score: share(log.slice(-t)), scoreText: share(log.slice(-t)) + '% steady', ready: full && share(log.slice(-t)) >= 70, raw: { first: share(log.slice(0, t)), last: share(log.slice(-t)), power, tried: cnt.filter(c => c > 0).length, presses, full },
           headline: power >= MAX ? 'Power bar filled' : `${power.toLocaleString('en-GB')} power`,
           stats: [['Final power', power.toLocaleString('en-GB')], ['Steady generators, first third', share(log.slice(0, t)) + '%'], ['Steady generators, last third', share(log.slice(-t)) + '%'], ['Presses used', `${presses} of ${N}`]],
           note: `Two generators pay +250 but drain more than they give over time. The two +125 generators build power steadily. What matters is that your choices shifted towards the steady ones as you learnt, which shows up in the first-third and last-third figures.`
@@ -1659,7 +1782,7 @@
     flag: 'Not always included',
     mount(st, api) {
       const full = !api.practice, N = full ? 18 : 5, LIMIT = 18 * 60000, P = ['Bikes', 'Scooters', 'Helmets', 'Locks'], Q = ['Q1', 'Q2', 'Q3', 'Q4'];
-      let data, i = 0, cur, busy = false, start = api.now(), t0 = 0, finished = false; const res = [];
+      let data, i = 0, cur, busy = false, start = api.now(), t0 = 0, finished = false; const res = [], mistakes = [];
       const fmt = v => Number.isInteger(v) ? String(v) : v.toFixed(1);
       function newData() {
         data = P.map(() => { let v = rand(4, 12) * 10; return Q.map((q, k) => { if (k) v = Math.round(v * (1 + pick([-.2, -.1, .1, .15, .2, .25, .3, .4, .5])) / 5) * 5; return v; }); });
@@ -1668,15 +1791,15 @@
         const p = rand(0, 3), q = rand(0, 2), t = pick(['pct', 'pct', 'total', 'share', 'avg', 'diff']);
         const row = data[p], col = data.map(r => r[q]);
         let text, a, opts, why, unit = '';
-        if (t === 'pct') { const x = row[q], y = row[q + 1]; a = (y - x) / x * 100; unit = '%'; text = `By what percentage did ${P[p].toLowerCase()} sales change from ${Q[q]} to ${Q[q + 1]}?`; opts = [a, (y - x) / y * 100, -a, a + pick([5, -5, 10])]; why = `(${y} − ${x}) ÷ ${x} × 100 = ${fmt(a).replace('-', '−')}%`; }
-        if (t === 'total') { a = col.reduce((s, v) => s + v, 0); unit = 'k'; text = `What were total sales across all four products in ${Q[q]}?`; opts = [a, a + 10, a - 15, a + 25]; why = `${col.join(' + ')} = ${a}`; }
-        if (t === 'share') { const tot = col.reduce((s, v) => s + v, 0); a = row[q] / tot * 100; unit = '%'; text = `What share of ${Q[q]} sales came from ${P[p].toLowerCase()}?`; opts = [a, row[q] / (tot - row[q]) * 100, 100 / 4, a + 4]; why = `${row[q]} ÷ ${tot} × 100 = ${fmt(a)}%`; }
-        if (t === 'avg') { a = row.reduce((s, v) => s + v, 0) / 4; unit = 'k'; text = `What were the average quarterly sales of ${P[p].toLowerCase()}?`; opts = [a, row.reduce((s, v) => s + v, 0) / 3, (Math.max(...row) + Math.min(...row)) / 2, a + 10]; why = `(${row.join(' + ')}) ÷ 4 = ${fmt(a)}`; }
-        if (t === 'diff') { const hi = Math.max(...col), lo = Math.min(...col); a = hi - lo; unit = 'k'; text = `In ${Q[q]}, how much more did the best-selling product sell than the lowest?`; opts = [a, hi, a + 5, a - 5 > 0 ? a - 5 : a + 15]; why = `${hi} − ${lo} = ${a}`; }
+        if (t === 'pct') { const x = row[q], y = row[q + 1]; a = (y - x) / x * 100; unit = '%'; text = `By what percentage did ${P[p].toLowerCase()} sales change from ${Q[q]} to ${Q[q + 1]}?`; opts = [a, (y - x) / y * 100, -a, a + pick([5, -5, 10])]; why = `Percentage change = (new − old) ÷ old × 100. Here (${y} − ${x}) ÷ ${x} × 100 = ${fmt(a).replace('-', '−')}%. Always divide by the earlier quarter (${Q[q]})`; }
+        if (t === 'total') { a = col.reduce((s, v) => s + v, 0); unit = 'k'; text = `What were total sales across all four products in ${Q[q]}?`; opts = [a, a + 10, a - 15, a + 25]; why = `Add up the ${Q[q]} column: ${col.join(' + ')} = ${a}`; }
+        if (t === 'share') { const tot = col.reduce((s, v) => s + v, 0); a = row[q] / tot * 100; unit = '%'; text = `What share of ${Q[q]} sales came from ${P[p].toLowerCase()}?`; opts = [a, row[q] / (tot - row[q]) * 100, 100 / 4, a + 4]; why = `Share = part ÷ whole × 100. The ${Q[q]} total is ${col.join(' + ')} = ${tot}, so ${row[q]} ÷ ${tot} × 100 = ${fmt(a)}%`; }
+        if (t === 'avg') { a = row.reduce((s, v) => s + v, 0) / 4; unit = 'k'; text = `What were the average quarterly sales of ${P[p].toLowerCase()}?`; opts = [a, row.reduce((s, v) => s + v, 0) / 3, (Math.max(...row) + Math.min(...row)) / 2, a + 10]; why = `Average = total ÷ number of quarters: (${row.join(' + ')}) ÷ 4 = ${fmt(a)}`; }
+        if (t === 'diff') { const hi = Math.max(...col), lo = Math.min(...col); a = hi - lo; unit = 'k'; text = `In ${Q[q]}, how much more did the best-selling product sell than the lowest?`; opts = [a, hi, a + 5, a - 5 > 0 ? a - 5 : a + 15]; why = `Find the highest and lowest in the ${Q[q]} column, then subtract: ${hi} − ${lo} = ${a}`; }
         const seen = new Set(), list = [];
         for (const o of opts) { const s = (unit === '%' ? fmt(Math.round(o * 10) / 10).replace('-', '−') + '%' : '£' + fmt(o) + 'k'); if (!seen.has(s)) { seen.add(s); list.push({ s, ok: list.length === 0 }); } }
-        while (list.length < 4) { const s = unit === '%' ? fmt(Math.round((a + rand(6, 20)) * 10) / 10) + '%' : '£' + fmt(a + rand(2, 8) * 5) + 'k'; if (!seen.has(s)) { seen.add(s); list.push({ s, ok: false }); } }
-        return { text, why, opts: shuffle(list), chartP: p };
+        while (list.length < 4) { const s = unit === '%' ? fmt(Math.round((a + rand(6, 20)) * 10) / 10).replace('-', '−') + '%' : '£' + fmt(a + rand(2, 8) * 5) + 'k'; if (!seen.has(s)) { seen.add(s); list.push({ s, ok: false }); } }
+        return { text, why, t, opts: shuffle(list), chartP: p };
       }
       function chart(p) {
         const row = data[p], max = Math.ceil(Math.max(...row) / 50) * 50, W = 320, H = 180, x0 = 40, y0 = 150, h = 120, bw = 46;
@@ -1697,7 +1820,8 @@
       }
       function choose(k) {
         if (busy) return; busy = true;
-        const ok = cur.opts[k].ok; res.push({ ok, t: api.now() - t0 });
+        const ok = cur.opts[k].ok; res.push({ ok, t: api.now() - t0, kind: cur.t });
+        if (!ok) mistakes.push({ q: cur.text, yours: cur.opts[k].s, correct: cur.opts.find(o => o.ok).s, why: cur.why + '.' });
         if (full) { i++; load(); return; }
         const btns = st.querySelectorAll('[data-o]'); btns[k].classList.add(ok ? 'right' : 'wrong'); btns[cur.opts.findIndex(o => o.ok)].classList.add('right');
         st.querySelector('#why').innerHTML = `${ok ? 'Correct.' : 'Not quite.'} ${cur.why}. <button class="btn btn-ghost" type="button" id="nx" style="padding:8px 16px;font-size:14px">${i + 1 < N ? 'Next' : 'See results'}</button>`;
@@ -1709,7 +1833,8 @@
         if (finished) return; finished = true;
         const ok = res.filter(r => r.ok).length;
         api.finish({
-          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 12, raw: { acc: pct(ok, N), unreached: N - res.length },
+          score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 12, mistakes,
+          raw: { acc: pct(ok, N), unreached: N - res.length, ok, n: N, kinds: ['pct', 'total', 'share', 'avg', 'diff'].map(t => [t, res.filter(r => r.kind === t).length, res.filter(r => r.kind === t && r.ok).length]), avgT: Math.round(mean(res.map(r => r.t)) / 1000), full },
           headline: `${ok} of ${N} correct`,
           stats: [['Correct', `${ok} of ${res.length} answered`], ['Average time per question', Math.round(mean(res.map(r => r.t)) / 1000) + ' s'], ['Not reached', N - res.length]],
           note: 'About a minute per question is the real pace. Percentage change and share questions come up most, so make those automatic.'
@@ -1787,20 +1912,20 @@
       example: 'An arrow turns a quarter turn clockwise each frame (↑ → ↓), so frame 4 points ←.',
       advise: r => r.timeouts > 1 ? `You ran out of time ${r.timeouts} times. Set the features you are sure of first, then refine.` : r.acc < 67 ? 'Check one feature at a time across the frames: shape, then colour, then size, direction and position.' : 'Good reasoning. Watch for later items where two shapes follow different rules.' },
     tickets: { cmp: true, target: 'Full length: 85% or more correct',
-      steps: ['A ticket appears in the top box or the bottom box.', 'Top box asks: is the number even? Bottom box asks: does the shape have round edges?', 'Press Q for yes and P for no, within about a second.', 'The labels disappear after a few tickets, so learn the two questions first.'],
+      steps: ['A ticket appears in the top box or the bottom box.', 'Top box asks: is the number even? Bottom box asks: does the shape have round edges?', 'Press Q for yes and P for no, within about 1.5 seconds.', 'The labels disappear after a few tickets, so learn the two questions first.'],
       example: 'A 7 on a triangle lands in the top box. Top means number, 7 is odd, so press P (no).',
       advise: r => r.doubles > 0 ? `You got two wrong in a row ${r.doubles} time${r.doubles > 1 ? 's' : ''}. After a mistake, breathe and focus only on the next ticket.` : r.sw > 120 ? `Switching boxes cost you ${r.sw} ms. Check which box first, then read the ticket.` : r.slow > 3 ? 'Several answers were too slow. Say the rule to yourself until it is automatic: top is number, bottom is shape.' : r.acc < 85 ? 'Top means number, bottom means shape. Fix that in your head before you start.' : 'Steady and accurate. Try a full-length run, where the labels fade away.' },
     expressions: { cmp: true, target: 'Full length: 70% or more matched',
       steps: ['A face appears.', 'Look at the eyebrows and eyes first, then the mouth.', 'Pick the closest emotion from the seven options.', 'Later faces are subtle or mixed, so go with your first reading.'],
       example: 'Brows raised and pulled together, eyes wide, mouth stretched sideways: afraid.',
       advise: r => r.top ? `Your most common mix-up was ${r.top.toLowerCase()}. ${EMO_TIP[r.top.split(' ')[0]] || ''}` : 'Good reading. Keep trusting your first instinct on the subtle faces.' },
-    security: { cmp: true, target: 'Full length: open 2 of the 4 locks',
-      steps: ['A shaded area sweeps round a dial of numbers 0 to 9.', 'One number is circled. That is the next digit of the code.', 'Press Space (or Stop) when the shaded area covers the circled number.', 'Five good stops open a lock. A miss sends you back to the start of that code.'],
+    security: { cmp: true, target: 'Full length: open 5 of the 10 locks',
+      steps: ['A shaded band sweeps round a dial of numbers 0 to 9.', 'One number is circled. That is the next digit of the code.', 'Press Space (or Stop) when the band covers the circled number.', 'Enter every digit to open the lock. A miss sends you back to the start of that code. Later locks are faster, with longer codes, and the band pauses and turns round.'],
       example: 'The circle is on 4 and the shade is sweeping towards it, so press just before it gets there.',
       advise: r => r.err > 120 ? `Your stops were about ${r.err} ms off. Press a fraction before the shade reaches the number.` : r.misses > 8 ? 'Lots of resets. Slow down, and watch a full turn of the dial before your first stop.' : r.left && r.lock < 1 ? 'Try to open at least one lock before you leave. Steady effort is part of what is measured.' : 'Good control. In the real task, once you are truly stuck, leaving is fine.' },
     balance: { cmp: true, target: 'Full length: 7 of 10 balanced',
-      steps: ['The small scales at the top are balanced. Use them as clues.', 'Work out what each shape weighs in circles.', 'Add shapes to the empty side of the big scale until it would balance.', 'Press Check. Any combination with the same weight is correct.'],
-      example: 'One square balances 3 circles. The left side has 2 squares, so add 6 circles, or simply 2 squares.',
+      steps: ['The small scales at the top are balanced. Use them as clues.', 'Work out what each shape weighs in circles.', 'Add shapes to the empty side of the big scale until it would balance. The shapes already on the left are locked, so you have to convert.', 'Press Check. Any combination with the same weight is correct.'],
+      example: 'One square balances 3 circles. The left side has 2 squares, so add 6 circles.',
       advise: r => r.timeouts > 1 ? 'You ran out of time more than once. Write each shape as a number of circles, then add up.' : r.acc < 70 ? 'Turn each clue scale into a sum, like square = 3 circles, and work in circles throughout.' : 'Solid. The real task gets harder as you get items right, so practise the 3 and 4 shape scales.' },
     patterns: { cmp: true, target: 'Full length: 14 of 20 correct',
       steps: ['Look at the three squares in order.', 'Spot every change: position, size, colour, direction or shape.', 'Picture the fourth square before you look at the options.', 'Pick the option that follows every rule.'],
@@ -1827,6 +1952,140 @@
       example: 'With 4 boxes, you find the token in the second box. In every search after that, skip the second box.',
       advise: r => r.between > 0 ? 'You reopened boxes that had already held a token. Make a mental note of each box as soon as it pays out.' : r.within > 2 ? 'You rechecked boxes during the same search. Use a fixed order: left to right, top to bottom.' : 'Clean searching. A fixed order helps most in the bigger rounds.' }
   };
+
+  /* ===== Personal report for each game: what went well and what to work on ===== */
+  const nn = (n, w, ws) => `${n} ${n === 1 ? w : (ws || w + 's')}`;
+  const topOf = a => { const c = {}; a.filter(Boolean).forEach(x => c[x] = (c[x] || 0) + 1); const e = Object.entries(c).sort((x, y) => y[1] - x[1])[0]; return e ? { k: e[0], n: e[1] } : null; };
+  const AN_KIND = { pct: ['percentage change', 'Divide the change by the earlier value.'], total: ['total', 'Add the whole column carefully.'], share: ['share of total', 'Divide the part by the whole column total.'], avg: ['average', 'Add all four quarters, then divide by 4.'], diff: ['difference', 'Find the highest and lowest first, then subtract.'] };
+  const REVIEW = {
+    direction: r => ({
+      good: [r.acc >= 90 ? `${r.acc}% correct, at or above the 90% target.` : r.acc >= 75 ? `${r.acc}% correct: most of your answers were right.` : '',
+        !r.early && !r.slow ? 'Every answer was in time, with no early presses.' : !r.early ? 'No early presses: you waited for the arrows each time.' : '',
+        r.gap > 0 && r.gap <= 60 ? `The outer arrows barely slowed you (${r.gap} ms).` : '',
+        !r.incon && r.acc >= 60 ? 'Outer arrows pointing the other way never fooled you.' : ''],
+      work: [r.acc < 90 ? `${r.acc}% correct, below the 90% target.${r.incon > r.other ? ` Most wrong answers (${r.incon}) came when the outer arrows pointed the other way, so keep your eyes on the centre.` : ''}` : '',
+        r.slow ? `${nn(r.slow, 'answer')} too slow${r.slowLate ? `, ${r.slowLate} of them in the faster second half` : ''}. Rest your fingers on Q and P.` : '',
+        r.early ? `${nn(r.early, 'early press', 'early presses')}. Wait for the arrows to appear.` : '',
+        r.gap > 80 ? `The outer arrows slowed you by ${r.gap} ms. Fix your eyes where the middle arrow appears.` : '']
+    }),
+    balloon: r => { const [p, o, t] = r.av || [], f = v => v == null ? '–' : v.toFixed(1); return {
+      good: [p != null || t != null ? `Average pumps before collecting: purple ${f(p)}, orange ${f(o)}, teal ${f(t)}.` : 'Every balloon burst before you collected, so there are no averages yet.',
+        p != null && t != null && t - p >= 3 ? 'You pumped the late-bursting teal balloons clearly more than the purple ones, so you learned how each colour behaves.' : '',
+        `${nn(r.bursts, 'balloon')} of ${r.n} burst, and you banked ${money(r.banked || 0)}.`],
+      work: [p != null && t != null && t - p < 3 ? 'You pumped every colour about the same. Notice where each colour bursts in the first few balloons, then adjust.' : '',
+        r.bursts > r.n * .45 ? 'Nearly half or more burst. You found the limits, so now settle a little below them.' : '',
+        r.all < 4 && r.bursts < r.n * .1 ? 'You collected very early and rarely found the limits. Testing them is part of learning this task.' : '',
+        'Once you know a colour, treat it the same way every time. Consistency is what this task looks for.'] }; },
+    tiles: r => ({
+      good: [r.longest >= 7 ? `Longest sequence ${r.longest}, meeting the target of 7.` : r.longest >= 5 ? `You held a sequence of ${r.longest}, which is typical.` : '',
+        r.correct ? `${nn(r.correct, 'sequence')} repeated correctly.` : '',
+        r.sparks && !r.spark ? `You ignored all ${nn(r.sparks, '⚡ spark')}.` : ''],
+      work: [r.longest < 7 ? `Your longest was ${r.longest || 0}; the target is 7. Name the icons in your head and group them in twos or threes.` : '',
+        r.order ? `${nn(r.order, 'time')} you had the right tiles in the wrong order. Trace the path between the tiles as they light up.` : '',
+        r.spark ? `You tapped a ⚡ spark tile ${nn(r.spark, 'time')}. Sparks are never part of the sequence.` : '',
+        r.other ? `${nn(r.other, 'time')} you tapped a tile that wasn't in the sequence at all.` : '']
+    }),
+    order: r => { const tf = topOf(r.feats || []); return {
+      good: [r.acc >= 67 ? `${r.ok} of ${r.n} correct${r.full && r.ok >= 10 ? ', meeting the target of 10' : ''}.` : '',
+        r.full && !r.timeouts ? 'You finished every item inside the minute.' : '',
+        r.two != null && r.two >= 60 ? `${r.two}% right on the two-shape items, the hardest ones.` : '',
+        tf ? '' : 'Every feature you built was right.'],
+      work: [r.acc < 67 ? `${r.ok} of ${r.n} correct. Check one feature at a time across all three frames.` : '',
+        tf ? `The feature you missed most was ${FEAT[tf.k]} (${nn(tf.n, 'time')}). Look at it on its own across the three frames before building.` : '',
+        r.timeouts ? `${nn(r.timeouts, 'item')} ran out of time. Set the features you're sure of first, then refine.` : '',
+        r.two != null && r.two < 50 ? 'The two-shape items caught you out. Work out each shape\'s rules separately.' : ''] }; },
+    tickets: r => ({
+      good: [r.acc >= 85 ? `${r.acc}% correct, at or above the 85% target.` : r.acc >= 70 ? `${r.acc}% correct.` : '',
+        !r.doubles ? 'You never got two wrong in a row, so you reset well after mistakes.' : '',
+        r.sw > 0 && r.sw <= 100 ? `Switching boxes cost you only ${r.sw} ms.` : '',
+        !r.slow && !r.early ? 'Every answer was in time.' : ''],
+      work: [r.acc < 85 ? `${r.acc}% correct, below the 85% target.` : '',
+        r.topE > r.botE + 1 ? `Most errors (${r.topE}) were in the top box. Top means number: is it even?` : r.botE > r.topE + 1 ? `Most errors (${r.botE}) were in the bottom box. Bottom means shape: does it have round edges?` : '',
+        r.swE >= 2 && r.swE >= r.wrong / 2 ? `${r.swE} of your ${r.wrong} errors came just after the ticket switched box. Check which box before you read the ticket.` : '',
+        r.doubles ? `Two wrong in a row ${nn(r.doubles, 'time')}. After a mistake, focus only on the next ticket.` : '',
+        r.slow ? `${nn(r.slow, 'answer')} too slow. Say the rules to yourself until they're automatic.` : '']
+    }),
+    expressions: r => ({
+      good: [r.acc >= 70 ? `${r.acc}% matched, at or above the 70% target.` : '',
+        r.early >= 80 ? `${r.early}% on the clearer faces in the first third.` : '',
+        r.late >= 50 ? `${r.late}% on the subtle, mixed faces at the end, which are the hardest.` : ''],
+      work: [r.acc < 70 ? `${r.acc}% matched, below the 70% target.` : '',
+        r.top ? `Your most common mix-up was ${r.top.toLowerCase()} (${nn(r.topN, 'time')}). ${EMO_TIP[r.top.split(' ')[0]] || ''}` : '',
+        r.late < 50 ? 'The subtle faces at the end were hardest. Read the brows and eyes before the mouth.' : '']
+    }),
+    security: r => ({
+      good: [r.lock ? `You opened ${r.lock} of ${r.total} locks${r.full && r.lock >= 5 ? ', meeting the target of 5' : ''}.` : '',
+        r.best >= 5 ? `Your best run was ${r.best} good stops in a row.` : '',
+        !r.left ? 'You kept going right to the end.' : r.lock >= 3 ? 'You left once the locks got hard, which is a sensible call.' : '',
+        r.err && r.err <= 90 ? `Your timing was tight: about ${r.err} ms off on average.` : ''],
+      work: [r.err > 120 ? `Your stops were about ${r.err} ms off on average. Press a fraction before the band reaches the number.` : '',
+        r.misses > r.stops / 2 ? `${nn(r.misses, 'reset')}. On each new lock, watch a full sweep before your first stop.` : '',
+        r.full && r.lock < 5 ? `${r.lock} of ${r.total} opened; the target is 5. Later locks pause and turn round, so wait for a steady sweep before stopping.` : '',
+        r.left && r.lock < 1 ? 'Try to open at least one lock before you leave. Steady effort is part of what is measured.' : '',
+        r.mins > 15 ? 'You spent over 15 minutes here. In the real test, leave once you\'re genuinely stuck.' : '']
+    }),
+    balance: r => ({
+      good: [r.acc >= 70 ? `${r.ok} of ${r.n} balanced${r.full && r.ok >= 7 ? ', meeting the target of 7' : ''}.` : '',
+        r.full && r.top >= 3 ? `You reached level ${r.top} of 4, the harder scales.` : '',
+        r.full && !r.timeouts ? 'You finished every item in time.' : ''],
+      work: [r.acc < 70 ? `${r.ok} of ${r.n} balanced. Write each shape as a number of circles, then add up.` : '',
+        r.heavy > r.light + 1 ? `Your answers were often too heavy (${nn(r.heavy, 'time')}). Re-check each shape's weight in circles before adding.` : r.light > r.heavy + 1 ? `Your answers were often too light (${nn(r.light, 'time')}). Re-check each shape's weight in circles before adding.` : '',
+        r.none ? `${nn(r.none, 'item')} left empty. Always put in your best attempt.` : '',
+        r.timeouts ? `${nn(r.timeouts, 'item')} ran out of time. Work out the weights first, then build the answer.` : '']
+    }),
+    patterns: r => { const tf = topOf(r.feats || []); return {
+      good: [r.acc >= 70 ? `${r.ok} of ${r.n} correct${r.full && r.ok >= 14 ? ', meeting the target of 14' : ''}.` : '',
+        r.full && !r.unreached ? 'You reached every item in time.' : '',
+        r.avgT && r.avgT <= 45 ? `A good pace: about ${r.avgT} seconds per item.` : ''],
+      work: [r.acc < 70 ? `${r.ok} of ${r.n} correct. Picture the next square before you look at the options.` : '',
+        tf ? `Most of the options you picked had the wrong ${FEAT[tf.k]} (${nn(tf.n, 'time')}). Check that feature against every rule before choosing.` : '',
+        r.unreached ? `You didn't reach ${nn(r.unreached, 'item')}. Spend no more than about 50 seconds on each.` : '']
+    }; },
+    team: r => ({
+      good: [`You priced high in ${r.hi} of ${r.n} rounds.`,
+        r.after ? `After being undercut, you went low ${r.ret} of ${r.after} times.` : 'The other team never undercut you.',
+        `Company total £${r.you + r.them}k: your team £${r.you}k, the other team £${r.them}k.`],
+      work: [r.hi <= r.n / 3 ? 'Mostly low prices won your team rounds but earned the company less. Employers often look for cooperation.' : '',
+        r.hi === r.n && r.after >= 2 ? 'You kept pricing high even when undercut again and again. Decide in advance whether you would respond.' : '',
+        r.hi > r.n / 2 && r.lastHalfHi < r.n / 4 ? 'You cooperated early but turned competitive later. Consistency is part of what is measured.' : '',
+        'Choose your approach before you start, and stick to it.']
+    }),
+    predict: r => ({
+      good: [r.last >= 70 ? `${r.last}% better bets in the last quarter, meeting the 70% target.` : '',
+        r.last > r.first ? `You improved from ${r.first}% to ${r.last}% better bets. That learning is what this task measures.` : '',
+        r.conf != null && Math.abs(r.conf - r.all) <= 15 ? 'Your confidence matched how you did.' : ''],
+      work: [r.last < 70 ? `${r.last}% better bets in the last quarter; the target is 70%. Keep a mental tally for each pair.` : '',
+        r.last <= r.first ? 'Your choices didn\'t improve over the game. Focus on learning each pair in the early rounds.' : '',
+        r.flips > 3 ? `You switched away from a pair's usual answer ${nn(r.flips, 'time')} after a surprise. Stick with the way each pair usually lands.` : '',
+        r.slow ? `${nn(r.slow, 'round')} ran out of time. You have 3 seconds, so go with your tally.` : '',
+        r.conf - r.all > 15 ? 'Your confidence was well above your results. Worth noticing.' : '']
+    }),
+    energy: r => ({
+      good: [`You tried ${r.tried} of the 4 generators.`,
+        `Steady generators: ${r.first}% of your presses in the first third, ${r.last}% in the last third.`,
+        `Final power ${(r.power || 0).toLocaleString('en-GB')}.`],
+      work: [r.tried < 4 ? 'You didn\'t try every generator. A few test presses on each tells you how it behaves.' : '',
+        r.last <= r.first ? 'Your choices didn\'t shift much. Test each generator early, then commit to the steady ones.' : '',
+        r.last < 70 ? 'Judge each generator by its running total, not its last press.' : 'You shifted towards the steady generators as you learnt, which is the skill being measured.']
+    }),
+    analysis: r => { const ks = (r.kinds || []).filter(k => k[1]), weak = ks.filter(k => k[2] / k[1] < .5).sort((a, b) => (b[1] - b[2]) - (a[1] - a[2]))[0], strong = ks.filter(k => k[1] >= 2 && k[2] === k[1]); return {
+      good: [r.acc >= 67 ? `${r.ok} of ${r.n} correct${r.full && r.ok >= 12 ? ', meeting the target of 12' : ''}.` : '',
+        r.full && !r.unreached ? 'You reached every question in time.' : '',
+        strong.length ? `All your ${strong.map(k => AN_KIND[k[0]][0]).join(' and ')} questions were right.` : ''],
+      work: [r.acc < 67 ? `${r.ok} of ${r.n} correct. Estimate first, then check the options.` : '',
+        weak ? `${AN_KIND[weak[0]][0][0].toUpperCase() + AN_KIND[weak[0]][0].slice(1)} questions: ${weak[1] - weak[2]} of ${weak[1]} wrong. ${AN_KIND[weak[0]][1]}` : '',
+        r.unreached ? `You didn't reach ${nn(r.unreached, 'question')}. Aim for about a minute each.` : r.avgT > 60 ? `About ${r.avgT} seconds per question, which is slower than the real pace of one a minute.` : '']
+    }; },
+    token: r => ({
+      good: [r.rounds === r.total ? `You cleared all ${r.total} rounds.` : r.rounds ? `You cleared ${r.rounds} of ${r.total} rounds.` : '',
+        !r.between ? 'You never reopened a box that had already held a token.' : '',
+        !r.within ? 'No wasted checks within a search.' : ''],
+      work: [r.between ? `${nn(r.between, 'time')} you opened a box that had already held a token, costing a life. Make a mental note of each box as it pays out.` : '',
+        r.within > 2 ? `${nn(r.within, 'recheck')} within a search. Use a fixed order, such as left to right, top to bottom.` : '',
+        r.rounds < r.total ? `You reached round ${r.rounds + 1} of ${r.total}. The bigger rounds need a steady search order.` : '']
+    })
+  };
+  Object.entries(REVIEW).forEach(([k, f]) => GUIDE[k].review = f);
 
   /* ===== Progress, saved in this browser only ===== */
   const PKEY = 'breakin-as-progress-v1';
@@ -1894,8 +2153,9 @@
           <div class="box"><h4>Your target</h4><p>${gd.target}</p><p class="hist">${hist}</p></div></div>
       </div>
       <details class="box real"><summary>What the real one is like</summary><ul class="clean">${g.real.map(r => `<li>${r}</li>`).join('')}</ul><p style="margin-top:8px">Measures: ${g.measures.toLowerCase()}.</p></details>
+      ${VIDEO[id] ? `<a class="vlink" href="${VIDEO[id][0]}" target="_blank" rel="noopener">${VIDEO[id][1]} ↗</a>` : ''}
       <div class="go">${st === 'new' ? pBtn + fBtn : fBtn + pBtn}</div>
-      <p class="note">Practice gives you hints and feedback as you go. Full length matches the real number of rounds and timing, with only the feedback the real task shows.</p>
+      <p class="note">Practice explains each mistake as you go. Full length matches the real number of rounds and timing, with only the feedback the real task shows, then gives you a full report and a review of your mistakes at the end.</p>
     </div></div>`;
     pBody.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => start(id, b.dataset.mode));
     pBody.scrollTop = 0; pBody.querySelector('[data-mode]').focus();
@@ -1911,6 +2171,29 @@
     for (let k = 1; k <= ORDER.length; k++) { const id = ORDER[(i0 + k) % ORDER.length]; if (status(id) !== 'ready') return id; }
     return ORDER[(i0 + 1) % ORDER.length];
   }
+  /* Report after every game: what went well, what to work on, and a review of wrong answers */
+  function reviewHtml(g, gd, r, mode) {
+    const rv = gd.review ? gd.review(r.raw || {}, mode === 'full') : { good: [], work: [] };
+    const good = rv.good.filter(Boolean), work = rv.work.filter(Boolean), beh = g.type === 'Behavioural';
+    if (!good.length) good.push(beh ? 'You played every round through to the end.' : 'You finished the game. Each run teaches you the rules a little better.');
+    if (!work.length) work.push(g.good);
+    const li = a => a.map(x => `<li>${x}</li>`).join('');
+    const brk = r.breakdown && r.breakdown.some(([, n]) => n) ? `<div class="r-break" aria-label="Where your errors came from">${r.breakdown.filter(([, n]) => n).map(([l, n]) => `<span><b>${n}</b>${l}</span>`).join('')}</div>` : '';
+    return `<div class="r-rev">
+      <div class="rv ${beh ? 'neutral' : ''}"><h4>${beh ? 'What you did' : 'What went well'}</h4><ul>${li(good)}</ul></div>
+      <div class="rv work"><h4>${beh ? 'Things to think about' : 'What to work on'}</h4><ul>${li(work)}</ul>${brk}</div>
+    </div>`;
+  }
+  function mistakesHtml(r) {
+    const m = r.mistakes || []; if (!m.length) return '';
+    const MAX = 12, shown = m.slice(0, MAX);
+    return `<details class="r-mis"${m.length <= 3 ? ' open' : ''}><summary>Review your mistakes<span>${m.length} to look at${m.length > MAX ? `, first ${MAX} shown` : ''}</span></summary><ol>
+      ${shown.map(x => `<li class="mis">${x.v ? `<div class="mv">${x.v}</div>` : ''}<div class="mt">
+        ${x.q ? `<p class="q">${x.q}</p>` : ''}
+        <p class="ya">${x.yours != null ? `<b class="y">You</b>${x.yours} ` : ''}${x.correct != null ? `&nbsp;<b class="c">Answer</b>${x.correct}` : ''}</p>
+        ${x.why ? `<p class="why">${x.why}</p>` : ''}</div></li>`).join('')}
+    </ol></details>`;
+  }
   function results(id, mode, r) {
     clearAll(); const g = G[id], gd = GUIDE[id], v = VIDEO[id];
     const wasReady = status(id) === 'ready', prev = record(id, mode, r), nx = suggestNext(id);
@@ -1923,9 +2206,10 @@
       <h3>${r.headline}</h3>
       ${cmp ? `<p class="r-cmp">${cmp}${mode === 'full' ? ' (full length)' : ' (practice)'}</p>` : ''}
       <dl class="r-stats">${r.stats.map(([l, val]) => `<div><dt>${l}</dt><dd${String(val).length > 14 ? ' class="sm"' : ''}>${val}</dd></div>`).join('')}</dl>
+      ${reviewHtml(g, gd, r, mode)}
       <div class="r-next"><h4>Your next step</h4><p>${gd.advise(r.raw || {})}</p><p class="r-target">${tip}${gd.target.startsWith('Full length: ') ? 'Target on the full-length version: ' + gd.target.slice(13) : 'Target: ' + gd.target}.</p></div>
+      ${mistakesHtml(r)}
       ${r.note ? `<p class="r-note">${r.note}</p>` : ''}
-      <div class="r-tips"><p class="tip good"><b>Do well</b> ${g.good}</p><p class="tip bad"><b>Avoid</b> ${g.bad}</p></div>
       ${v ? `<a class="vlink" href="${v[0]}" target="_blank" rel="noopener">${v[1]}</a>` : ''}
       <div class="r-act"><button class="btn btn-ghost" type="button" id="rAgain">Play again</button>${mode === 'practice' ? '<button class="btn btn-ghost" type="button" id="rFull">Try full length</button>' : ''}<button class="btn btn-primary" type="button" id="rNext">Next: ${G[nx].name}</button></div>
     </div></div>`;
