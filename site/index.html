@@ -9,7 +9,7 @@
   :root{
     --plum:#4a1866; --magenta:#d82e6e; --navy:#1b1a3d;
     --g1:#5a1d7c; --g2:#d82e6e; --flank:#bcaecb;
-    --c1:#6a35b8; --c2:#d82e6e; --c3:#e08a10; --c4:#12867f; --on-c:#ffffff;
+    --c1:#6a35b8; --c2:#d82e6e; --c3:#e08a10; --c4:#12867f; --c5:#6f9214; --c6:#4d4863; --on-c:#ffffff;
     --bg:#fbf8fc; --surface:#ffffff; --surface-2:#f4eef7; --ink:#1b1a3d; --muted:#5f5975; --line:#e8dfed;
     --accent-ink:#4a1866; --pink-ink:#b01f58;
     --behav:#c0245f; --cog:#5a2aa0; --good:#1c7a4d; --bad:#c0392b;
@@ -34,7 +34,7 @@
     --behav:#ff86b0; --cog:#b99dff; --good:#4ac38a; --bad:#f08b7e;
     --mark-bg:#f8f2fa;
     --g1:#c590ea; --g2:#ff6b9b; --flank:#5d4a70;
-    --c1:#a98bff; --c2:#ff6f9e; --c3:#f5b544; --c4:#35c2b6; --on-c:#1a1022;
+    --c1:#a98bff; --c2:#ff6f9e; --c3:#f5b544; --c4:#35c2b6; --c5:#b4d64c; --c6:#d6cfe2; --on-c:#1a1022;
     --word:linear-gradient(95deg,#c08ae6 0%,#e070b0 50%,#ff6b9b 100%);
     --glow-a:rgba(216,46,110,.20); --glow-b:rgba(122,52,170,.26); --grain:.07;
     --sh-1:0 1px 2px rgba(0,0,0,.35);
@@ -48,7 +48,7 @@
     --behav:#ff86b0; --cog:#b99dff; --good:#4ac38a; --bad:#f08b7e;
     --mark-bg:#f8f2fa;
     --g1:#c590ea; --g2:#ff6b9b; --flank:#5d4a70;
-    --c1:#a98bff; --c2:#ff6f9e; --c3:#f5b544; --c4:#35c2b6; --on-c:#1a1022;
+    --c1:#a98bff; --c2:#ff6f9e; --c3:#f5b544; --c4:#35c2b6; --c5:#b4d64c; --c6:#d6cfe2; --on-c:#1a1022;
     --word:linear-gradient(95deg,#c08ae6 0%,#e070b0 50%,#ff6b9b 100%);
     --glow-a:rgba(216,46,110,.20); --glow-b:rgba(122,52,170,.26); --grain:.07;
     --sh-1:0 1px 2px rgba(0,0,0,.35);
@@ -362,22 +362,18 @@
   .frames{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.5vw,14px);flex-wrap:wrap}
   .frame{width:clamp(78px,17vw,120px);aspect-ratio:1;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;display:block}
   .frame.q{border-style:dashed;border-color:var(--magenta)}
-  .frame.big{width:clamp(110px,26vw,150px)}
-  .builder{display:flex;flex-direction:column;gap:10px;width:100%;max-width:620px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:var(--s-3)}
-  .b-tabs{display:flex;gap:6px;justify-content:center}
   .b-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
   .b-row > span{font-size:13px;color:var(--muted);width:64px;text-align:right}
   .opt{appearance:none;min-width:40px;height:40px;padding:0 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:600 14px var(--f-body);cursor:pointer;display:inline-grid;place-items:center;transition:transform .2s var(--spring),border-color .15s}
   .opt:hover{border-color:var(--accent-ink)} .opt:active{transform:scale(.94)}
   .opt[aria-pressed="true"]{border-color:var(--magenta);box-shadow:0 0 0 2px color-mix(in srgb,var(--magenta) 35%,transparent)}
   .opt svg{width:24px;height:24px}
-  .posgrid{display:grid;grid-template-columns:repeat(3,26px);gap:3px}
-  .posgrid .opt{min-width:26px;width:26px;height:26px;padding:0;border-radius:6px}
   .choices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%;max-width:560px}
   .choice{appearance:none;padding:6px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font:700 13px var(--f-body);color:var(--muted);transition:transform .2s var(--spring),border-color .15s}
   .choice:hover{border-color:var(--accent-ink)} .choice:active{transform:scale(.96)}
   .choice .frame{width:100%;border:0}
   .choice.right{border-color:var(--good)} .choice.wrong{border-color:var(--bad)}
+  @media (max-width:560px){.choices.o-choices{grid-template-columns:repeat(2,minmax(0,1fr));max-width:400px}}
   /* Tickets */
   .tk-wrap{display:flex;flex-direction:column;gap:10px;width:100%;max-width:460px}
   .tk-box{border:1.5px solid var(--line);border-radius:16px;background:var(--surface);height:clamp(120px,20vh,150px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
@@ -447,7 +443,8 @@
   .an .opts .opt{height:48px;justify-content:flex-start;font-size:15.5px}
   .an .opts .opt.right{border-color:var(--good)} .an .opts .opt.wrong{border-color:var(--bad)}
   .an .why{font-size:14px;color:var(--muted);margin-top:8px}
-  .shp-c1{fill:var(--c1)} .shp-c2{fill:var(--c2)} .shp-c3{fill:var(--c3)} .shp-c4{fill:var(--c4)}
+  .shp-c1{fill:var(--c1)} .shp-c2{fill:var(--c2)} .shp-c3{fill:var(--c3)} .shp-c4{fill:var(--c4)} .shp-c5{fill:var(--c5)} .shp-c6{fill:var(--c6)}
+  .shp-o{fill:none;stroke-width:2.4;stroke-linejoin:round} .shp-o.shp-c1{stroke:var(--c1)} .shp-o.shp-c2{stroke:var(--c2)} .shp-o.shp-c3{stroke:var(--c3)} .shp-o.shp-c4{stroke:var(--c4)} .shp-o.shp-c5{stroke:var(--c5)} .shp-o.shp-c6{stroke:var(--c6)}
 
   /* Steps */
   .steps{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);counter-reset:s}
@@ -897,6 +894,10 @@
       case 'diamond': return `<polygon class="${cls}" points="${cx},${cy - r} ${cx + r * .8},${cy} ${cx},${cy + r} ${cx - r * .8},${cy}"/>`;
       case 'hexagon': { const p = []; for (let i = 0; i < 6; i++) { const a = Math.PI / 3 * i; p.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1)); } return `<polygon class="${cls}" points="${p.join(' ')}"/>`; }
       case 'arrow': { const s = r / 30; return `<path class="${cls}" ${t} d="M${cx} ${cy - 30 * s}L${cx + 24 * s} ${cy - 4 * s}H${cx + 9 * s}V${cy + 28 * s}H${cx - 9 * s}V${cy - 4 * s}H${cx - 24 * s}Z"/>`; }
+      case 'star': { const p = []; for (let i = 0; i < 10; i++) { const a = Math.PI / 5 * i - Math.PI / 2, q = i % 2 ? r * .45 : r * 1.05; p.push((cx + q * Math.cos(a)).toFixed(1) + ',' + (cy + 4 * r / 100 + q * Math.sin(a)).toFixed(1)); } return `<polygon class="${cls}" points="${p.join(' ')}"/>`; }
+      case 'cross': { const a = r * .9, w = r * .32; return `<path class="${cls}" d="M${cx - w} ${cy - a}H${cx + w}V${cy - w}H${cx + a}V${cy + w}H${cx + w}V${cy + a}H${cx - w}V${cy + w}H${cx - a}V${cy - w}H${cx - w}Z"/>`; }
+      case 'half': return `<path class="${cls}" ${t} d="M${cx - r} ${cy + r * .4}A${r} ${r} 0 0 1 ${cx + r} ${cy + r * .4}Z"/>`;
+      case 'ell': { const x0 = cx - r * .8, x1 = cx + r * .8, y0 = cy - r * .9, y1 = cy + r * .9, w = r * .8; return `<path class="${cls}" ${t} d="M${x0} ${y0}H${x0 + w}V${y1 - w}H${x1}V${y1}H${x0}Z"/>`; }
     }
     return '';
   }
@@ -1262,16 +1263,16 @@
   };
 
   /* ----- Frame sequences shared by Order and Patterns ----- */
-  const COLS = ['c1', 'c2', 'c3', 'c4'], RADII = [5.5, 8, 10.5, 13], RING = [0, 1, 2, 5, 8, 7, 6, 3], TURNERS = ['triangle', 'arrow'];
+  const COLS = ['c1', 'c2', 'c3', 'c4'], RADII = [5.5, 8, 10.5, 13], RING = [0, 1, 2, 5, 8, 7, 6, 3], TURNERS = ['triangle', 'arrow', 'half', 'ell'];
   const SHAPES4 = ['circle', 'square', 'triangle', 'arrow'];
   const cellAt = (sl, t) => sl.ring ? RING[((sl.p0 + sl.dp * t) % 8 + 8) % 8] : sl.p0;
   const stateAt = (sl, t) => ({ shape: sl.shape, col: COLS[(sl.c0 + (sl.cyc ? t % sl.cyc : 0)) % 4], size: sl.s0 + sl.ds * t, rot: ((sl.r0 + sl.dr * t) % 360 + 360) % 360, cell: cellAt(sl, t) });
   const frameAt = (it, t) => it.slots.map(sl => stateAt(sl, t));
-  const sameShape = (a, b) => a.shape === b.shape && a.col === b.col && a.size === b.size && a.cell === b.cell && (!TURNERS.includes(a.shape) || a.rot === b.rot);
+  const sameShape = (a, b) => a.shape === b.shape && a.col === b.col && a.size === b.size && a.cell === b.cell && (a.fill || 's') === (b.fill || 's') && (!TURNERS.includes(a.shape) || a.rot === b.rot);
   const sameFrame = (A, B) => A.length === B.length && A.every((a, k) => sameShape(a, B[k]));
-  const frameKey = F => F.map(s => [s.shape, s.col, s.size, TURNERS.includes(s.shape) ? s.rot : 0, s.cell].join('.')).join('|');
+  const frameKey = F => F.map(s => [s.shape, s.col, s.size, TURNERS.includes(s.shape) ? s.rot : 0, s.cell, s.fill || 's'].join('.')).join('|');
   function frameSvg(F, cls = 'frame') {
-    return `<svg class="${cls}" viewBox="0 0 90 90" aria-hidden="true">${F.map(s => shapeSvg(s.shape, 'shp-' + s.col, RADII[s.size], TURNERS.includes(s.shape) ? s.rot : 0, (s.cell % 3) * 30 + 15, Math.floor(s.cell / 3) * 30 + 15)).join('')}</svg>`;
+    return `<svg class="${cls}" viewBox="0 0 90 90" aria-hidden="true">${F.map(s => shapeSvg(s.shape, 'shp-' + s.col + (s.fill === 'o' ? ' shp-o' : ''), RADII[s.size], TURNERS.includes(s.shape) ? s.rot : 0, (s.cell % 3) * 30 + 15, Math.floor(s.cell / 3) * 30 + 15)).join('')}</svg>`;
   }
   function genSeq(tier) {
     const nSlots = tier >= 3 ? 2 : 1, nRules = tier === 2 || tier === 4 ? 2 : 1;
@@ -1292,10 +1293,10 @@
     }
     return genSeq(1);
   }
-  const FEAT = { shape: 'shape', col: 'colour', size: 'size', rot: 'direction', cell: 'position' };
+  const FEAT = { shape: 'shape', col: 'colour', size: 'size', rot: 'direction', cell: 'position', fill: 'fill (solid or outline)' };
   function frameDiff(A, B) {   // which features of frame A differ from frame B
     const out = new Set();
-    A.forEach((a, k) => { const b = B[k]; if (!b) return; if (a.shape !== b.shape) out.add('shape'); if (a.col !== b.col) out.add('col'); if (a.size !== b.size) out.add('size'); if (a.cell !== b.cell) out.add('cell'); if (TURNERS.includes(a.shape) && a.shape === b.shape && a.rot !== b.rot) out.add('rot'); });
+    A.forEach((a, k) => { const b = B[k]; if (!b) return; if (a.shape !== b.shape) out.add('shape'); if (a.col !== b.col) out.add('col'); if (a.size !== b.size) out.add('size'); if (a.cell !== b.cell) out.add('cell'); if ((a.fill || 's') !== (b.fill || 's')) out.add('fill'); if (TURNERS.includes(a.shape) && a.shape === b.shape && a.rot !== b.rot) out.add('rot'); });
     return [...out];
   }
   const featList = f => { const w = f.map(x => FEAT[x]); return w.length > 1 ? w.slice(0, -1).join(', ') + ' and ' + w[w.length - 1] : w[0] || ''; };
@@ -1305,63 +1306,122 @@
     return `${who} ${r.join(' and ')} each step.`;
   }).join(' ');
 
-  /* ----- Order (build the next frame) ----- */
+  /* ----- Order (pick the next frame) ----- */
+  const OCOLS = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6'], CNAME = { c1: 'purple', c2: 'pink', c3: 'orange', c4: 'teal', c5: 'green', c6: 'grey' };
+  const OSHAPES = ['circle', 'square', 'triangle', 'arrow', 'hexagon', 'diamond', 'star', 'cross', 'half', 'ell'];
+  const sName = x => ({ half: 'half-moon', ell: 'L-shape' })[x] || x;
+  const mod = (a, n) => (a % n + n) % n;
+  const oState = (sl, t) => ({ shape: sl.shapes[t % sl.shapes.length], col: sl.cols[t % sl.cols.length], fill: sl.fills[t % sl.fills.length], size: sl.s0 + sl.ds * t, rot: mod(sl.r0 + sl.dr * t, 360), cell: sl.ring ? RING[mod(sl.p0 + sl.dp * t, 8)] : sl.p0 });
+  const oFrame = (it, t) => it.slots.map(sl => oState(sl, t));
+  // Tier 1: one shape, two rules. 2: two shapes. 3: two shapes, two rules each, 45° turns and bigger jumps. 4: three shapes. 5: four shapes.
+  function genOrder(tier) {
+    const plan = [[2], [2, 1], [2, 2], [2, 2, 1], [2, 2, 1, 1]][tier - 1], hard = tier >= 3;
+    for (let tries = 0; tries < 500; tries++) {
+      const used = new Set(), slots = [];
+      for (const n of plan) {
+        const rules = [];
+        while (rules.length < n) { const r = pick(['col', 'col', 'size', 'pos', 'pos', 'fill', 'shape', 'rot', 'rot', 'rot']); if (!rules.includes(r) && !(r === 'shape' && rules.includes('rot')) && !(r === 'rot' && rules.includes('shape'))) rules.push(r); }
+        const pool = OSHAPES.filter(x => !used.has(x) && (rules.includes('shape') ? !TURNERS.includes(x) : !rules.includes('rot') || TURNERS.includes(x)));
+        const shapes = shuffle(pool).slice(0, rules.includes('shape') ? pick([2, 3]) : 1);
+        if (!shapes.length || (rules.includes('shape') && shapes.length < 2)) break;
+        shapes.forEach(x => used.add(x));
+        const turn = shapes.length === 1 && TURNERS.includes(shapes[0]);
+        const sl = { shapes, rules, cols: [pick(OCOLS)], fills: [hard && Math.random() < .35 ? 'o' : 's'], s0: rand(1, 2), ds: 0, r0: turn ? pick(hard ? [0, 45, 90, 135, 180, 225, 270, 315] : [0, 90, 180, 270]) : 0, dr: 0, ring: false, p0: rand(0, 8), dp: 0 };
+        if (rules.includes('col')) sl.cols = shuffle(OCOLS).slice(0, pick([2, 3]));
+        if (rules.includes('fill')) sl.fills = shuffle(['s', 'o']);
+        if (rules.includes('size')) { sl.ds = pick([1, -1]); sl.s0 = sl.ds > 0 ? 0 : 3; }
+        if (rules.includes('rot')) sl.dr = pick(hard ? [90, -90, 45, -45, 180] : [90, -90]);
+        if (rules.includes('pos')) { sl.ring = true; sl.p0 = rand(0, 7); sl.dp = pick(hard ? [1, -1, 2, -2, 3] : [1, -1]); }
+        slots.push(sl);
+      }
+      if (slots.length < plan.length) continue;
+      let clash = false;
+      for (let t = 0; t < 4; t++) { const cells = slots.map(sl => oState(sl, t).cell); if (new Set(cells).size < cells.length) clash = true; }
+      if (!clash) return { slots, tier };
+    }
+    return genOrder(1);
+  }
+  // Three wrong options, each breaking exactly one feature of the answer. Most are near misses on a real rule
+  // (forgot the last step, went a step too far, went the wrong way); the rest change something that never changes.
+  function oDistract(it, ans) {
+    const near = [], far = [], seen = new Set([frameKey(ans)]);
+    const make = (k, f, v) => { const F = ans.map(s => ({ ...s })); Object.assign(F[k], v); F.what = f; return F; };
+    const valid = F => F.every(s => s.size >= 0 && s.size <= 3) && new Set(F.map(s => s.cell)).size === F.length;
+    it.slots.forEach((sl, k) => {
+      const a = ans[k], at = t => oState(sl, t), inFrame = new Set(ans.map(s => s.shape));
+      sl.rules.forEach(r => {
+        const f = r === 'pos' ? 'cell' : r;
+        [at(2), at(4), at(1)].forEach(s => near.push(make(k, f, { [f]: s[f] })));
+        if (r === 'rot' && Math.abs(sl.dr) !== 180) near.push(make(k, f, { rot: mod(a.rot + 180, 360) }));
+        if (r === 'col') near.push(make(k, f, { col: pick(OCOLS.filter(c => !sl.cols.includes(c))) }));
+        if (r === 'shape') near.push(make(k, f, { shape: pick(OSHAPES.filter(x => !inFrame.has(x) && !sl.shapes.includes(x) && !TURNERS.includes(x))) }));
+      });
+      if (!sl.rules.includes('col')) far.push(make(k, 'col', { col: pick(OCOLS.filter(c => c !== a.col)) }));
+      if (!sl.rules.includes('size')) far.push(make(k, 'size', { size: a.size + pick([1, -1]) }));
+      if (!sl.rules.includes('fill')) far.push(make(k, 'fill', { fill: a.fill === 'o' ? 's' : 'o' }));
+      if (!sl.rules.includes('pos')) far.push(make(k, 'cell', { cell: rand(0, 8) }));
+      if (!sl.rules.includes('rot') && TURNERS.includes(a.shape)) far.push(make(k, 'rot', { rot: mod(a.rot + pick([90, -90, 180]), 360) }));
+      if (!sl.rules.includes('shape') && !sl.rules.includes('rot')) far.push(make(k, 'shape', { shape: pick(OSHAPES.filter(x => !inFrame.has(x) && TURNERS.includes(x) === TURNERS.includes(a.shape))) }));
+    });
+    const out = [], take = (list, n) => { for (const F of shuffle(list)) { if (out.length >= n) return; const key = frameKey(F); if (F.every(s => s.shape) && valid(F) && !seen.has(key)) { seen.add(key); out.push(F); } } };
+    take(near, 2); take(far, 3); take(near, 3);
+    while (out.length < 3) { const k = rand(0, ans.length - 1), F = make(k, 'col', { col: pick(OCOLS) }), key = frameKey(F); if (!seen.has(key)) { seen.add(key); out.push(F); } }
+    return out;
+  }
+  const oRuleText = it => it.slots.map(sl => {
+    const who = it.slots.length > 1 ? `The ${sl.shapes.length > 1 ? 'shape that starts as a ' + sName(sl.shapes[0]) : sName(sl.shapes[0])}` : 'The shape';
+    const r = sl.rules.map(x => x === 'col' ? (sl.cols.length === 2 ? `swaps between ${CNAME[sl.cols[0]]} and ${CNAME[sl.cols[1]]}` : `cycles through ${CNAME[sl.cols[0]]}, ${CNAME[sl.cols[1]]} and ${CNAME[sl.cols[2]]}`)
+      : x === 'size' ? (sl.ds > 0 ? 'grows one size' : 'shrinks one size')
+      : x === 'rot' ? (Math.abs(sl.dr) === 180 ? 'turns 180°' : `turns ${Math.abs(sl.dr)}° ${sl.dr > 0 ? 'clockwise' : 'anticlockwise'}`)
+      : x === 'fill' ? 'switches between solid and outline'
+      : x === 'shape' ? (sl.shapes.length === 2 ? `swaps between ${sName(sl.shapes[0])} and ${sName(sl.shapes[1])}` : `cycles through ${sName(sl.shapes[0])}, ${sName(sl.shapes[1])} and ${sName(sl.shapes[2])}`)
+      : `moves ${Math.abs(sl.dp)} place${Math.abs(sl.dp) > 1 ? 's' : ''} ${sl.dp > 0 ? 'clockwise' : 'anticlockwise'} round the edge`);
+    return r.length ? `${who} ${r.join(' and ')} each step.` : `${who} never changes.`;
+  }).join(' ');
   G.order = {
     name: 'Order', aka: 'Next frame', type: 'Cognitive', measures: 'Abstract and logical reasoning',
-    what: 'Three frames of shapes change by hidden rules. Build the fourth frame yourself using the controls.',
-    real: ['Shapes change in colour, size, direction and position', 'You construct the answer with buttons, there are no options to pick from', 'About 15 items with roughly a minute each', 'Gets harder: more rules, then two shapes with rules of their own'],
-    controls: 'Use the buttons to set each shape, then confirm.',
-    practice: 'Practice · 4 items, untimed', full: 'Full length · 15 items, 1 min each',
-    good: 'Check one feature at a time across the three frames: shape, colour, size, direction, position.',
-    bad: 'Confirming after spotting one rule and missing a second.',
+    what: 'Three frames of shapes change by hidden rules. Work out every rule, then pick the fourth frame from four options.',
+    real: ['Shapes change in shape, colour, fill, size, direction and position', 'Gets harder: up to four shapes, each following rules of its own', 'About 15 items, against the clock', 'The real task may have you build the frame yourself, so picture the answer before you look at the options'],
+    controls: 'Click an option, or press <kbd>1</kbd> to <kbd>4</kbd>.',
+    practice: 'Practice · 4 items, untimed', full: 'Full length · 15 items, 45 s each',
+    good: 'Take one shape at a time and check each feature across the three frames: shape, colour, fill, size, direction and position.',
+    bad: 'Picking the first option that matches the obvious change. Each wrong option breaks just one rule.',
     mount(st, api) {
-      const full = !api.practice, tiers = full ? [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4] : [1, 2, 3, 4], N = tiers.length;
-      let i = 0, it, build, active = 0, t0 = 0, tick = null, outOfTime = 0; const res = [], mistakes = [];
+      const full = !api.practice, tiers = full ? [1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5] : [1, 2, 3, 4], N = tiers.length, LIM = 45000;
+      let i = 0, it, ans, opts, t0 = 0, tick = null, busy = false, outOfTime = 0; const res = [], mistakes = [];
+      const row = () => [0, 1, 2].map(t => frameSvg(oFrame(it, t))).join('');
       function load() {
         if (i >= N) return done();
-        it = genSeq(tiers[i]); build = frameAt(it, 2).map(s => ({ ...s })); active = 0; t0 = api.now();
-        api.count(`Item ${i + 1} of ${N}`); render();
-        if (full) { if (tick) tick(); const lim = 60000; tick = api.loop(() => { const left = lim - (api.now() - t0); const bar = st.querySelector('.tbar i'); if (bar) bar.style.transform = `scaleX(${Math.max(0, left / lim)})`; if (left <= 0) { outOfTime++; submit(); return false; } }); }
-      }
-      function render() {
-        const s = build[active], turn = TURNERS.includes(s.shape);
+        it = genOrder(tiers[i]); ans = oFrame(it, 3); opts = shuffle([ans, ...oDistract(it, ans)]); t0 = api.now(); busy = false;
+        api.count(`Item ${i + 1} of ${N}`);
         st.innerHTML = `${full ? '<div class="tbar"><i></i></div>' : ''}
-          <div class="frames">${[0, 1, 2].map(t => frameSvg(frameAt(it, t))).join('')}${frameSvg(build, 'frame big q')}</div>
-          <div class="builder">
-            ${build.length > 1 ? `<div class="b-tabs">${build.map((b, k) => `<button class="opt" type="button" data-tab="${k}" aria-pressed="${k === active}">Shape ${k + 1}</button>`).join('')}</div>` : ''}
-            <div class="b-row"><span>Shape</span>${SHAPES4.map(x => `<button class="opt" type="button" data-shape="${x}" aria-pressed="${s.shape === x}" aria-label="${x}"><svg viewBox="0 0 100 100">${shapeSvg(x, 'shp-' + s.col, 34)}</svg></button>`).join('')}</div>
-            <div class="b-row"><span>Colour</span>${COLS.map((c, k) => `<button class="opt" type="button" data-col="${c}" aria-pressed="${s.col === c}" aria-label="Colour ${k + 1}"><svg viewBox="0 0 100 100"><circle class="shp-${c}" cx="50" cy="50" r="34"/></svg></button>`).join('')}</div>
-            <div class="b-row"><span>Size</span>${RADII.map((r, k) => `<button class="opt" type="button" data-size="${k}" aria-pressed="${s.size === k}" aria-label="Size ${k + 1}"><svg viewBox="0 0 100 100"><circle class="shp-${s.col}" cx="50" cy="50" r="${r * 2.8}"/></svg></button>`).join('')}</div>
-            <div class="b-row"><span>Direction</span><button class="opt" type="button" data-rot="-90" ${turn ? '' : 'disabled'} aria-label="Turn anticlockwise">↺</button><button class="opt" type="button" data-rot="90" ${turn ? '' : 'disabled'} aria-label="Turn clockwise">↻</button>
-              <span>Position</span><div class="posgrid">${[...Array(9).keys()].map(c => `<button class="opt" type="button" data-cell="${c}" aria-pressed="${s.cell === c}" aria-label="Position ${c + 1}"></button>`).join('')}</div></div>
-          </div>
-          <p class="g-msg" id="m"></p>
-          <div class="g-keys"><button class="btn btn-primary" type="button" id="ok">Confirm frame</button></div>`;
-        st.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { active = +b.dataset.tab; render(); });
-        st.querySelectorAll('[data-shape]').forEach(b => b.onclick = () => { s.shape = b.dataset.shape; render(); });
-        st.querySelectorAll('[data-col]').forEach(b => b.onclick = () => { s.col = b.dataset.col; render(); });
-        st.querySelectorAll('[data-size]').forEach(b => b.onclick = () => { s.size = +b.dataset.size; render(); });
-        st.querySelectorAll('[data-rot]').forEach(b => b.onclick = () => { s.rot = ((s.rot + +b.dataset.rot) % 360 + 360) % 360; render(); });
-        st.querySelectorAll('[data-cell]').forEach(b => b.onclick = () => { s.cell = +b.dataset.cell; render(); });
-        st.querySelector('#ok').onclick = submit;
+          <div class="frames">${row()}<svg class="frame q" viewBox="0 0 90 90" aria-hidden="true"><text x="45" y="52" text-anchor="middle" style="font:700 28px var(--f-display);fill:var(--muted)">?</text></svg></div>
+          <div class="choices o-choices">${opts.map((F, k) => `<button class="choice" type="button" data-o="${k}">${frameSvg(F)}Option ${k + 1}</button>`).join('')}</div>
+          <p class="g-msg" id="m"></p><p class="g-hint" id="h"></p>`;
+        st.querySelectorAll('[data-o]').forEach(b => b.onclick = () => choose(+b.dataset.o));
+        if (full) { if (tick) tick(); tick = api.loop(() => { const left = LIM - (api.now() - t0), bar = st.querySelector('.tbar i'); if (bar) bar.style.transform = `scaleX(${Math.max(0, left / LIM)})`; if (left <= 0) { outOfTime++; choose(-1); return false; } }); }
       }
-      function submit() {
+      function choose(k) {
+        if (busy) return; busy = true;
         if (tick) { tick(); tick = null; }
-        const ans = frameAt(it, 3), ok = sameFrame(build, ans), diff = ok ? [] : frameDiff(build, ans), timedOut = full && api.now() - t0 >= 60000;
-        res.push({ ok, t: api.now() - t0, diff });
-        if (!ok) mistakes.push({ v: `${[0, 1, 2].map(t => frameSvg(frameAt(it, t))).join('')}<span class="mk">→</span>${frameSvg(ans)}`, q: `Item ${i + 1}${timedOut ? ' (ran out of time)' : ''}`, yours: `${frameSvg(build, 'frame mini')} ${diff.length ? `${featList(diff)} ${diff.length > 1 ? 'were' : 'was'} off` : 'not changed'}`, correct: 'the last frame in the row', why: ruleText(it) });
+        const timedOut = k < 0, ok = !timedOut && sameFrame(opts[k], ans), bad = ok || timedOut ? '' : opts[k].what, right = opts.indexOf(ans);
+        res.push({ ok, t: api.now() - t0, diff: bad ? [bad] : [] });
+        if (!ok) mistakes.push({ v: `${row()}<span class="mk">→</span>${frameSvg(ans)}`, q: `Item ${i + 1}${timedOut ? ' (ran out of time)' : ''}`, yours: timedOut ? 'no answer before the 45 seconds ran out' : `${frameSvg(opts[k], 'frame mini')} option ${k + 1}, which had the wrong ${FEAT[bad]}`, correct: `option ${right + 1}, the last frame in the row`, why: oRuleText(it) });
         if (full) { i++; load(); return; }
-        st.querySelector('.builder').outerHTML = `<div class="builder"><p class="g-msg ${ok ? 'ok' : 'no'}">${ok ? 'Correct.' : `Not quite: your ${featList(diff)} ${diff.length > 1 ? 'were' : 'was'} off. Yours is on the left, the answer on the right.`}</p><div class="frames">${frameSvg(build)}<span aria-hidden="true">→</span>${frameSvg(ans)}</div><p class="g-hint">${ruleText(it)}</p></div>`;
-        const b = st.querySelector('#ok'); b.textContent = i + 1 < N ? 'Next item' : 'See results'; b.onclick = () => { i++; load(); };
+        const btns = st.querySelectorAll('.choice'); btns[k].classList.add(ok ? 'right' : 'wrong'); btns[right].classList.add('right');
+        const m = st.querySelector('#m'); m.textContent = ok ? 'Correct.' : `Not this one: option ${k + 1} has the wrong ${FEAT[bad]}. Option ${right + 1} follows every rule.`; m.className = 'g-msg ' + (ok ? 'ok' : 'no');
+        st.querySelector('#h').innerHTML = `${oRuleText(it)} <button class="btn btn-ghost" type="button" id="nx" style="padding:8px 16px;font-size:14px;margin-left:8px">${i + 1 < N ? 'Next item' : 'See results'}</button>`;
+        st.querySelector('#nx').onclick = () => { i++; load(); };
       }
+      api.keys({ 1: () => choose(0), 2: () => choose(1), 3: () => choose(2), 4: () => choose(3) });
       function done() {
-        const ok = res.filter(r => r.ok).length;
+        const ok = res.filter(r => r.ok).length, avgT = Math.round(mean(res.map(r => r.t)) / 1000);
         api.finish({
           score: pct(ok, N), scoreText: `${ok} of ${N}`, ready: full && ok >= 10, mistakes,
-          raw: { acc: pct(ok, N), timeouts: outOfTime, ok, n: N, feats: res.flatMap(r => r.diff), two: (() => { const t = res.filter((r, k) => tiers[k] >= 3); return t.length ? pct(t.filter(r => r.ok).length, t.length) : null; })(), avgT: Math.round(mean(res.map(r => r.t)) / 1000), full },
+          raw: { acc: pct(ok, N), timeouts: outOfTime, ok, n: N, feats: res.flatMap(r => r.diff), two: (() => { const t = res.filter((r, k) => tiers[k] >= 3); return t.length ? pct(t.filter(r => r.ok).length, t.length) : null; })(), avgT, full },
           headline: `${ok} of ${N} correct`,
-          stats: [['Correct', `${ok} of ${N}`], ['Average time per item', Math.round(mean(res.map(r => r.t)) / 1000) + ' s'], ['Ran out of time', outOfTime]],
-          note: 'The real task adds rules as you go. If you are short on time, lock in the features you are sure of rather than leaving the frame unchanged.'
+          stats: [['Correct', `${ok} of ${N}`], ['Average time per item', avgT + ' s'], ['Ran out of time', outOfTime]],
+          note: 'The real task piles on rules as you go. Work out every rule before you look at the options, then rule options out one rule at a time.'
         });
       }
       load();
@@ -1908,9 +1968,9 @@
       example: 'Star, moon, heart light up, then a ⚡ flashes. You tap star, moon, heart.',
       advise: r => r.longest < 5 ? 'Name the icons quietly as they light up ("star, moon, heart"). Saying them beats picturing them.' : r.longest < 7 ? 'Try chunking: remember the sequence as small groups of two or three.' : 'Great memory span. Keep ignoring the sparks and you are in good shape.' },
     order: { cmp: true, target: 'Full length: 10 of 15 correct',
-      steps: ['Look at the three frames from left to right.', 'Work out what changes each step: shape, colour, size, direction or position.', 'Build the fourth frame with the buttons. It starts as a copy of frame 3.', 'Press Confirm. You have about a minute per item.'],
-      example: 'An arrow turns a quarter turn clockwise each frame (↑ → ↓), so frame 4 points ←.',
-      advise: r => r.timeouts > 1 ? `You ran out of time ${r.timeouts} times. Set the features you are sure of first, then refine.` : r.acc < 67 ? 'Check one feature at a time across the frames: shape, then colour, then size, direction and position.' : 'Good reasoning. Watch for later items where two shapes follow different rules.' },
+      steps: ['Look at the three frames from left to right.', 'Take one shape at a time. Check what changes each step: shape, colour, fill, size, direction and position.', 'Picture the fourth frame before you look at the options.', 'Pick the option that follows every rule. You have 45 seconds per item.'],
+      example: 'An arrow turns 90° clockwise each frame (↑ → ↓), so frame 4 points ←. A star beside it swaps between solid and outline, so it is outline in frame 4.',
+      advise: r => r.timeouts > 1 ? `You ran out of time ${r.timeouts} times. Work out the rules first, then rule out options one rule at a time. 45 seconds goes quickly.` : r.acc < 67 ? 'Check one feature at a time across the frames: shape, then colour, fill, size, direction and position.' : 'Good reasoning. The full-length run ends with four shapes per frame, each following its own rules.' },
     tickets: { cmp: true, target: 'Full length: 85% or more correct',
       steps: ['A ticket appears in the top box or the bottom box.', 'Top box asks: is the number even? Bottom box asks: does the shape have round edges?', 'Press Q for yes and P for no, within about 1.5 seconds.', 'The labels disappear after a few tickets, so learn the two questions first.'],
       example: 'A 7 on a triangle lands in the top box. Top means number, 7 is odd, so press P (no).',
@@ -1987,13 +2047,13 @@
     }),
     order: r => { const tf = topOf(r.feats || []); return {
       good: [r.acc >= 67 ? `${r.ok} of ${r.n} correct${r.full && r.ok >= 10 ? ', meeting the target of 10' : ''}.` : '',
-        r.full && !r.timeouts ? 'You finished every item inside the minute.' : '',
-        r.two != null && r.two >= 60 ? `${r.two}% right on the two-shape items, the hardest ones.` : '',
-        tf ? '' : 'Every feature you built was right.'],
+        r.full && !r.timeouts ? 'You answered every item inside the 45 seconds.' : '',
+        r.two != null && r.two >= 60 ? `${r.two}% right on the hardest items, where several shapes change at once.` : '',
+        tf ? '' : 'You never picked an option that broke a rule.'],
       work: [r.acc < 67 ? `${r.ok} of ${r.n} correct. Check one feature at a time across all three frames.` : '',
-        tf ? `The feature you missed most was ${FEAT[tf.k]} (${nn(tf.n, 'time')}). Look at it on its own across the three frames before building.` : '',
-        r.timeouts ? `${nn(r.timeouts, 'item')} ran out of time. Set the features you're sure of first, then refine.` : '',
-        r.two != null && r.two < 50 ? 'The two-shape items caught you out. Work out each shape\'s rules separately.' : ''] }; },
+        tf ? `The feature you missed most was ${FEAT[tf.k]} (${nn(tf.n, 'time')}). Look at it on its own across the three frames before you pick.` : '',
+        r.timeouts ? `${nn(r.timeouts, 'item')} ran out of time. Rule out options one rule at a time rather than checking each option in full.` : '',
+        r.two != null && r.two < 50 ? 'The multi-shape items caught you out. Work out each shape\'s rules separately.' : ''] }; },
     tickets: r => ({
       good: [r.acc >= 85 ? `${r.acc}% correct, at or above the 85% target.` : r.acc >= 70 ? `${r.acc}% correct.` : '',
         !r.doubles ? 'You never got two wrong in a row, so you reset well after mistakes.' : '',
