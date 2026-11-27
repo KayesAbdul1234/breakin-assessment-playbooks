@@ -384,8 +384,7 @@
   /* Tickets */
   .tk-wrap{display:flex;flex-direction:column;gap:10px;width:100%;max-width:460px}
   .tk-box{border:1.5px solid var(--line);border-radius:16px;background:var(--surface);height:clamp(120px,20vh,150px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
-  .tk-box .rule{position:absolute;top:8px;left:12px;font-size:13px;font-weight:600;color:var(--muted);transition:opacity .8s}
-  .tk-box .rule.gone{opacity:0}
+  .tk-box .rule{position:absolute;top:8px;left:12px;font-size:13px;font-weight:600;color:var(--muted)}
   .tk-box svg{width:96px;height:96px}
   /* Expressions */
   .face{width:clamp(170px,34vw,230px);height:auto}
@@ -1118,7 +1117,7 @@
   G.tickets = {
     name: 'Tickets', aka: 'Ticket game', type: 'Cognitive', measures: 'Switching between rules at speed',
     what: 'A ticket with a number on a shape lands in the top or bottom box. Where it lands decides the question you answer.',
-    real: ['Top box: is the number even? Bottom box: does the shape have round edges?', 'About 80 tickets with about 1.5 seconds to answer each', 'The rule labels disappear after the opening rounds, so you have to remember them', 'Answering too early or too late counts as an error'],
+    real: ['Top box: is the number even? Bottom box: does the shape have round edges?', 'About 80 tickets with about 1.5 seconds to answer each (this practice gives you 1.2 seconds, a little less than the real one)', 'The real test can hide the rule labels after the opening rounds, so learn the two rules by heart', 'Answering too early or too late counts as an error'],
     controls: '<kbd>Q</kbd> yes, <kbd>P</kbd> no.',
     practice: 'Practice · 24 tickets', full: 'Full length · 80 tickets',
     good: 'Check which box the ticket landed in before you look at what\'s on it. Find a steady rhythm.',
@@ -1130,16 +1129,15 @@
           <div class="tk-box" id="bot"><span class="rule">Bottom: does the shape have round edges?</span><div class="slot"></div></div>
         </div><p class="g-msg" id="m"></p>
         <div class="g-keys">${keyBtn('q', 'Yes')}${keyBtn('p', 'No')}</div>`;
-      const slots = [st.querySelector('#top .slot'), st.querySelector('#bot .slot')], rules = [...st.querySelectorAll('.rule')], msg = st.querySelector('#m');
+      const slots = [st.querySelector('#top .slot'), st.querySelector('#bot .slot')], msg = st.querySelector('#m');
       let i = 0, phase = 'gap', t0 = 0, cur, timer, prevBox = -1, early = 0, slow = 0, streak = 0, doubles = 0;
       const res = [];
       const say = (t, c = '') => { msg.textContent = t; msg.className = 'g-msg ' + c; };
       function next() {
         if (i >= N) return done();
         api.count(`Ticket ${i + 1} of ${N}`);
-        if (full && i === 12) rules.forEach(r => r.classList.add('gone'));
         slots.forEach(s => s.innerHTML = ''); phase = 'gap';
-        api.later(show, rand(450, 750));
+        api.later(show, rand(250, 450));
       }
       function show() {
         const box = Math.random() < .5 ? 0 : 1, round = Math.random() < .5, num = rand(1, 9);
@@ -1147,7 +1145,7 @@
         cur = { box, ans: box === 0 ? num % 2 === 0 : round, num, round, sw: prevBox !== -1 && box !== prevBox };
         slots[box].innerHTML = `<svg viewBox="0 0 100 100" role="img" aria-label="${num} on a ${shape}">${shapeSvg(shape, col, 40)}<text x="50" y="52" text-anchor="middle" dominant-baseline="central" style="font:800 34px var(--f-display);fill:var(--on-c)">${num}</text></svg>`;
         phase = 'go'; t0 = api.now();
-        timer = api.later(() => respond(null), full ? 1500 : 3000);
+        timer = api.later(() => respond(null), full ? 1200 : 2200);
       }
       function respond(k) {
         if (phase === 'gap') { early++; say('Too early', 'no'); return; }
@@ -1164,7 +1162,7 @@
         streak = ok ? 0 : streak + 1; if (streak === 2) doubles++;
         res.push({ ok, rt: k === null ? null : rt, sw: cur.sw, box: cur.box, slow: k === null });
         prevBox = cur.box; i++;
-        api.later(next, full ? 250 : 700);
+        api.later(next, full ? 150 : 700);
       }
       api.keys({ q: () => respond('q'), p: () => respond('p') });
       function done() {
@@ -1173,10 +1171,10 @@
         const wr = res.filter(r => !r.ok && !r.slow), topE = wr.filter(r => r.box === 0).length, botE = wr.filter(r => r.box === 1).length, swE = wr.filter(r => r.sw).length;
         api.finish({
           score: pct(ok.length, N), scoreText: pct(ok.length, N) + '%', ready: full && pct(ok.length, N) >= 85,
-          raw: { acc: pct(ok.length, N), doubles, early, slow, sw: rs && rr ? Math.round(rs - rr) : 0, topE, botE, swE, wrong: wr.length, full },
+          raw: { acc: pct(ok.length, N), doubles, early, slow, sw: rs && rr ? Math.max(0, Math.round(rs - rr)) : 0, topE, botE, swE, wrong: wr.length, full },
           breakdown: [['wrong in the top box (number)', topE], ['wrong in the bottom box (shape)', botE], ['of those, just after the box switched', swE], ['too slow', slow], ['too early', early]],
           headline: `${pct(ok.length, N)}% correct`,
-          stats: [['Correct', `${ok.length} of ${N}`], ['Average reaction', ms(mean(ok.map(r => r.rt)))], ['Extra time when the box switched', rs && rr ? Math.round(rs - rr) + ' ms' : '–'], ['Two wrong in a row', doubles], ['Too early / too slow', `${early} / ${slow}`]],
+          stats: [['Correct', `${ok.length} of ${N}`], ['Average reaction', ms(mean(ok.map(r => r.rt)))], ['Extra time when the box switched', rs && rr ? Math.max(0, Math.round(rs - rr)) + ' ms' : '–'], ['Two wrong in a row', doubles], ['Too early / too slow', `${early} / ${slow}`]],
           note: 'Switching boxes costs everyone a little time. Candidates who did well say the aim is not to get every ticket right, it\'s never to get two wrong in a row.'
         });
       }
@@ -1980,9 +1978,9 @@
       example: 'An arrow turns 90° clockwise each frame (↑ → ↓), so frame 4 points ←. A star beside it swaps between solid and outline, so it is outline in frame 4.',
       advise: r => r.timeouts > 1 ? `You ran out of time ${r.timeouts} times. Work out the rules first, then rule out options one rule at a time. 45 seconds goes quickly.` : r.acc < 67 ? 'Check one feature at a time across the frames: shape, then colour, fill, size, direction and position.' : 'Good reasoning. The full-length run ends with four shapes per frame, each following its own rules.' },
     tickets: { cmp: true, target: 'Full length: 85% or more correct',
-      steps: ['A ticket appears in the top box or the bottom box.', 'Top box asks: is the number even? Bottom box asks: does the shape have round edges?', 'Press Q for yes and P for no, within about 1.5 seconds.', 'The labels disappear after a few tickets, so learn the two questions first.'],
+      steps: ['A ticket appears in the top box or the bottom box.', 'Top box asks: is the number even? Bottom box asks: does the shape have round edges?', 'Press Q for yes and P for no, within 1.2 seconds (2.2 seconds in practice).', 'The rule labels stay on screen, but learn the two questions by heart so you don\'t need to read them.'],
       example: 'A 7 on a triangle lands in the top box. Top means number, 7 is odd, so press P (no).',
-      advise: r => r.doubles > 0 ? `You got two wrong in a row ${r.doubles} time${r.doubles > 1 ? 's' : ''}. After a mistake, breathe and focus only on the next ticket.` : r.sw > 120 ? `Switching boxes cost you ${r.sw} ms. Check which box first, then read the ticket.` : r.slow > 3 ? 'Several answers were too slow. Say the rule to yourself until it is automatic: top is number, bottom is shape.' : r.acc < 85 ? 'Top means number, bottom means shape. Fix that in your head before you start.' : 'Steady and accurate. Try a full-length run, where the labels fade away.' },
+      advise: r => r.doubles > 0 ? `You got two wrong in a row ${r.doubles} time${r.doubles > 1 ? 's' : ''}. After a mistake, breathe and focus only on the next ticket.` : r.sw > 120 ? `Switching boxes cost you ${r.sw} ms. Check which box first, then read the ticket.` : r.slow > 3 ? 'Several answers were too slow. Say the rule to yourself until it is automatic: top is number, bottom is shape.' : r.acc < 85 ? 'Top means number, bottom means shape. Fix that in your head before you start.' : (r.full ? 'Steady and accurate at 1.2 seconds a ticket. Keep that rhythm in the real test.' : 'Steady and accurate. Try a full-length run, where you get 1.2 seconds per ticket.') },
     expressions: { cmp: true, target: 'Full length: 70% or more matched',
       steps: ['A face appears.', 'Look at the eyebrows and eyes first, then the mouth.', 'Pick the closest emotion from the seven options.', 'Later faces are subtle or mixed, so go with your first reading.'],
       example: 'Brows raised and pulled together, eyes wide, mouth stretched sideways: afraid.',
