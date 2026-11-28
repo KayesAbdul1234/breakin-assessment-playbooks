@@ -566,6 +566,74 @@
   @media (max-width:920px){.mock{grid-template-columns:1fr;gap:var(--s-5);padding:var(--s-5)}}
   @media (max-width:640px){.mock{padding:var(--s-4) var(--s-3);border-radius:var(--r-md)}.mk-kind{grid-template-columns:1fr}.mock-cta .btn{width:100%}.mk .go .btn{flex:1 1 100%}}
 
+  /* Report planner */
+  .rp{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:var(--s-4);margin-top:var(--s-5);align-items:start}
+  .rp-in{display:flex;flex-direction:column;gap:var(--s-2);min-width:0}
+  .rp-how{font-size:15px;color:var(--muted);max-width:56ch}
+  #rpDims{display:flex;flex-direction:column;gap:var(--s-2)}
+  .rp-dim{margin:0;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);padding:var(--s-3);display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:var(--sh-1);transition:border-color .2s}
+  .rp-dim.on{border-color:color-mix(in srgb,var(--accent-ink) 45%,var(--line))}
+  .rp-dim legend{float:left;width:100%;padding:0;font:700 17px/1.3 var(--f-display);letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center;gap:var(--s-2)}
+  .rp-dim legend + *{clear:both}
+  .rp-about{font-size:14px;color:var(--muted);line-height:1.5}
+  .rp-name{font:700 16px var(--f-display);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 12px;width:100%;min-width:0}
+  .rp-name:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+  .rp-x{appearance:none;background:none;border:0;padding:4px 6px;font:600 13px var(--f-body);color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer;border-radius:6px;flex:none}
+  .rp-x:hover{color:var(--ink)} .rp-x:active{opacity:.6}
+  .rp-scale{display:flex;align-items:center;gap:var(--s-2);flex-wrap:wrap}
+  .rp-dots{position:relative;display:flex;gap:18px;padding:2px 0}
+  .rp-dots::before{content:"";position:absolute;left:16px;right:16px;top:50%;height:3px;margin-top:-1.5px;background:var(--line);border-radius:2px}
+  .rp-dots label{position:relative;display:block;width:34px;height:34px;cursor:pointer}
+  .rp-dots input,.rp-none input{position:absolute;opacity:0;pointer-events:none}
+  .rp-dots i{position:absolute;inset:0;border-radius:50%;background:var(--surface-2);box-shadow:inset 0 0 0 2px var(--line);display:grid;place-items:center;font:700 12px var(--f-body);font-style:normal;color:var(--muted);transition:transform .3s var(--spring),background-color .2s}
+  .rp-dots label:hover i{transform:scale(1.1);box-shadow:inset 0 0 0 2px var(--accent-ink)}
+  .rp-dots label:active i{transform:scale(.94)}
+  .rp-dots input:checked + i{background:var(--btn);box-shadow:0 4px 12px -4px rgba(216,46,110,.6);color:#fff}
+  .rp-dots input:focus-visible + i,.rp-none input:focus-visible + span{outline:2px solid var(--magenta);outline-offset:3px}
+  .rp-none{position:relative;cursor:pointer}
+  .rp-none span{display:inline-block;font:600 13px var(--f-body);color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px;transition:border-color .2s,transform .3s var(--spring)}
+  .rp-none:hover span{border-color:var(--accent-ink);color:var(--ink)}
+  .rp-none:active span{transform:scale(.97)}
+  .rp-none input:checked + span{background:var(--surface-2);color:var(--ink)}
+  .rp-read{font-size:14px;color:var(--ink);font-weight:600;min-height:1.5em}
+  .rp-read:empty{display:none}
+  .rp-st summary{cursor:pointer;font:600 14px var(--f-body);color:var(--accent-ink);width:max-content;max-width:100%;border-radius:6px}
+  .rp-st summary:hover{text-decoration:underline;text-underline-offset:3px}
+  .rp-st textarea{margin-top:8px;width:100%;min-height:96px;resize:vertical;font:15px/1.55 var(--f-body);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 12px}
+  .rp-st textarea:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+  .rp-st small{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+  .rp-tools{display:flex;justify-content:space-between;gap:var(--s-2);flex-wrap:wrap}
+  .rp-priv{font-size:13px;color:var(--muted)}
+  .rp-out{position:sticky;top:var(--s-3);min-width:0}
+  .rp-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4);box-shadow:var(--sh-2);display:flex;flex-direction:column;gap:var(--s-3)}
+  .rp-card h3{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.02em}
+  .rp-card h4{margin:0;font:700 16px var(--f-display)}
+  .rp-card > p{font-size:15px;color:var(--muted);line-height:1.6}
+  .rp-empty{align-items:flex-start}
+  .rp-empty .rp-dots{pointer-events:none}
+  .rp-sum{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .rp-sum li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px var(--s-2);align-items:center;font-size:14.5px;padding:8px 12px;background:var(--surface-2);border-radius:var(--r-sm)}
+  .rp-sum b{font-weight:700}
+  .rp-sum small{grid-column:1/-1;font-size:13px;color:var(--muted)}
+  .rp-mini{display:inline-flex;gap:4px}
+  .rp-mini i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+  .rp-mini i.on{background:var(--magenta)}
+  .rp-games{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s-1);counter-reset:rg}
+  .rp-games li{counter-increment:rg;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:4px var(--s-2);align-items:center;border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px}
+  .rp-games li::before{content:counter(rg);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:800 13px var(--f-display);color:#fff;background:var(--btn);grid-row:span 2;align-self:start}
+  .rp-games .gt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 17px var(--f-display)}
+  .rp-games .why{grid-column:2/-1;font-size:14px;color:var(--muted);line-height:1.55}
+  .rp-games .why b{color:var(--ink);font-weight:600}
+  .rp-games .btn{padding:10px 16px;font-size:14px}
+  .rp-then{display:flex;flex-wrap:wrap;gap:8px}
+  .rp-then a{font:600 14px var(--f-body);text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;display:inline-flex;align-items:center;gap:7px;transition:transform .3s var(--spring),border-color .2s}
+  .rp-then a i{width:8px;height:8px;border-radius:50%}
+  .rp-then a:hover{border-color:var(--accent-ink)} .rp-then a:active{transform:scale(.97)}
+  .rp-card .go{display:flex;gap:var(--s-2);flex-wrap:wrap;align-items:center}
+  .rp-card .note{font-size:13.5px;color:var(--muted);line-height:1.6}
+  @media (max-width:920px){.rp{grid-template-columns:1fr}.rp-out{position:static}}
+  @media (max-width:640px){.rp-dim{padding:var(--s-3) 14px}.rp-dots{gap:14px}.rp-card{padding:var(--s-3)}.rp-games li{grid-template-columns:30px minmax(0,1fr)}.rp-games .btn{grid-column:2;grid-row:3;justify-self:start;margin-top:4px}.rp-card .go .btn{width:100%}}
+
   /* Steps */
   .steps{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);counter-reset:s}
   .steps li{counter-increment:s;position:relative;padding-top:var(--s-5);display:flex;flex-direction:column;gap:var(--s-1);min-width:0}
@@ -648,6 +716,7 @@
       <nav class="nav" aria-label="Main">
         <a href="#games">Games</a>
         <a href="#mock">Mock</a>
+        <a href="#report">Your report</a>
         <a href="#prepare">Prepare</a>
         <a href="#faq">FAQ</a>
         <button class="tgl" id="themeBtn" type="button">Dark</button>
@@ -755,6 +824,24 @@
           <ol class="mo-seq" id="mkSeq"></ol>
           <p class="mock-total" id="mkTotal"></p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" id="report" aria-labelledby="rpTitle">
+    <div class="wrap">
+      <div class="sh">
+        <h2 id="rpTitle">Turn your feedback report into a plan</h2>
+        <p>Done the real assessment and got your Arctic Shores feedback report? Copy where you landed on each scale, and we'll tell you which games to practise before your next application.</p>
+      </div>
+      <div class="rp">
+        <form class="rp-in" id="rpIn" autocomplete="off" onsubmit="return false">
+          <p class="rp-how">On your report, each dimension has four dots with one filled in. Tap the same dot here. Skip any dimension that isn't on your report.</p>
+          <div id="rpDims"></div>
+          <div class="rp-tools"><button class="mk-tool" type="button" id="rpAdd">Add a dimension that isn't listed</button><button class="mk-tool" type="button" id="rpClear">Clear everything</button></div>
+          <p class="rp-priv">What you enter stays in this browser. Nothing is sent anywhere.</p>
+        </form>
+        <div class="rp-out" id="rpOut" aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -889,7 +976,7 @@
         </details>
         <details>
           <summary>How do I read my Arctic Shores feedback?</summary>
-          <div class="a">If the employer turns feedback on, you get a report after the assessment. It places you on a 1 to 10 scale for each behaviour, compared with a large group of other candidates. Neither end of a scale is better or worse: a 2 and a 9 just describe different working styles. Bring your report to a BreakIn session and we'll go through it with you.</div>
+          <div class="a">If the employer turns feedback on, you get a report after the assessment. It covers a few dimensions chosen for the role, such as How you respond to change. Each has a four-point scale showing how you compare with a large group of similar candidates, plus two to four statements about what they found. The two middle points mean you're as likely, or slightly more likely, than most to behave that way; the two ends are more distinctive. Copy your results into <a href="#report">the report planner</a> to see which games to practise, and bring your report to a BreakIn session so we can go through it with you.</div>
         </details>
         <details>
           <summary>Can I prepare for the behavioural games?</summary>
@@ -2704,6 +2791,7 @@
       mkOrderH.textContent = 'Example running order'; mkSeq.innerHTML = seqRows(sample);
       mkTotal.textContent = `${sample.length} games, about ${mins(sample)} minutes of play. Each employer picks its own set, so yours may differ.`;
     }
+    plan();
   }
   mkAlt.addEventListener('click', () => {
     if (mkAlt.dataset.act === 'report') { openMock(true, 'report'); return; }
@@ -2713,6 +2801,172 @@
       return;
     }
     MOCK.run = null; saveMock(); renderMock(); openMock();
+  });
+
+  /* ===== Report planner: Arctic Shores feedback report -> which games to practise =====
+     Arctic Shores doesn't publish which task feeds which dimension; these weights come from what each game measures. */
+  const RP_DIMS = [
+    { id: 'others', name: 'How you understand others', short: 'Understanding others', kind: 'Behavioural', about: 'Reading how people feel, empathy, and working with others.',
+      base: { expressions: 1, team: .9 },
+      subs: [{ k: /collaborat|team|morale|cooperat|work(ing)? with others/i, label: 'working with others', g: { team: 1, expressions: .3 } },
+        { k: /perceptive|emotional state|reactions|social|body language|faces?\b/i, label: 'reading people', g: { expressions: 1 } },
+        { k: /attuned|feeling|empath|consideration|needs of others/i, label: 'empathy', g: { expressions: .8, team: .6 } },
+        { k: /point of view|perspective/i, label: 'seeing other points of view', g: { team: .7, expressions: .4 } }] },
+    { id: 'change', name: 'How you respond to change', short: 'Responding to change', kind: 'Behavioural', about: 'Flexible thinking, switching between tasks, and adapting to new information.',
+      base: { tickets: 1, predict: .8, balloon: .6, energy: .5, direction: .3 },
+      subs: [{ k: /flexib|unexpected|adapt/i, label: 'flexible thinking', g: { tickets: .8, predict: .6, balloon: .5 } },
+        { k: /switch|multitask|different tasks|dynamic|complex work/i, label: 'switching between tasks', g: { tickets: 1, direction: .4 } },
+        { k: /emerging|new information|course of action|decision|feedback/i, label: 'adapting to new information', g: { predict: 1, balloon: .7, energy: .6 } }] },
+    { id: 'challenges', name: 'How you approach challenges', short: 'Approaching challenges', kind: 'Behavioural', about: 'Persistence, handling setbacks, confidence, and trying new approaches.',
+      base: { security: 1, tiles: .5, token: .5, balloon: .3 },
+      subs: [{ k: /persist|continuous effort|keep going/i, label: 'persistence', g: { security: 1, tiles: .5, token: .4 } },
+        { k: /frustrat|setback|deflat|obstacle|resilien|bounce back/i, label: 'handling setbacks', g: { security: 1, tiles: .4 } },
+        { k: /confiden|positiv|ability to succeed|self-belief/i, label: 'confidence', g: { security: .5, tiles: .4, energy: .3 } },
+        { k: /welcome challenges|alternative approach|trying out|try new|curious/i, label: 'trying new approaches', g: { token: .7, security: .5, order: .3 } }] },
+    { id: 'patterns', name: 'How you identify patterns and rules', short: 'Patterns and rules', kind: 'Cognitive', about: 'Solving new problems, spotting trends, and weighing up information.',
+      base: { order: 1, patterns: 1, analysis: .8, balance: .8 },
+      subs: [{ k: /novel problem|new problem|unfamiliar problem|set process|known solution/i, label: 'solving new problems', g: { order: 1, patterns: .8 } },
+        { k: /grasp|new information|concept|knowledge/i, label: 'picking up new ideas', g: { patterns: .8, order: .6, predict: .4 } },
+        { k: /gather|evaluat|detail|judg(e)?ment|accura/i, label: 'weighing up information', g: { analysis: 1, balance: .7 } },
+        { k: /trend|pattern|foresee|think ahead|similarit/i, label: 'spotting trends and patterns', g: { patterns: 1, order: .6, analysis: .4 } }] }
+  ];
+  const RP_KEYS = [   // for dimensions people add themselves: match words in the name or statements
+    [/risk|caution|reward|gambl/i, { balloon: 1, energy: .8 }],
+    [/memor|remember|recall/i, { tiles: 1, token: .8 }],
+    [/attention|focus|concentrat|impulse|self-control|distract/i, { direction: 1, security: .5, tickets: .4 }],
+    [/number|numer|data|figure|calculat/i, { analysis: 1, balance: .8 }],
+    [/emotion|people|others|team|social|empath|relationship|collaborat|fair|trust/i, { expressions: .8, team: .8 }],
+    [/change|adapt|flexib|learn|agil|curio/i, { predict: .9, tickets: .7, balloon: .6 }],
+    [/persist|resilien|challenge|drive|motivat|determin|grit/i, { security: 1, tiles: .4 }],
+    [/reason|logic|problem|think|pattern|rule|abstract/i, { order: 1, patterns: 1 }],
+    [/decision|judg|choice/i, { predict: .7, balloon: .6, energy: .6 }],
+    [/speed|fast|quick|process/i, { direction: .7, tickets: .7 }]
+  ];
+  const NEED = [0, 1, .7, .3, .1];
+  const POSTXT = ['', 'Less likely than most of the comparison group. This end of the scale is distinctive.', 'As likely as most of the comparison group.',
+    'Slightly more likely than most of the comparison group.', 'More likely than most of the comparison group. This end of the scale is distinctive.'];
+  const WEAK = /somewhat likely|less likely|not as likely|may (find|benefit|struggle|need|want)|might (find|demand|benefit|need)|could (boost|help|enhance|further|improve)|more effort|further enhance|not always|find it (harder|difficult)|benefit from/i;
+  const STRONG = /highly likely|very likely/i;
+  const RKEY = 'breakin-as-report-v1';
+  let RP = { pos: {}, text: {}, custom: [] };
+  try {
+    const r = JSON.parse(localStorage.getItem(RKEY) || 'null');
+    if (r && typeof r === 'object') RP = { pos: r.pos && typeof r.pos === 'object' ? r.pos : {}, text: r.text && typeof r.text === 'object' ? r.text : {},
+      custom: Array.isArray(r.custom) ? r.custom.filter(c => c && typeof c.id === 'string').slice(0, 4) : [] };
+  } catch (e) {}
+  const saveRP = () => { try { localStorage.setItem(RKEY, JSON.stringify(RP)); } catch (e) {} };
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const rpDims = document.getElementById('rpDims'), rpOut = document.getElementById('rpOut'), rpAdd = document.getElementById('rpAdd'), rpClear = document.getElementById('rpClear');
+
+  function dimHtml(d, custom) {
+    const id = d.id, pos = +RP.pos[id] || 0, txt = RP.text[id] || '';
+    return `<fieldset class="rp-dim${pos ? ' on' : ''}" data-dim="${id}">
+      <legend>${custom ? `<input class="rp-name" type="text" data-name="${id}" value="${esc(d.name || '')}" placeholder="Dimension name, as on your report" aria-label="Dimension name"><button class="rp-x" type="button" data-rm="${id}">Remove</button>` : d.name}</legend>
+      ${custom ? '' : `<p class="rp-about">${d.about}</p>`}
+      <div class="rp-scale"><div class="rp-dots">${[1, 2, 3, 4].map(n => `<label><input type="radio" name="rp-${id}" value="${n}"${pos === n ? ' checked' : ''} aria-label="${n} of 4"><i>${n}</i></label>`).join('')}</div>
+        <label class="rp-none"><input type="radio" name="rp-${id}" value="0"${pos ? '' : ' checked'}><span>Not on my report</span></label></div>
+      <p class="rp-read" data-read="${id}">${pos ? POSTXT[pos] : ''}</p>
+      <details class="rp-st"${txt ? ' open' : ''}><summary>Add the statements under this dimension (optional)</summary>
+        <textarea data-text="${id}" aria-label="Feedback statements" placeholder="Paste or type the statements from your report">${esc(txt)}</textarea>
+        <small>This makes the plan more specific, for example by spotting which skills your report describes as weaker.</small></details>
+    </fieldset>`;
+  }
+  function renderDims() {
+    rpDims.innerHTML = RP_DIMS.map(d => dimHtml(d, false)).join('') + RP.custom.map(c => dimHtml(c, true)).join('');
+    rpAdd.hidden = RP.custom.length >= 4;
+  }
+  function activeDims() {
+    const out = [];
+    RP_DIMS.forEach(d => { const p = +RP.pos[d.id] || 0; if (p) out.push({ ...d, pos: p, text: RP.text[d.id] || '' }); });
+    RP.custom.forEach(c => {
+      const p = +RP.pos[c.id] || 0; if (!p) return;
+      const name = (c.name || '').trim() || 'Your added dimension', short = name.replace(/^how you /i, m => '').replace(/^./, ch => ch.toUpperCase()), base = {};
+      RP_KEYS.forEach(([re, g]) => { if (re.test(name)) Object.entries(g).forEach(([k, v]) => base[k] = Math.max(base[k] || 0, v)); });
+      out.push({ id: c.id, name, short, kind: '', base, subs: null, pos: p, text: RP.text[c.id] || '' });
+    });
+    return out;
+  }
+  const sentences = t => t.replace(/([.!?])\s+/g, '$1\n').split(/\n+/).map(x => x.trim()).filter(x => x.length > 12);
+  function analyse() {
+    const dims = activeDims(), score = {}, why = {};
+    const add = (g, v, r) => { if (!G[g] || v <= 0) return; score[g] = (score[g] || 0) + v; if (r) { why[g] = why[g] || new Map(); why[g].set(r, (why[g].get(r) || 0) + v); } };
+    dims.forEach(d => {
+      const need = NEED[d.pos];
+      Object.entries(d.base).forEach(([g, w]) => add(g, need * w, need >= .3 ? `<b>${esc(d.short)}: ${d.pos} of 4</b>` : ''));
+      d.weak = []; d.strong = [];
+      sentences(d.text).forEach(s => {
+        const weak = WEAK.test(s), strong = !weak && STRONG.test(s);
+        const subs = d.subs ? d.subs.filter(x => x.k.test(s)) : RP_KEYS.filter(([re]) => re.test(s)).map(([, g]) => ({ label: d.short.toLowerCase(), g }));
+        subs.forEach(x => {
+          if (weak) { if (!d.weak.includes(x.label)) d.weak.push(x.label); Object.entries(x.g).forEach(([g, w]) => add(g, .55 * w, `your report is less sure about ${esc(x.label)}`)); }
+          else if (strong && !d.strong.includes(x.label)) d.strong.push(x.label);
+        });
+      });
+    });
+    const ranked = Object.keys(score).filter(g => score[g] >= .25).sort((a, b) => score[b] - score[a] || RANK[status(a)] - RANK[status(b)]);
+    const reason = g => [...(why[g] || new Map()).entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([r]) => r).join('; ').replace(/^./, c => c.toUpperCase());
+    return { dims, ranked, reason };
+  }
+  function plan() {
+    const { dims, ranked, reason } = analyse();
+    if (!dims.length) {
+      rpOut.innerHTML = `<div class="rp-card rp-empty"><h3>Your practice plan appears here</h3>
+        <div class="rp-dots" aria-hidden="true"><label><i></i></label><label><i></i></label><label><i></i></label><label><i></i></label></div>
+        <p>Tap a dot on at least one scale. We'll rank the games that feed that dimension, starting with the ones that will help you most.</p></div>`;
+      return;
+    }
+    const allHigh = dims.every(d => d.pos >= 3 && !d.weak.length), focus = ranked.slice(0, 3), then = ranked.slice(3, 7);
+    const statusNote = g => ({ new: 'You haven\'t tried it here yet.', practised: 'You\'ve practised it, but not at full length.', full: 'Not at its target yet.', ready: 'You\'ve reached its target before, so one full-length run keeps it sharp.' })[status(g)];
+    const mockSet = [...focus, ...then].slice(0, 9);
+    rpOut.innerHTML = `<div class="rp-card">
+      <h3>${allHigh ? 'You\'re at or above the middle on everything you entered' : 'Focus on these games first'}</h3>
+      ${allHigh ? '<p>If you\'re applying again, these are the games behind your results. A few full-length runs will keep them sharp.</p>' : ''}
+      <ul class="rp-sum">${dims.map(d => `<li><b>${esc(d.short)}</b><span class="rp-mini" aria-label="${d.pos} of 4">${[1, 2, 3, 4].map(n => `<i class="${n === d.pos ? 'on' : ''}"></i>`).join('')}</span>
+        <small>${POSTXT[d.pos]}${d.weak.length ? ` Your statements suggest working on ${esc(d.weak.join(', '))}.` : ''}</small></li>`).join('')}</ul>
+      ${focus.length ? `<ol class="rp-games">${focus.map(g => `<li><span class="gt">${G[g].name}<span class="tbadge ${TCLS[G[g].type]}"><i></i>${G[g].type}</span></span><a class="btn btn-primary" href="#play-${g}">Practise</a>
+        <p class="why">${reason(g) || G[g].measures}. ${statusNote(g)}</p></li>`).join('')}</ol>`
+        : '<p>We couldn\'t match that dimension to any of the games. Check the name matches your report, or bring it to a BreakIn session.</p>'}
+      ${then.length ? `<div><h4>Then these</h4><div class="rp-then" style="margin-top:8px">${then.map(g => `<a href="#play-${g}"><i style="background:${DOT[G[g].type]}"></i>${G[g].name}</a>`).join('')}</div></div>` : ''}
+      ${mockSet.length >= 2 ? `<div class="go">${MOCK.run ? '<p class="note">You have a mock paused. Finish it first, then come back to sit one with these games.</p>'
+        : `<button class="btn btn-ghost" type="button" id="rpMock">Sit a mock with these ${mockSet.length} games</button>`}</div>` : ''}
+      ${dims.some(d => d.kind !== 'Cognitive') ? '<p class="note">Behavioural dimensions describe your style, and neither end of the scale is better. Practising the games behind them helps you understand each task and play consistently, without changing who you are.</p>' : ''}
+      <p class="note">This plan is our best guess from what each game measures. Arctic Shores doesn't publish exactly which task feeds which dimension, so bring your report to a BreakIn session too.</p>
+    </div>`;
+    const b = rpOut.querySelector('#rpMock');
+    if (b) b.onclick = () => { setup = { kind: 'own', mix: employerMix(), weak: null, own: mockSet.slice() }; openMock(); };
+  }
+  rpDims.addEventListener('change', e => {
+    const r = e.target; if (r.type !== 'radio') return;
+    const id = r.name.slice(3), v = +r.value;
+    if (v) RP.pos[id] = v; else delete RP.pos[id];
+    const fs = r.closest('.rp-dim'); fs.classList.toggle('on', !!v); fs.querySelector('.rp-read').textContent = v ? POSTXT[v] : '';
+    saveRP(); plan();
+  });
+  rpDims.addEventListener('input', e => {
+    const t = e.target;
+    if (t.dataset.text) { const v = t.value; if (v.trim()) RP.text[t.dataset.text] = v.slice(0, 4000); else delete RP.text[t.dataset.text]; }
+    else if (t.dataset.name) { const c = RP.custom.find(x => x.id === t.dataset.name); if (c) c.name = t.value.slice(0, 120); }
+    else return;
+    saveRP(); plan();
+  });
+  rpDims.addEventListener('click', e => {
+    const b = e.target.closest('[data-rm]'); if (!b) return;
+    const id = b.dataset.rm; RP.custom = RP.custom.filter(c => c.id !== id); delete RP.pos[id]; delete RP.text[id];
+    saveRP(); renderDims(); plan(); rpAdd.focus();
+  });
+  rpAdd.addEventListener('click', () => {
+    if (RP.custom.length >= 4) return;
+    const id = 'c' + Date.now().toString(36); RP.custom.push({ id, name: '' }); saveRP(); renderDims(); plan();
+    const inp = rpDims.querySelector(`[data-name="${id}"]`); if (inp) inp.focus();
+  });
+  rpClear.addEventListener('click', () => {
+    if (!rpClear.dataset.armed) {
+      rpClear.dataset.armed = '1'; rpClear.textContent = 'Tap again to clear';
+      setTimeout(() => { if (rpClear.dataset.armed) { delete rpClear.dataset.armed; rpClear.textContent = 'Clear everything'; } }, 4000);
+      return;
+    }
+    delete rpClear.dataset.armed; rpClear.textContent = 'Clear everything';
+    RP = { pos: {}, text: {}, custom: [] }; saveRP(); renderDims(); plan();
   });
 
   /* Game cards, progress tracker and filters */
@@ -2734,6 +2988,7 @@
     trNext.href = '#play-' + (nid || 'mock');
     trNext.textContent = !nid ? 'All at target: sit a mock' : c.new === ORDER.length ? `Start with ${G[nid].name}` : `Continue with ${G[nid].name}`;
     trReset.hidden = c.new === ORDER.length;
+    plan();   // status notes in the report plan follow your progress
   }
   trReset.addEventListener('click', () => {
     if (trReset.dataset.armed) { PROG = {}; saveProg(); delete trReset.dataset.armed; trReset.textContent = 'Reset progress'; renderProgress(); return; }
@@ -2745,7 +3000,7 @@
     [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     filter = b.dataset.f; grid.querySelectorAll('.gcard').forEach(card => card.hidden = filter !== 'all' && card.dataset.type !== filter);
   });
-  renderProgress(); renderMock();
+  renderDims(); renderProgress(); renderMock();
   const m0 = /^#play-([a-z]+)$/.exec(location.hash);
   if (location.hash === '#play-mock') openMock(false); else if (m0 && G[m0[1]]) openGame(m0[1], false);
 })();
