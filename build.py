@@ -35,6 +35,8 @@ def build():
     os.makedirs(OUT_DIR, exist_ok=True)
     open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8").write(html)
     shutil.copyfile(os.path.join(ROOT, "Brand_assets", "breakin-emblem.png"), os.path.join(OUT_DIR, "favicon.png"))
+    # Link-preview image (source: site/og-card.html), referenced by the og:image tag
+    shutil.copyfile(os.path.join(ROOT, "site", "og-card.jpg"), os.path.join(OUT_DIR, "og-card.jpg"))
     open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
     print(f"Built docs/index.html ({len(html):,} bytes)")
 

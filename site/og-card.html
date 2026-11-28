@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<!-- Source for og-card.jpg (the link-preview image). Re-render with:
+     python3 screenshot.py http://localhost:3000/site/og-card.html --width 1200 --top 630
+     then convert the PNG to JPEG at site/og-card.jpg (sips -s format jpeg -s formatOptions 85 IN --out site/og-card.jpg) and run build.py. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@500;600&family=Montserrat:wght@800&display=swap">
+<style>
+  :root { --band:#2a0f3c; --plum:#4a1866; --magenta:#d82e6e; --flank:#bcaecb; --ink:#f7f0fa; --muted:#d6c3e2; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--band); }
+  .card {
+    position: relative; width: 1200px; height: 630px; padding: 56px 72px 64px;
+    display: flex; flex-direction: column; color: var(--ink);
+    background:
+      radial-gradient(620px 420px at 92% 8%, rgba(216,46,110,.38), transparent 70%),
+      radial-gradient(700px 520px at 6% 112%, rgba(106,53,184,.42), transparent 70%),
+      radial-gradient(900px 600px at 50% 50%, var(--plum), var(--band) 78%);
+  }
+  .card::after { /* grain */
+    content: ""; position: absolute; inset: 0; opacity: .13; mix-blend-mode: overlay; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand i { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: var(--ink); box-shadow: 0 8px 24px rgba(216,46,110,.28); }
+  .brand img { width: 40px; height: auto; }
+  .brand b { font: 800 26px/1 Montserrat, sans-serif; letter-spacing: .04em; }
+  .brand span { display: block; margin-top: 5px; font: 600 13px/1 Figtree, sans-serif; letter-spacing: .14em; color: var(--muted); }
+
+  .arrows { display: flex; gap: 26px; margin: 46px 0 0; }
+  .arrows svg { width: 104px; height: 104px; fill: none; stroke: var(--flank); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; opacity: .55; transform: scaleX(-1); }
+  .arrows svg.mid { stroke: var(--magenta); opacity: 1; transform: none; filter: drop-shadow(0 10px 22px rgba(216,46,110,.45)); }
+
+  h1 { margin-top: auto; font: 800 80px/0.98 "Bricolage Grotesque", sans-serif; letter-spacing: -0.035em; max-width: 900px; }
+  p { margin-top: 22px; font: 500 27px/1.4 Figtree, sans-serif; color: var(--muted); max-width: 860px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand"><i><img src="../Brand_assets/breakin-emblem.png" alt=""></i><div><b>BREAKIN</b><span>ASSESSMENT PLAYBOOKS</span></div></div>
+    <div class="arrows" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path d="M12 50H86M58 21l29 29-29 29"/></svg>
+      <svg viewBox="0 0 100 100"><path d="M12 50H86M58 21l29 29-29 29"/></svg>
+      <svg class="mid" viewBox="0 0 100 100"><path d="M12 50H86M58 21l29 29-29 29"/></svg>
+      <svg viewBox="0 0 100 100"><path d="M12 50H86M58 21l29 29-29 29"/></svg>
+      <svg viewBox="0 0 100 100"><path d="M12 50H86M58 21l29 29-29 29"/></svg>
+    </div>
+    <h1>Practise the online test before it counts.</h1>
+    <p>14 free practice games for the Arctic Shores assessment, a full mock and a personal report after every game.</p>
+  </div>
+</body>
+</html>
