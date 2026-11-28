@@ -175,6 +175,7 @@
   .gcard .aka{font-size:13px;color:var(--muted);margin-top:2px}
   .tbadge{font:700 11px/1 var(--f-body);letter-spacing:.06em;padding:6px 10px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
   .tbadge i{width:7px;height:7px;border-radius:50%}
+  .tbadge[hidden]{display:none}
   .tbadge.behav{color:var(--behav);background:color-mix(in srgb,var(--behav) 12%,transparent)}
   .tbadge.cog{color:var(--cog);background:color-mix(in srgb,var(--cog) 12%,transparent)}
   .tbadge.mixed{color:color-mix(in srgb,var(--c3) 70%,var(--ink));background:color-mix(in srgb,var(--c3) 16%,transparent)}
@@ -260,6 +261,9 @@
   .p-count{font-size:13.5px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
   .p-exit{appearance:none;font:600 14px var(--f-body);color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;flex:none;transition:transform .3s var(--spring)}
   .p-exit:hover{border-color:var(--accent-ink)} .p-exit:active{transform:scale(.96)}
+  .p-btns{display:flex;gap:8px;flex:none;align-items:center}
+  .p-skip{background:var(--surface);border-color:color-mix(in srgb,var(--magenta) 45%,var(--line))}
+  .p-skip[hidden]{display:none}
   .p-body{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;padding:var(--s-4) max(16px,env(safe-area-inset-right,0px)) max(var(--s-4),env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
   .p-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s-3);width:100%;max-width:860px;margin:0 auto;text-align:center;min-width:0}
 
@@ -452,6 +456,116 @@
   .shp-c1{fill:var(--c1)} .shp-c2{fill:var(--c2)} .shp-c3{fill:var(--c3)} .shp-c4{fill:var(--c4)} .shp-c5{fill:var(--c5)} .shp-c6{fill:var(--c6)}
   .shp-o{fill:none;stroke-width:2.4;stroke-linejoin:round} .shp-o.shp-c1{stroke:var(--c1)} .shp-o.shp-c2{stroke:var(--c2)} .shp-o.shp-c3{stroke:var(--c3)} .shp-o.shp-c4{stroke:var(--c4)} .shp-o.shp-c5{stroke:var(--c5)} .shp-o.shp-c6{stroke:var(--c6)}
 
+  /* Mock assessment: page panel (dark, elevated) */
+  .mock{--behav:#ff86b0;--cog:#b99dff;--good:#4ac38a;position:relative;isolation:isolate;overflow:hidden;border-radius:var(--r-lg);color:var(--band-ink);
+    background:radial-gradient(60% 90% at 100% 0%,rgba(216,46,110,.38),transparent 62%),radial-gradient(55% 80% at 0% 100%,rgba(122,52,170,.48),transparent 62%),var(--band);
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,430px);gap:var(--s-6);padding:var(--s-6);
+    box-shadow:0 2px 4px rgba(42,15,60,.12),0 24px 60px -24px rgba(42,15,60,.55),0 40px 90px -40px rgba(216,46,110,.35)}
+  .mock::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.08;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .mock-copy{display:flex;flex-direction:column;gap:var(--s-3);align-items:flex-start;min-width:0}
+  .mock h2{font-size:clamp(30px,4.4vw,48px);font-weight:800;letter-spacing:-.03em;color:var(--band-ink);max-width:13ch}
+  .mock-copy > p{font-size:17px;color:var(--band-muted);max-width:50ch}
+  .mock-how{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15.5px}
+  .mock-how li{padding-left:22px;position:relative;line-height:1.55}
+  .mock-how li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--magenta)}
+  .mock-state{font-size:15px;line-height:1.55;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-sm);padding:10px 14px}
+  .mock-state:empty{display:none}
+  .mock-cta{display:flex;gap:var(--s-2);flex-wrap:wrap;align-items:center;margin-top:var(--s-1)}
+  .btn-light{background:#fbf6fd;color:#2a0f3c;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 26px -10px rgba(0,0,0,.6),0 3px 8px -3px rgba(216,46,110,.35)}
+  .btn-light:hover{transform:translateY(-2px)}
+  .btn-light:active{transform:translateY(0) scale(.98)}
+  .btn-light:focus-visible{outline-color:#fbf6fd}
+  .mock-link{appearance:none;background:none;border:0;padding:8px 4px;font:600 15px var(--f-body);color:var(--band-ink);text-decoration:underline;text-underline-offset:4px;cursor:pointer;opacity:.85;transition:opacity .2s}
+  .mock-link:hover{opacity:1} .mock-link:active{opacity:.6}
+  .mock-link:focus-visible{outline-color:#fbf6fd}
+  .mock-order{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:var(--s-3);align-self:start;min-width:0;box-shadow:0 18px 40px -24px rgba(0,0,0,.6)}
+  .mock-oh{font:700 16px var(--f-display);letter-spacing:-.01em}
+  .mock-total{font-size:13.5px;color:var(--band-muted);margin-top:var(--s-2)}
+
+  /* Running order rows, shared by the page panel and the player */
+  .mo-seq{list-style:none;margin:var(--s-2) 0 0;padding:0;display:flex;flex-direction:column;gap:4px;counter-reset:mo}
+  .mo-seq li{counter-increment:mo;display:grid;grid-template-columns:26px minmax(0,1fr) auto;align-items:center;gap:var(--s-2);padding:7px 10px;border-radius:var(--r-sm);font-size:14.5px;line-height:1.3}
+  .mo-seq li::before{content:counter(mo);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 12.5px var(--f-display);box-shadow:inset 0 0 0 1.5px currentColor;opacity:.7}
+  .mo-seq .nm{font-weight:700;display:flex;align-items:center;gap:8px;min-width:0}
+  .mo-seq .nm i{width:8px;height:8px;border-radius:50%;flex:none}
+  .mo-seq .nm span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mo-seq .mt{font-size:13px;opacity:.8;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .mo-seq li.done::before{content:"\2713";background:var(--good);color:#fff;box-shadow:none;opacity:1}
+  .mo-seq li.miss::before{content:counter(mo);background:none;color:var(--c3);box-shadow:inset 0 0 0 2px var(--c3)}
+  .mo-seq li.now{background:rgba(216,46,110,.2);box-shadow:inset 0 0 0 1.5px var(--magenta)}
+  .mo-seq li.now::before{background:var(--magenta);color:#fff;box-shadow:none;opacity:1}
+  .mo-seq li.now .mt{opacity:1;font-weight:700}
+  .mo-seq li.done .mt{opacity:1}
+
+  /* Mock assessment: inside the player */
+  .p-mock{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:4px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));background:var(--surface);border-bottom:1px solid var(--line)}
+  .p-mock[hidden]{display:none}
+  .p-mock span{height:6px;border-radius:3px;background:var(--line)}
+  .p-mock .done{background:var(--c1)} .p-mock .now{background:var(--btn)}
+  .mk{max-width:720px;width:100%;margin:auto;display:flex;flex-direction:column;gap:var(--s-4);text-align:left}
+  .mk h3{font-size:clamp(26px,3.4vw,34px);letter-spacing:-.025em}
+  .mk .lead{font-size:17px;line-height:1.6;color:var(--muted);margin-top:var(--s-1)}
+  .mk h4{font:700 16px var(--f-display)}
+  .mk-plan-h h4{margin:0}
+  .mk-kind{border:0;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-2);min-width:0}
+  .mk-kind legend{font:700 16px var(--f-display);padding:0;margin-bottom:var(--s-2)}
+  .mk-kind label{position:relative;display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-md);padding:14px 16px;cursor:pointer;box-shadow:var(--sh-1);transition:transform .3s var(--spring),border-color .2s}
+  .mk-kind label:hover{border-color:var(--accent-ink)}
+  .mk-kind label:active{transform:scale(.98)}
+  .mk-kind input{position:absolute;opacity:0;pointer-events:none}
+  .mk-kind label:has(input:checked){border-color:var(--magenta);box-shadow:0 0 0 3px color-mix(in srgb,var(--magenta) 18%,transparent),var(--sh-1)}
+  .mk-kind label:has(input:focus-visible){outline:2px solid var(--magenta);outline-offset:3px}
+  .mk-kind b{font:700 16px var(--f-display)}
+  .mk-kind small{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .mk-pick{display:flex;flex-direction:column;gap:var(--s-2)}
+  .mk-pick[hidden]{display:none}
+  .mk-pick p{font-size:14.5px;color:var(--muted)}
+  .mk-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .mk-chips button{appearance:none;display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;transition:transform .3s var(--spring),border-color .2s}
+  .mk-chips button i{width:8px;height:8px;border-radius:50%;flex:none}
+  .mk-chips button:hover{border-color:var(--accent-ink)}
+  .mk-chips button:active{transform:scale(.97)}
+  .mk-chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .mk-chips button b{font-size:12px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;background:var(--bg);color:var(--ink)}
+  .mk-plan{background:var(--surface-2);border-radius:var(--r-md);padding:var(--s-3)}
+  .mk-plan-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px var(--s-2);flex-wrap:wrap}
+  .mk-plan-h div{display:flex;align-items:baseline;gap:4px 10px;flex-wrap:wrap}
+  .mk-plan-h span{font-size:13.5px;color:var(--muted)}
+  .mk-plan .mo-seq li{background:var(--surface);border:1px solid var(--line)}
+  .mk-plan .mo-seq:empty::after{content:"Pick at least two games.";font-size:14.5px;color:var(--muted)}
+  .mk-tool{appearance:none;background:none;border:0;padding:4px;font:600 14px var(--f-body);color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer;border-radius:6px}
+  .mk-tool:hover{text-decoration-thickness:2px} .mk-tool:active{opacity:.6}
+  .mk .go{display:flex;gap:var(--s-2);flex-wrap:wrap;align-items:center}
+  .mk .go .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+  .mk .note{font-size:13.5px;color:var(--muted)}
+  .mk-brief .mk-step{font:600 14px var(--f-body);color:var(--pink-ink)}
+  .mk-brief .mk-ttl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .mk-brief .cols > .box + .box{margin-top:0}
+  .mk-brief .mk-done{font-size:14.5px;color:var(--good);font-weight:600}
+  .mk-g{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);transition:border-color .2s}
+  .mk-g[open]{border-color:color-mix(in srgb,var(--accent-ink) 40%,var(--line))}
+  .mk-g > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px var(--s-2);align-items:center;padding:12px 16px;border-radius:var(--r-md);transition:background-color .2s}
+  .mk-g > summary::-webkit-details-marker{display:none}
+  .mk-g > summary:hover{background:var(--surface-2)}
+  .mk-g > summary:active{opacity:.8}
+  .mk-g .gn{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .mk-g .gn b{font:700 16.5px var(--f-display);display:flex;align-items:center;gap:8px}
+  .mk-g .gn b i{width:8px;height:8px;border-radius:50%;flex:none}
+  .mk-g .gn small{font-size:13.5px;color:var(--muted)}
+  .mk-pill{font:700 12px/1 var(--f-body);padding:6px 10px;border-radius:999px;white-space:nowrap;color:color-mix(in srgb,var(--c3) 70%,var(--ink));background:color-mix(in srgb,var(--c3) 16%,transparent)}
+  .mk-pill.ok{color:var(--good);background:color-mix(in srgb,var(--good) 13%,transparent)}
+  .mk-gb{padding:4px 16px 16px;display:flex;flex-direction:column;gap:var(--s-2)}
+  .mk-gb .hd{font:700 18px/1.3 var(--f-display);letter-spacing:-.01em}
+  .mk-gb .vlink,.mk-gb > .btn{align-self:flex-start}
+  .mk-games{display:flex;flex-direction:column;gap:var(--s-1)}
+  .mk-games > h4{margin:0 0 4px}
+  .r-next .mk-fix{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .r-next .mk-fix a{font:600 14px var(--f-body);text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;transition:transform .3s var(--spring),border-color .2s}
+  .r-next .mk-fix a:hover{border-color:var(--accent-ink)} .r-next .mk-fix a:active{transform:scale(.97)}
+  @media (max-width:920px){.mock{grid-template-columns:1fr;gap:var(--s-5);padding:var(--s-5)}}
+  @media (max-width:640px){.mock{padding:var(--s-4) var(--s-3);border-radius:var(--r-md)}.mk-kind{grid-template-columns:1fr}.mock-cta .btn{width:100%}.mk .go .btn{flex:1 1 100%}}
+
   /* Steps */
   .steps{list-style:none;margin:var(--s-5) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-3);counter-reset:s}
   .steps li{counter-increment:s;position:relative;padding-top:var(--s-5);display:flex;flex-direction:column;gap:var(--s-1);min-width:0}
@@ -533,6 +647,7 @@
       </a>
       <nav class="nav" aria-label="Main">
         <a href="#games">Games</a>
+        <a href="#mock">Mock</a>
         <a href="#prepare">Prepare</a>
         <a href="#faq">FAQ</a>
         <button class="tgl" id="themeBtn" type="button">Dark</button>
@@ -616,6 +731,34 @@
     </div>
   </section>
 
+  <section class="blk" id="mock" aria-labelledby="mockTitle">
+    <div class="wrap">
+      <div class="mock">
+        <div class="mock-copy">
+          <h2 id="mockTitle">Sit a full mock assessment</h2>
+          <p>The real thing is up to nine games in one sitting. Practising them one at a time doesn't show you how you'll do in game seven when you're tired. A mock does.</p>
+          <ul class="mock-how">
+            <li>A practice round before each game, like the real test</li>
+            <li>Then every game at full length, one after another</li>
+            <li>No hints and no scores until the end</li>
+            <li>Take a break between games and pick up where you left off</li>
+            <li>One report at the end, with what to practise next</li>
+          </ul>
+          <p class="mock-state" id="mkState"></p>
+          <div class="mock-cta">
+            <a class="btn btn-light" href="#play-mock" data-play="mock" id="mkGo">Set up a mock</a>
+            <button class="mock-link" type="button" id="mkAlt" hidden></button>
+          </div>
+        </div>
+        <div class="mock-order">
+          <p class="mock-oh" id="mkOrderH">Example running order</p>
+          <ol class="mo-seq" id="mkSeq"></ol>
+          <p class="mock-total" id="mkTotal"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="blk" id="prepare">
     <div class="wrap">
       <div class="sh">
@@ -687,7 +830,7 @@
         </li>
         <li>
           <h3>Fix your weakest</h3>
-          <p>Read your report after each run: what went well, what to work on, and why any answers were wrong. Then replay the games that aren't at target yet.</p>
+          <p>Read your report after each run: what went well, what to work on, and why any answers were wrong. Then replay the games that aren't at target yet, and finish with a <a href="#mock">mock assessment</a>.</p>
         </li>
       </ol>
     </div>
@@ -798,8 +941,9 @@
 <dialog class="player" id="player" aria-labelledby="pName" tabindex="-1">
   <div class="p-head">
     <div class="p-title"><h2 id="pName">Game</h2><span class="tbadge" id="pBadge"></span><span class="p-count" id="pCount"></span></div>
-    <button class="p-exit" type="button" id="pExit">Exit</button>
+    <div class="p-btns"><button class="p-exit p-skip" type="button" id="pSkip" hidden>End practice</button><button class="p-exit" type="button" id="pExit">Exit</button></div>
   </div>
+  <div class="p-mock" id="pMock" hidden aria-hidden="true"></div>
   <div class="p-body" id="pBody"></div>
 </dialog>
 
@@ -2182,12 +2326,15 @@
     expressions: ['https://greatergood.berkeley.edu/quizzes/ei_quiz/take_quiz', 'Practise with photographs: Berkeley emotion quiz']
   };
   const TCLS = { Behavioural: 'behav', Cognitive: 'cog', Mixed: 'mixed' };
-  const dlg = document.getElementById('player'), pBody = document.getElementById('pBody'), pName = document.getElementById('pName'), pBadge = document.getElementById('pBadge'), pCount = document.getElementById('pCount');
+  const dlg = document.getElementById('player'), pBody = document.getElementById('pBody'), pName = document.getElementById('pName'), pBadge = document.getElementById('pBadge'), pCount = document.getElementById('pCount'), pMock = document.getElementById('pMock'), pExit = document.getElementById('pExit'), pSkip = document.getElementById('pSkip');
   const timers = new Set(), rafs = new Set();
-  let cur = null, session = 0, keymap = null, quiet = false;
+  let cur = null, session = 0, keymap = null, quiet = false, mkPlaying = false;
 
-  function clearAll() { timers.forEach(clearTimeout); timers.clear(); rafs.forEach(cancelAnimationFrame); rafs.clear(); keymap = null; session++; }
-  function makeApi(id, mode) {
+  function clearAll() {
+    timers.forEach(clearTimeout); timers.clear(); rafs.forEach(cancelAnimationFrame); rafs.clear(); keymap = null; session++;
+    mkPlaying = false; pMock.hidden = true; pSkip.hidden = true; pSkip.onclick = null; delete pExit.dataset.armed; pExit.textContent = 'Exit';
+  }
+  function makeApi(id, mode, hook) {   // hook: { prefix, finish } when a game runs inside a mock
     const s = session, alive = () => s === session;
     return {
       mode, practice: mode === 'practice', now: () => performance.now(),
@@ -2200,11 +2347,11 @@
         return () => { stopped = true; cancelAnimationFrame(h); rafs.delete(h); };
       },
       keys(map) { if (alive()) keymap = map; },
-      count(t) { if (alive()) pCount.textContent = t; },
-      finish(r) { if (alive()) results(id, mode, r); }
+      count(t) { if (alive()) pCount.textContent = (hook ? hook.prefix : '') + t; },
+      finish(r) { if (alive()) { if (hook) hook.finish(r); else results(id, mode, r); } }
     };
   }
-  function header(g) { pName.textContent = g.name; pBadge.className = 'tbadge ' + TCLS[g.type]; pBadge.innerHTML = '<i></i>' + g.type; pCount.textContent = ''; }
+  function header(g) { pName.textContent = g.name; pBadge.hidden = false; pBadge.className = 'tbadge ' + TCLS[g.type]; pBadge.innerHTML = '<i></i>' + g.type; pCount.textContent = ''; }
   function intro(id) {
     clearAll(); const g = G[id], gd = GUIDE[id], st = status(id), lp = lastPlay(id), lf = lastPlay(id, 'full'); header(g);
     const hist = st === 'new' ? 'You haven\'t played this one yet. Start with practice.'
@@ -2294,13 +2441,23 @@
     clearAll(); const was = cur; cur = null;
     if (dlg.open) dlg.close();
     document.documentElement.classList.remove('lock'); pBody.innerHTML = '';
-    if (push && location.hash.startsWith('#play-')) setHash('#games');
+    if (push && location.hash.startsWith('#play-')) setHash(was === 'mock' ? '#mock' : '#games');
     const card = was && document.querySelector(`[data-play="${was}"]`); if (card) card.focus();
   }
-  document.getElementById('pExit').addEventListener('click', () => closePlayer());
-  dlg.addEventListener('cancel', e => { e.preventDefault(); closePlayer(); });
+  /* Leaving mid-game in a mock loses that game, so ask for a second tap */
+  function tryExit() {
+    if (mkPlaying && !pExit.dataset.armed) {
+      pExit.dataset.armed = '1'; pExit.textContent = 'Tap again to leave';
+      setTimeout(() => { if (pExit.dataset.armed) { delete pExit.dataset.armed; pExit.textContent = 'Exit'; } }, 3500);
+      return;
+    }
+    closePlayer();
+  }
+  pExit.addEventListener('click', tryExit);
+  dlg.addEventListener('cancel', e => { e.preventDefault(); tryExit(); });
   addEventListener('hashchange', () => {
     if (quiet) { quiet = false; return; }
+    if (location.hash === '#play-mock') { openMock(false); return; }
     const m = /^#play-([a-z]+)$/.exec(location.hash);
     if (m && G[m[1]]) openGame(m[1], false); else if (dlg.open) closePlayer(false);
   });
@@ -2314,6 +2471,249 @@
     const b = pBody.querySelector(`[data-k="${k}"]`); if (b) { b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 120); }
   });
   pBody.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b && keymap && keymap[b.dataset.k]) keymap[b.dataset.k](); });
+
+  /* ===== Mock assessment: full-length games back to back, one report at the end ===== */
+  const MKEY = 'breakin-as-mock-v1';
+  const MIN = { direction: 4, balloon: 6, tiles: 6, tickets: 4, expressions: 5, order: 8, patterns: 14, security: 10, balance: 6, team: 5, predict: 9, energy: 6, analysis: 14, token: 6 };
+  const DOT = { Behavioural: 'var(--behav)', Cognitive: 'var(--cog)', Mixed: 'var(--c3)' };
+  const RANK = { new: 0, practised: 1, full: 2, ready: 3 };
+  let MOCK = { run: null, last: null, hist: [] }, setup = null, sample = null;
+  try {
+    const m = JSON.parse(localStorage.getItem(MKEY) || 'null');
+    if (m && typeof m === 'object') MOCK = { run: m.run || null, last: m.last || null, hist: Array.isArray(m.hist) ? m.hist : [] };
+  } catch (e) {}
+  const validRun = r => !!r && Array.isArray(r.set) && r.set.length > 0 && r.set.every(id => G[id]) && !!r.res && typeof r.res === 'object' && Number.isInteger(r.i);
+  if (!validRun(MOCK.run)) MOCK.run = null;
+  if (!validRun(MOCK.last) || !MOCK.last.set.every(id => MOCK.last.res[id])) MOCK.last = null;
+  function saveMock() {
+    try { localStorage.setItem(MKEY, JSON.stringify(MOCK)); }
+    catch (e) {   // over the storage limit: drop the mistake pictures and keep everything else
+      [MOCK.run, MOCK.last].forEach(r => r && Object.values(r.res).forEach(x => (x.mistakes || []).forEach(mm => delete mm.v)));
+      try { localStorage.setItem(MKEY, JSON.stringify(MOCK)); } catch (e2) {}
+    }
+  }
+  const mins = set => set.reduce((a, id) => a + MIN[id], 0);
+  const dur = t => { const m = Math.max(1, Math.round(t / 60000)); return m < 60 ? m + ' min' : `${Math.floor(m / 60)} h ${m % 60} min`; };
+  const day = t => new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  function employerMix() {   // a typical employer set: two or three behavioural, one or two mixed, the rest cognitive
+    const of = t => shuffle(ORDER.filter(id => G[id].type === t));
+    const beh = of('Behavioural').slice(0, rand(2, 3)), mix = of('Mixed').slice(0, rand(1, 2));
+    const cog = of('Cognitive').filter(id => (id !== 'patterns' && id !== 'analysis') || Math.random() < .4).slice(0, 9 - beh.length - mix.length);
+    return shuffle([...beh, ...mix, ...cog]);
+  }
+  const weakest = () => shuffle(shuffle(ORDER).sort((a, b) => RANK[status(a)] - RANK[status(b)]).slice(0, 9));
+  function seqRows(set, run) {
+    return set.map((id, k) => {
+      const g = G[id], r = run && run.res[id];
+      let cls = '', meta = `${MIN[id]} min`;
+      if (run && run.done) { cls = r && r.ready ? 'done' : 'done miss'; meta = r ? r.x : '–'; }
+      else if (run && k < run.i) { cls = 'done'; meta = 'Done'; }
+      else if (run && k === run.i) { cls = 'now'; meta = 'Up next'; }
+      return `<li class="${cls}"><span class="nm"><i style="background:${DOT[g.type]}"></i><span>${g.name}</span></span><span class="mt">${meta}</span></li>`;
+    }).join('');
+  }
+  function mockStrip(run) { pMock.hidden = false; pMock.innerHTML = run.set.map((_, k) => `<span class="${k < run.i ? 'done' : k === run.i ? 'now' : ''}"></span>`).join(''); }
+  function mockTitle(count) { pName.textContent = 'Mock assessment'; pBadge.hidden = true; pCount.textContent = count; }
+
+  function openMock(push = true, view) {
+    cur = 'mock';
+    if (!dlg.open) { document.documentElement.classList.add('lock'); dlg.showModal(); }
+    if (view === 'report' && MOCK.last) mockReport(MOCK.last, false); else if (MOCK.run) mockBrief(); else mockSetup();
+    if (push) setHash('#play-mock');
+  }
+  function mockSetup() {
+    clearAll(); mockTitle('Set up');
+    if (!setup) setup = { kind: 'mix', mix: employerMix(), weak: null, own: [] };
+    const KINDS = [['mix', 'Like an employer', 'Nine games in a typical mix of behavioural, cognitive and mixed.'],
+      ['weak', 'My weakest nine', 'The games furthest from target, so the mock tests what needs work.'],
+      ['own', 'Choose my own', 'Pick the games your employer uses, in the order you want.']];
+    pBody.innerHTML = `<div class="p-stage"><div class="mk">
+      <div><h3>Set up your mock assessment</h3><p class="lead">Like the real test, each game starts with a practice round that doesn't count. Then you play it at full length, with no hints and no scores until the end. Take a break between games if you need one, never during.</p></div>
+      <fieldset class="mk-kind"><legend>Which games?</legend>
+        ${KINDS.map(([v, b, t]) => `<label><input type="radio" name="mkKind" value="${v}"${setup.kind === v ? ' checked' : ''}><b>${b}</b><small>${t}</small></label>`).join('')}
+      </fieldset>
+      <div class="mk-pick" id="mkPick" hidden><p>Tap games in the order you want to play them. Tap one again to take it out.</p><div class="mk-chips" id="mkChips"></div></div>
+      <div class="mk-plan"><div class="mk-plan-h"><div><h4>Running order</h4> <span id="mkSum"></span></div><button class="mk-tool" type="button" id="mkShuf">Shuffle the order</button></div><ol class="mo-seq" id="mkList"></ol></div>
+      <div class="go"><button class="btn btn-primary" type="button" id="mkStart">Start the mock</button></div>
+      <p class="note">Your place is saved between games, so you can close this and come back later. If you leave during a game, that game starts again from the beginning.</p>
+    </div></div>`;
+    const q = s => pBody.querySelector(s);
+    const chosen = () => setup.kind === 'mix' ? setup.mix : setup.kind === 'weak' ? (setup.weak || (setup.weak = weakest())) : setup.own;
+    function draw(focusId) {
+      const set = chosen();
+      q('#mkList').innerHTML = seqRows(set);
+      q('#mkSum').textContent = set.length ? `${set.length} games, about ${mins(set)} minutes` : '';
+      q('#mkStart').disabled = set.length < 2; q('#mkShuf').hidden = set.length < 2;
+      q('#mkPick').hidden = setup.kind !== 'own';
+      q('#mkChips').innerHTML = ORDER.map(id => { const k = setup.own.indexOf(id); return `<button type="button" data-id="${id}" aria-pressed="${k >= 0}"><i style="background:${DOT[G[id].type]}"></i>${G[id].name}${k >= 0 ? `<b>${k + 1}</b>` : ''}</button>`; }).join('');
+      if (focusId) q(`[data-id="${focusId}"]`).focus();
+    }
+    pBody.querySelectorAll('input[name="mkKind"]').forEach(r => r.onchange = () => { setup.kind = r.value; draw(); });
+    q('#mkChips').onclick = e => {
+      const b = e.target.closest('[data-id]'); if (!b) return;
+      const id = b.dataset.id, k = setup.own.indexOf(id);
+      if (k >= 0) setup.own.splice(k, 1); else setup.own.push(id);
+      draw(id);
+    };
+    q('#mkShuf').onclick = () => {
+      if (setup.kind === 'mix') setup.mix = employerMix(); else if (setup.kind === 'weak') setup.weak = shuffle(chosen()); else setup.own = shuffle(setup.own);
+      draw();
+    };
+    q('#mkStart').onclick = () => {
+      const set = chosen().slice(); if (set.length < 2) return;
+      MOCK.run = { set, i: 0, res: {}, ms: 0, start: Date.now() }; setup = null;
+      saveMock(); renderMock(); mockBrief();
+    };
+    draw(); pBody.scrollTop = 0; q('input[name="mkKind"]:checked').focus({ preventScroll: true });
+  }
+  function mockBrief() {
+    clearAll();
+    const run = MOCK.run, id = run.set[run.i], g = G[id], gd = GUIDE[id], n = run.set.length, prev = run.i ? run.set[run.i - 1] : null;
+    header(g); pCount.textContent = `Game ${run.i + 1} of ${n}`; mockStrip(run);
+    pBody.innerHTML = `<div class="p-stage"><div class="intro mk mk-brief">
+      ${prev && run.res[prev] ? `<p class="mk-done">✓ ${G[prev].name} done. Your result is saved for the report at the end.</p>` : ''}
+      <div><p class="mk-step">Game ${run.i + 1} of ${n}, about ${MIN[id]} minutes</p><h3>${g.name}</h3><p class="lead">${g.what}</p></div>
+      <div class="cols">
+        <div class="box"><h4>How to play</h4><ol class="howto">${gd.steps.map(s => `<li>${s}</li>`).join('')}</ol></div>
+        <div><div class="box"><h4>Controls</h4><p>${g.controls}</p></div>
+          <div class="box"><h4>Remember</h4><p>${g.good}</p></div></div>
+      </div>
+      <div class="go"><button class="btn btn-primary" type="button" id="mkPrac">Start the practice round</button><button class="btn btn-ghost" type="button" id="mkPlay">Skip to the scored game</button><button class="btn btn-ghost" type="button" id="mkBreak">Take a break</button></div>
+      <p class="note">The practice round doesn't count and gives you hints as you go. End it whenever you feel ready, then the scored game starts.</p>
+    </div></div>`;
+    pBody.querySelector('#mkPrac').onclick = mockPractice;
+    pBody.querySelector('#mkPlay').onclick = mockPlay;
+    pBody.querySelector('#mkBreak').onclick = () => closePlayer();
+    pBody.scrollTop = 0; pBody.querySelector('#mkPrac').focus({ preventScroll: true });
+  }
+  function mockPractice() {   // the game's practice mode, with hints; it never counts towards the mock
+    clearAll();
+    const run = MOCK.run, id = run.set[run.i], n = run.set.length;
+    header(G[id]); mockStrip(run);
+    pSkip.hidden = false; pSkip.onclick = () => mockReady(null);
+    pCount.textContent = 'Practice';   // the game replaces this with its own counter; the strip shows which game
+    pBody.innerHTML = `<div class="p-stage g-${id}"></div>`;
+    G[id].mount(pBody.firstElementChild, makeApi(id, 'practice', { prefix: 'Practice · ', finish: r => mockReady(r) }));
+    pBody.scrollTop = 0; dlg.focus();
+  }
+  function mockReady(r) {   // r is null when the practice round was ended early
+    clearAll();
+    const run = MOCK.run, id = run.set[run.i], g = G[id], n = run.set.length;
+    header(g); mockStrip(run); pCount.textContent = `Game ${run.i + 1} of ${n} · Practice done`;
+    pBody.innerHTML = `<div class="p-stage"><div class="intro mk mk-brief">
+      <div><p class="mk-step">Game ${run.i + 1} of ${n}, practice done</p><h3>The scored ${g.name} game is next</h3>
+        <p class="lead">${r ? `Practice result: ${r.scoreText}. ` : ''}From here it's full length with no hints, and it counts from the first round.</p></div>
+      <div class="cols">
+        <div class="box"><h4>Controls</h4><p>${g.controls}</p></div>
+        <div class="box"><h4>Remember</h4><p>${g.good}</p></div>
+      </div>
+      <div class="go"><button class="btn btn-primary" type="button" id="mkPlay">Start the scored game</button><button class="btn btn-ghost" type="button" id="mkPrac">Practise again</button><button class="btn btn-ghost" type="button" id="mkBreak">Take a break</button></div>
+    </div></div>`;
+    pBody.querySelector('#mkPlay').onclick = mockPlay;
+    pBody.querySelector('#mkPrac').onclick = mockPractice;
+    pBody.querySelector('#mkBreak').onclick = () => closePlayer();
+    pBody.scrollTop = 0; pBody.querySelector('#mkPlay').focus({ preventScroll: true });
+  }
+  function mockPlay() {
+    clearAll();
+    const run = MOCK.run, id = run.set[run.i], t0 = Date.now();
+    header(G[id]); mockStrip(run); mkPlaying = true; pCount.textContent = `Game ${run.i + 1} of ${run.set.length}`;
+    pBody.innerHTML = `<div class="p-stage g-${id}"></div>`;
+    G[id].mount(pBody.firstElementChild, makeApi(id, 'full', { prefix: `Game ${run.i + 1} of ${run.set.length} · `, finish: r => mockDone(id, r, Date.now() - t0) }));
+    pBody.scrollTop = 0; dlg.focus();
+  }
+  function mockDone(id, r, ms) {
+    clearAll(); const run = MOCK.run; if (!run) return;
+    record(id, 'full', r);   // counts as a full-length play on the progress tracker too
+    run.res[id] = { s: r.score, x: r.scoreText, ready: !!r.ready, headline: r.headline, stats: r.stats || [], raw: r.raw || {}, breakdown: r.breakdown || null, mistakes: r.mistakes || [], note: r.note || '', ms };
+    run.ms += ms; run.i++;
+    if (run.i < run.set.length) { saveMock(); renderMock(); mockBrief(); return; }
+    run.done = true; run.end = Date.now(); run.ready = run.set.filter(k => run.res[k].ready).length;
+    MOCK.hist.push({ t: run.end, n: run.set.length, ready: run.ready, ms: run.ms }); MOCK.hist = MOCK.hist.slice(-20);
+    MOCK.last = run; MOCK.run = null; saveMock(); renderMock(); mockReport(run, true);
+  }
+  function mockReport(run, fresh) {
+    clearAll(); mockTitle(fresh ? 'Finished' : `Your last mock, ${day(run.end)}`);
+    const n = run.set.length, ready = run.ready, R = id => run.res[id];
+    const prev = MOCK.hist.length > 1 ? MOCK.hist[MOCK.hist.length - 2] : null;
+    const share = (a, b) => a / b;
+    const cmp = !prev ? '' : share(ready, n) > share(prev.ready, prev.n) ? `<b class="up">Up</b> from ${prev.ready} of ${prev.n} on your last mock`
+      : share(ready, n) < share(prev.ready, prev.n) ? `<b class="dn">Down</b> from ${prev.ready} of ${prev.n} on your last mock` : `Same as your last mock (${prev.ready} of ${prev.n})`;
+    const half = Math.ceil(n / 2), h1 = run.set.slice(0, half), h2 = run.set.slice(half);
+    const hit = a => a.filter(id => R(id).ready).length, rate = a => a.length ? hit(a) / a.length : 0;
+    const notYet = run.set.filter(id => !R(id).ready);
+    const fix = [...notYet.filter(id => G[id].type !== 'Behavioural'), ...notYet.filter(id => G[id].type === 'Behavioural')];
+    const next = !fix.length ? 'Keep it fresh. In the days before the real test, play one practice round of each game, then do the real thing in one quiet sitting.'
+      : `Practise ${fix.length === 1 ? 'this game' : 'these games'} at full length until ${fix.length === 1 ? 'it reaches its' : 'each one reaches its'} target, then sit another mock.`;
+    const pace = n < 4 ? '' : rate(h2) + .2 < rate(h1) ? 'You reached target on more games in the first half than the second, so tiredness may be costing you. In the real test, take a short break between games, and keep sitting full mocks to build stamina.'
+      : rate(h2) > rate(h1) + .2 ? 'You did better in the second half than the first. Before the real test, warm up with one practice game so you start sharp.' : '';
+    const beh = run.set.some(id => G[id].type === 'Behavioural') ? 'Behavioural games have no right or wrong answer. Their targets are about learning how each game works and staying consistent, so don\'t change your natural style just to hit them.' : '';
+    const games = run.set.map((id, k) => {
+      const g = G[id], gd = GUIDE[id], r = R(id), v = VIDEO[id];
+      return `<details class="mk-g"><summary><span class="gn"><b><i style="background:${DOT[g.type]}"></i>${k + 1}. ${g.name}</b><small>${r.x}, ${dur(r.ms)}</small></span><span class="mk-pill${r.ready ? ' ok' : ''}">${r.ready ? 'At target' : 'Not yet'}</span></summary>
+        <div class="mk-gb"><p class="hd">${r.headline}</p>
+          <dl class="r-stats">${r.stats.map(([l, val]) => `<div><dt>${l}</dt><dd${String(val).length > 14 ? ' class="sm"' : ''}>${val}</dd></div>`).join('')}</dl>
+          ${reviewHtml(g, gd, r, 'full')}
+          <div class="r-next"><h4>Your next step</h4><p>${gd.advise(r.raw || {})}</p><p class="r-target">${gd.target.startsWith('Full length: ') ? 'Target on the full-length version: ' + gd.target.slice(13) : 'Target: ' + gd.target}.</p></div>
+          ${mistakesHtml(r)}
+          ${r.note ? `<p class="r-note">${r.note}</p>` : ''}
+          ${v ? `<a class="vlink" href="${v[0]}" target="_blank" rel="noopener">${v[1]}</a>` : ''}
+          <a class="btn btn-ghost" href="#play-${id}">Practise ${g.name}</a>
+        </div></details>`;
+    }).join('');
+    pBody.innerHTML = `<div class="p-stage"><div class="res mk">
+      <div><h3>${ready === n ? `All ${n} games at target` : `${ready} of ${n} games at target`}</h3>${cmp ? `<p class="r-cmp" style="margin-top:8px">${cmp}</p>` : ''}</div>
+      <dl class="r-stats">
+        <div><dt>At target</dt><dd>${ready} of ${n}</dd></div>
+        <div><dt>Time playing</dt><dd>${dur(run.ms)}</dd></div>
+        ${n >= 4 ? `<div><dt>First half</dt><dd>${hit(h1)} of ${h1.length}</dd></div>
+        <div><dt>Second half</dt><dd>${hit(h2)} of ${h2.length}</dd></div>` : ''}
+      </dl>
+      <div class="r-next"><h4>Your next step</h4><p>${next}</p>${fix.length ? `<div class="mk-fix">${fix.map(id => `<a href="#play-${id}">${G[id].name}</a>`).join('')}</div>` : ''}${pace ? `<p class="r-target">${pace}</p>` : ''}</div>
+      ${beh ? `<p class="r-note">${beh}</p>` : ''}
+      <div class="mk-games"><h4>Game by game</h4>${games}</div>
+      <div class="r-act"><button class="btn btn-primary" type="button" id="mkNew">Sit another mock</button><button class="btn btn-ghost" type="button" id="mkBack">Back to the games</button></div>
+    </div></div>`;
+    pBody.querySelector('#mkNew').onclick = mockSetup;
+    pBody.querySelector('#mkBack').onclick = () => { closePlayer(false); location.hash = '#games'; };
+    pBody.scrollTop = 0; pBody.querySelector('h3').setAttribute('tabindex', '-1'); pBody.querySelector('h3').focus({ preventScroll: true });
+  }
+
+  /* The mock panel on the page: an example order, a paused mock, or the last result */
+  const mkState = document.getElementById('mkState'), mkGo = document.getElementById('mkGo'), mkAlt = document.getElementById('mkAlt'),
+    mkOrderH = document.getElementById('mkOrderH'), mkSeq = document.getElementById('mkSeq'), mkTotal = document.getElementById('mkTotal');
+  function renderMock() {
+    const run = MOCK.run, last = MOCK.last;
+    delete mkAlt.dataset.armed; mkAlt.hidden = true;
+    if (run) {
+      const left = run.set.slice(run.i);
+      mkState.textContent = `Your mock is paused before game ${run.i + 1} of ${run.set.length}, ${G[run.set[run.i]].name}.`;
+      mkGo.textContent = 'Resume your mock';
+      mkAlt.hidden = false; mkAlt.dataset.act = 'restart'; mkAlt.textContent = 'Start a new one instead';
+      mkOrderH.textContent = 'Your running order'; mkSeq.innerHTML = seqRows(run.set, run);
+      mkTotal.textContent = `${left.length} to go, about ${mins(left)} minutes of play.`;
+    } else if (last) {
+      mkState.textContent = `Your last mock, on ${day(last.end)}: ${last.ready} of ${last.set.length} games at target.`;
+      mkGo.textContent = 'Sit another mock';
+      mkAlt.hidden = false; mkAlt.dataset.act = 'report'; mkAlt.textContent = 'See that report';
+      mkOrderH.textContent = 'Your last mock'; mkSeq.innerHTML = seqRows(last.set, last);
+      mkTotal.textContent = `${dur(last.ms)} of play. A green tick means the game reached its target; an orange ring means not yet.`;
+    } else {
+      sample = sample || employerMix();
+      mkState.textContent = ''; mkGo.textContent = 'Set up a mock';
+      mkOrderH.textContent = 'Example running order'; mkSeq.innerHTML = seqRows(sample);
+      mkTotal.textContent = `${sample.length} games, about ${mins(sample)} minutes of play. Each employer picks its own set, so yours may differ.`;
+    }
+  }
+  mkAlt.addEventListener('click', () => {
+    if (mkAlt.dataset.act === 'report') { openMock(true, 'report'); return; }
+    if (!mkAlt.dataset.armed) {
+      mkAlt.dataset.armed = '1'; mkAlt.textContent = 'Tap again to drop your paused mock';
+      setTimeout(() => { if (mkAlt.dataset.armed) { delete mkAlt.dataset.armed; mkAlt.textContent = 'Start a new one instead'; } }, 4000);
+      return;
+    }
+    MOCK.run = null; saveMock(); renderMock(); openMock();
+  });
 
   /* Game cards, progress tracker and filters */
   const grid = document.getElementById('ggrid'), trBar = document.getElementById('trBar'), trCount = document.getElementById('trCount'), trSub = document.getElementById('trSub'), trNext = document.getElementById('trNext'), trReset = document.getElementById('trReset');
@@ -2331,8 +2731,8 @@
     trCount.textContent = `${c.ready} of ${ORDER.length}`;
     trSub.textContent = c.new === ORDER.length ? 'Your progress is saved in this browser as you play.' : `${ORDER.length - c.new} practised · ${c.full + c.ready} played at full length · saved in this browser`;
     const nid = ORDER.find(i => status(i) === 'new') || ORDER.find(i => status(i) !== 'ready');
-    trNext.href = '#play-' + (nid || 'direction');
-    trNext.textContent = !nid ? 'All at target: do a final run' : c.new === ORDER.length ? `Start with ${G[nid].name}` : `Continue with ${G[nid].name}`;
+    trNext.href = '#play-' + (nid || 'mock');
+    trNext.textContent = !nid ? 'All at target: sit a mock' : c.new === ORDER.length ? `Start with ${G[nid].name}` : `Continue with ${G[nid].name}`;
     trReset.hidden = c.new === ORDER.length;
   }
   trReset.addEventListener('click', () => {
@@ -2345,8 +2745,9 @@
     [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     filter = b.dataset.f; grid.querySelectorAll('.gcard').forEach(card => card.hidden = filter !== 'all' && card.dataset.type !== filter);
   });
-  renderProgress();
-  const m0 = /^#play-([a-z]+)$/.exec(location.hash); if (m0 && G[m0[1]]) openGame(m0[1], false);
+  renderProgress(); renderMock();
+  const m0 = /^#play-([a-z]+)$/.exec(location.hash);
+  if (location.hash === '#play-mock') openMock(false); else if (m0 && G[m0[1]]) openGame(m0[1], false);
 })();
 </script>
 </body>
